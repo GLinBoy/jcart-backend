@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 @Getter @Setter
-public class UserOrder {
+public class UserOrder extends BaseEntity {
     private User user;
     private OrderStatus status;
     private Set<Coupon> coupons;

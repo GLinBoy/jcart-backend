@@ -5,5 +5,5 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class UserGroup {
+public class UserGroup extends BaseEntity {
 }

@@ -9,7 +9,7 @@ import java.util.List;
 public class Product extends BaseEntity {
     private String name;
     private String description;
-    private List<ProductAtributie> atributies;
+    private List<ProductAttribute> atributies;
     private Double price;
     private List<ProductComment> commencts;
     private Double rate;

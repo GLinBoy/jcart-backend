@@ -5,5 +5,5 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class ProductCoupon implements Coupon {
+public class ProductCoupon  extends BaseEntity implements Coupon {
 }
