@@ -6,4 +6,5 @@ import lombok.Setter;
 
 @Getter @Setter
 public class UserGroup extends BaseEntity {
+    private String name;
 }

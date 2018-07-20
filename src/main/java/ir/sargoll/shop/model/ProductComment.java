@@ -6,4 +6,7 @@ import lombok.Setter;
 
 @Getter @Setter
 public class ProductComment extends BaseEntity {
+    private User user;
+    private String comment;
+    private Integer rate;
 }
