@@ -1,10 +1,8 @@
 package ir.sargoll.shop.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter @Setter
-public class Coupon extends BaseEntity {
+public class Discount  extends BaseEntity {
+    private User user;
+    private Product product;
     private Double percent;
     private Double ceiling;
     private Boolean isUsed;

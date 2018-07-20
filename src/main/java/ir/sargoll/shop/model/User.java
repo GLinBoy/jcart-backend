@@ -15,7 +15,11 @@ public class User extends BaseEntity {
     private List<UserAddress> addresses;
     private UserLevel level;
     private List<UserGroup> groups;
-    private UserCoupon coupon;
-    private List<UserOrder> orders;
+    private List<Discount> discounts;
+    private List<Order> orders;
     private Setting setting;
+    private UserGender gender;
+    private Boolean verifiedEmail;
+    private Boolean verifiedMobile;
+    private Long wallet;
 }

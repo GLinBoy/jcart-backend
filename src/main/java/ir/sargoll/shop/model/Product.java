@@ -16,5 +16,7 @@ public class Product extends BaseEntity {
     private String code;
     private List<ProductCategory> categories;
     private List<ProductImage> images;
-    private ProductCoupon coupon;
+    private Discount discount;
+    private Integer points;
+    private Integer requirementPoints;
 }
