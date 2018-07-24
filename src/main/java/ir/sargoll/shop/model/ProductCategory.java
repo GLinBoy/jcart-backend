@@ -8,5 +8,5 @@ public class ProductCategory extends BaseEntity {
     private String name;
     private String description;
     private ProductCategory parent;
-    private CategoryImage image;
+    private Image image;
 }
