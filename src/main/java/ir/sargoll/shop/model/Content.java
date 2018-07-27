@@ -13,6 +13,7 @@ import javax.persistence.Table;
 public class Content extends BaseEntity {
     @Column
     private String title;
+
     @Column
     private String content;
 }

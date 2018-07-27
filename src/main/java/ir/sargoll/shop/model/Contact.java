@@ -18,8 +18,8 @@ public class Contact extends BaseEntity {
     @JoinColumn (name="ADDRESS_ID")
     UserAddress address;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "CONTACT_ADDRESS",
+    @ManyToMany
+    @JoinTable(name = "JOIN_CONTACTS_ADDRESSES",
             joinColumns = @JoinColumn(name = "ADDRESS_ID"),
             inverseJoinColumns = @JoinColumn(name = "CONTACT_ID")
     )
