@@ -9,7 +9,8 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(uniqueConstraints = {
+@Table(name = "IMAGE",
+        uniqueConstraints = {
         @UniqueConstraint(name = "UNQ_IMAGE", columnNames = "NAME")
 })
 @Getter @Setter
@@ -21,5 +22,5 @@ public class Image extends BaseEntity {
     private String path;
 
     @Column
-    private Integer order;
+    private Integer ordering;
 }
