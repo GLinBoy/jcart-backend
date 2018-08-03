@@ -30,7 +30,7 @@ public class User extends BaseEntity {
     @OneToMany (fetch= FetchType.LAZY, mappedBy = "user", cascade = {CascadeType.ALL})
     private List<UserAddress> addresses;
 
-    @Column
+    @Transient
     private Double level;
 
     @ManyToMany

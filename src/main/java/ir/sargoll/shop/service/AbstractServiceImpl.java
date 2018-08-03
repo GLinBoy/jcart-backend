@@ -36,7 +36,8 @@ public abstract class AbstractServiceImpl<T extends BaseEntity, S extends JpaRep
 
     @Override
     public T getSingleById(Long id) {
-        return repository.getOne(id);
+        return repository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Resource not found id = " + id));
     }
 
     @Override
