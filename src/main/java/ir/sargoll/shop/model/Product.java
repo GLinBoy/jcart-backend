@@ -32,7 +32,7 @@ public class Product extends BaseEntity {
     @OneToMany(fetch= FetchType.LAZY, mappedBy = "product", cascade = {CascadeType.ALL})
     private List<ProductComment> commencts;
 
-    @Column
+    @Transient
     private Double rate;
 
     @Column

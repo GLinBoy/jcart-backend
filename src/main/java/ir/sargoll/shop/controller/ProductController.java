@@ -1,7 +1,7 @@
 package ir.sargoll.shop.controller;
 
-import ir.sargoll.shop.model.User;
-import ir.sargoll.shop.service.UserServiceApi;
+import ir.sargoll.shop.model.Product;
+import ir.sargoll.shop.service.ProductServiceApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,19 +11,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/users")
-public class UserController {
+@RequestMapping(path = "/products")
+public class ProductController {
 
     @Autowired
-    private UserServiceApi userService;
+    private ProductServiceApi productService;
 
     @GetMapping
-    public Page<User> getUsers(Pageable pageable) {
-        return userService.getAll(pageable);
+    public Page<Product> getProducts(Pageable pageable) {
+        return productService.getAll(pageable);
     }
 
     @GetMapping(path = "/{id}")
-    public User getUser(@PathVariable Long id) {
-        return userService.getSingleById(id);
+    public Product getProduct(@PathVariable Long id) {
+        return productService.getSingleById(id);
     }
 }
