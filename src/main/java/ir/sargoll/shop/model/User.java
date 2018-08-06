@@ -26,6 +26,9 @@ public class User extends BaseEntity {
     @Column
     private String password;
 
+    @Column
+    private Boolean isDeleted;
+
     @JsonManagedReference
     @OneToMany (fetch= FetchType.LAZY, mappedBy = "user", cascade = {CascadeType.ALL})
     private List<UserAddress> addresses;
