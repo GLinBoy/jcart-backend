@@ -3,6 +3,7 @@ package ir.sargoll.shop.service;
 import ir.sargoll.shop.model.Order;
 import ir.sargoll.shop.model.OrderItem;
 import ir.sargoll.shop.model.OrderStatus;
+import ir.sargoll.shop.model.ResourceNotFoundException;
 import ir.sargoll.shop.repository.OrderItemRepositoryApi;
 import ir.sargoll.shop.repository.OrderRepositoryApi;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,8 +61,21 @@ public class OrderServiceImpl extends AbstractServiceImpl<Order, OrderRepository
 
     @Override
     public OrderItem updateOrderItemNumber(Long userId, Long orderItemId, Integer number) {
-        OrderItem item = itemRepository.getOne(orderItemId);
-        item.setNumber(number);
-        return itemRepository.save(item);
+        Optional<Order> orderOptional = repository.findByUserAndStatus(userId, OrderStatus.CART);
+        if(orderOptional.isPresent()){
+            Optional<OrderItem> orderItemOptional = orderOptional.get().getItems()
+                    .stream().filter(oi -> oi.getId().equals(orderItemId)).findAny();
+            if(orderItemOptional.isPresent()){
+                OrderItem item = orderItemOptional.get();
+                item.setNumber(number);
+                return itemRepository.save(item);
+            } else {
+                throw new ResourceNotFoundException(
+                        String.format("Order with ID = %s doesn't exist!",
+                                orderItemId.toString()));
+            }
+        } else {
+            throw new ResourceNotFoundException("User haven't any cart yet!");
+        }
     }
 }
