@@ -13,6 +13,6 @@ import javax.transaction.Transactional;
 public class ProductServiceImpl extends AbstractServiceImpl<Product, ProductRepositoryApi> implements ProductServiceApi {
     @Override
     public Page<Product> getProductsCategory(Long categoryId, Pageable pageable) {
-        return repository.findByCategories(categoryId);
+        return repository.findByCategories(categoryId, pageable);
     }
 }
