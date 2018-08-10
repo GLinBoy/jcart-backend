@@ -5,5 +5,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface OrderRepositoryApi extends JpaRepository<Order, Long> {
-    Page<Order> findbyUser(Long userId);
+    Page<Order> findAllByUser(Long userId);
+    Order findByUserAndId(Long userId, Long orderId);
 }

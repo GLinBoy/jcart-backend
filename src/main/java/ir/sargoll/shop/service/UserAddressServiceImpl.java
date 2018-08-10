@@ -14,6 +14,11 @@ public class UserAddressServiceImpl
         implements UserAddressServiceApi {
     @Override
     public Page<UserAddress> getUserAddresses(Long userId) {
-        return repository.findbyUser(userId);
+        return repository.findByUser(userId);
+    }
+
+    @Override
+    public UserAddress getAddressByUser(Long userId, Long addressId) {
+        return repository.findByUserAndId(userId, addressId);
     }
 }

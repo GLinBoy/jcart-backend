@@ -5,4 +5,5 @@ import org.springframework.data.domain.Page;
 
 public interface OrderServiceApi extends GenericService<Order> {
     Page<Order> getUserOrders(Long userId);
+    Order getOrderByUser(Long userId, Long orderId);
 }

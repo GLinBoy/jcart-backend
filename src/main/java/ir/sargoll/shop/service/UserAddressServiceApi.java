@@ -5,4 +5,5 @@ import org.springframework.data.domain.Page;
 
 public interface UserAddressServiceApi extends GenericService<UserAddress> {
     Page<UserAddress> getUserAddresses(Long userId);
+    UserAddress getAddressByUser(Long userId, Long addressId);
 }

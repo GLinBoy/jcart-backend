@@ -79,7 +79,7 @@ public class UserController {
     @GetMapping(path = "/{user_id}/orders/{order_id}")
     public Order getUserOrder(@PathVariable("user_id") Long userId,
                               @PathVariable("order_id") Long orderId) {
-        return null;
+        return orderService.getOrderByUser(userId, orderId);
     }
 
     @GetMapping(path = "/{user_id}/addresses")
@@ -90,7 +90,7 @@ public class UserController {
     @GetMapping(path = "/{user_id}/addresses/{address_id}")
     public UserAddress getUserAddress(@PathVariable("user_id") Long userId,
                                       @PathVariable("address_id") Long addressId) {
-        return null;
+        return addressService.getAddressByUser(userId, addressId);
     }
 
     //--- cart section

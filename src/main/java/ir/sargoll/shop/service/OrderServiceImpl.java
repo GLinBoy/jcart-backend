@@ -13,6 +13,11 @@ import javax.transaction.Transactional;
 public class OrderServiceImpl extends AbstractServiceImpl<Order, OrderRepositoryApi> implements OrderServiceApi {
     @Override
     public Page<Order> getUserOrders(Long userId) {
-        return repository.findbyUser(userId);
+        return repository.findAllByUser(userId);
+    }
+
+    @Override
+    public Order getOrderByUser(Long userId, Long orderId) {
+        return repository.findByUserAndId(userId, orderId);
     }
 }
