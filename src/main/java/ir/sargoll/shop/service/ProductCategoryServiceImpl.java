@@ -10,5 +10,5 @@ import javax.transaction.Transactional;
 @Transactional
 public class ProductCategoryServiceImpl
         extends AbstractServiceImpl<ProductCategory, ProductCategoryRepositoryApi>
-        implements ProduCtategoryServiceApi {
+        implements ProductCategoryServiceApi {
 }

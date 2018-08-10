@@ -18,7 +18,7 @@ public class UserAddressServiceImpl
         implements UserAddressServiceApi {
 
     @Autowired
-    UserRepositoryApi userRepository;
+    private UserRepositoryApi userRepository;
 
     @Override
     public Page<UserAddress> getUserAddresses(Long userId, Pageable pageable) {

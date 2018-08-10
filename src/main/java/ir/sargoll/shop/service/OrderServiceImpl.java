@@ -19,7 +19,7 @@ import java.util.Optional;
 public class OrderServiceImpl extends AbstractServiceImpl<Order, OrderRepositoryApi> implements OrderServiceApi {
 
     @Autowired
-    OrderItemRepositoryApi itemRepository;
+    private OrderItemRepositoryApi itemRepository;
 
     @Override
     public Page<Order> getUserOrders(Long userId, Pageable pageable) {

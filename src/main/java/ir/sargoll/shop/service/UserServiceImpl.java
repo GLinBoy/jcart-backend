@@ -3,7 +3,6 @@ package ir.sargoll.shop.service;
 import ir.sargoll.shop.model.ResourceNotFoundException;
 import ir.sargoll.shop.model.User;
 import ir.sargoll.shop.repository.UserRepositoryApi;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
