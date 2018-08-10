@@ -9,4 +9,9 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 public class DiscountServiceImpl extends AbstractServiceImpl<Discount, DiscountRepositoryApi> implements DiscountServiceApi {
+    @Override
+    public Boolean verify(Long id) {
+        //FIXME implement Discount verifier
+        return null;
+    }
 }
