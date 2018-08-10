@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping(path = "/users")
 public class UserController {
@@ -29,7 +31,7 @@ public class UserController {
 
     //--- profile management
 
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/{userId}")
     public User getUser(@PathVariable Long id) {
         return userService.getSingleById(id);
     }
@@ -72,19 +74,32 @@ public class UserController {
     //--- order section
 
     @GetMapping(path = "/{user_id}/orders")
-    public Page<Order> getUserOrders(@PathVariable("user_id") Long id) {
-        return orderService.getUserOrders(id);
+    public Page<Order> getUserOrders(@PathVariable("user_id") Long userId, Pageable pageable) {
+        return orderService.getUserOrders(userId, pageable);
     }
 
     @GetMapping(path = "/{user_id}/orders/{order_id}")
-    public Order getUserOrder(@PathVariable("user_id") Long userId,
-                              @PathVariable("order_id") Long orderId) {
+    public Optional<Order> getUserOrder(@PathVariable("user_id") Long userId,
+                                        @PathVariable("order_id") Long orderId) {
         return orderService.getOrderByUser(userId, orderId);
     }
 
+    //--- address section
+
     @GetMapping(path = "/{user_id}/addresses")
-    public Page<UserAddress> getUserAddresses(@PathVariable("user_id") Long userId) {
-        return addressService.getUserAddresses(userId);
+    public Page<UserAddress> getUserAddresses(@PathVariable("user_id") Long userId, Pageable pageable) {
+        return addressService.getUserAddresses(userId, pageable);
+    }
+
+    @PostMapping(path = "/{user_id}/addresses")
+    public UserAddress getUserAddress(@PathVariable("user_id") Long userId, @RequestBody UserAddress address) {
+        return addressService.addAddressToUser(userId, address);
+    }
+
+    @DeleteMapping(path = "/{user_id}/addresses/{address_id}")
+    public void deleteAddress(@PathVariable("user_id") Long userId,
+                                      @PathVariable("address_id") Long addressId) {
+        addressService.deleteAddress(userId, addressId);
     }
 
     @GetMapping(path = "/{user_id}/addresses/{address_id}")
@@ -93,27 +108,29 @@ public class UserController {
         return addressService.getAddressByUser(userId, addressId);
     }
 
+
     //--- cart section
 
     @GetMapping(path = "/{user_id}/cart")
-    public Order getUserCart(@PathVariable("user_id") Long id) {
-        return null;
-    }
-
-    @GetMapping(path = "/{user_id}/cart")
-    public Page<OrderItem> getUserCartItems(@PathVariable("user_id") Long id) {
-        return null;
+    public Optional<Order> getUserCart(@PathVariable("user_id") Long userId) {
+        return orderService.getCart(userId);
     }
 
     @PutMapping(path = "/{user_id}/cart")
-    public OrderItem addOrderItem(@PathVariable("user_id") Long userId, Product product){
-        return null;
+    public Order addOrderItem(@PathVariable("user_id") Long userId, @RequestBody OrderItem product){
+        return orderService.addToCart(userId, product);
     }
 
     @DeleteMapping(path = "/{user_id}/cart/{order_item_id}")
     public void deleteOrderItem(@PathVariable("user_id") Long userId,
                                 @PathVariable("order_item_id") Long orderItemId){
-
+        orderService.deleteFromCart(userId, orderItemId);
     }
 
+    @GetMapping(path = "/{user_id}/cart/{order_item_id}/{number}")
+    public OrderItem orderItemNumber(@PathVariable("user_id") Long userId,
+                                @PathVariable("order_item_id") Long orderItemId,
+                                @PathVariable("number") Integer number){
+        return orderService.updateOrderItemNumber(userId, orderItemId, number);
+    }
 }

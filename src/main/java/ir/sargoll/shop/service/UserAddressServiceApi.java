@@ -2,8 +2,11 @@ package ir.sargoll.shop.service;
 
 import ir.sargoll.shop.model.UserAddress;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface UserAddressServiceApi extends GenericService<UserAddress> {
-    Page<UserAddress> getUserAddresses(Long userId);
+    Page<UserAddress> getUserAddresses(Long userId, Pageable pageable);
     UserAddress getAddressByUser(Long userId, Long addressId);
+    UserAddress addAddressToUser(Long userId, UserAddress address);
+    void deleteAddress(Long userId, Long addressId);
 }

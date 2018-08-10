@@ -44,7 +44,7 @@ public class Order extends BaseEntity {
     private List<OrderItem> items;
 
     @Column
-    private LocalDate ordreDate;
+    private LocalDate orderDate;
 
     @ManyToOne
     @JoinColumn(name = "DELIVERY_ADDRESS_ID")

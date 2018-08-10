@@ -17,10 +17,10 @@ public class User extends BaseEntity {
     @Column
     private String family;
 
-    @Column
+    @Column (unique = true)
     private String email;
 
-    @Column
+    @Column (unique = true)
     private String mobile;
 
     @Column
