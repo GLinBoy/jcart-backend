@@ -5,10 +5,7 @@ import ir.sargoll.shop.service.ProductServiceApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/products")
@@ -23,7 +20,22 @@ public class ProductController {
     }
 
     @GetMapping(path = "/{id}")
-    public Product getProduct(@PathVariable Long id) {
+    public Product getProduct(@PathVariable("id") Long id) {
         return productService.getSingleById(id);
+    }
+
+    @PostMapping
+    public Product addProduct(@RequestBody Product product) {
+        return productService.save(product);
+    }
+
+    @PutMapping
+    public Product updateProduct(Product product) {
+        return productService.update(product);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public void deleteProduct(@PathVariable("id") Long productId) {
+        productService.deleteSingleById(productId);
     }
 }
