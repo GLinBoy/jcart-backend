@@ -64,6 +64,12 @@ public class User extends BaseEntity {
     @Column
     private Boolean verifiedMobile;
 
+    @Column (nullable = false)
+    private String codeIntroducing;
+
+    @Column
+    private String codeReagent;
+
     @Transient
     private Long wallet;
 }
