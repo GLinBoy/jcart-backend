@@ -1,6 +1,7 @@
 package ir.sargoll.shop.service;
 
 import ir.sargoll.shop.model.Coupon;
+import ir.sargoll.shop.model.ResourceNotFoundException;
 import ir.sargoll.shop.repository.CouponRepositoryApi;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +18,13 @@ public class CouponServiceImpl extends AbstractServiceImpl<Coupon, CouponReposit
         //FIXME Date used between start & end
         Optional<Coupon> couponOptional = repository.findByCode(code);
         return couponOptional.isPresent();
+    }
+
+    @Override
+    public Coupon disableCoupon(Long id) {
+        Coupon coupon = repository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Coupon not found with id = " + id));
+        coupon.setIsActive(Boolean.FALSE);
+        return repository.save(coupon);
     }
 }

@@ -20,9 +20,6 @@ public class Coupon extends BaseEntity {
     private Double ceiling;
 
     @Column
-    private Boolean isUsed;
-
-    @Column
     private String code;
 
     @Column
