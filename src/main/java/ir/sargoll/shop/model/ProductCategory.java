@@ -18,8 +18,8 @@ public class ProductCategory extends BaseEntity {
     @Column
     private String description;
 
+    @JsonManagedReference
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(name = "PARENT_ID")
     private ProductCategory parent;
 
@@ -27,9 +27,9 @@ public class ProductCategory extends BaseEntity {
     @JoinColumn(name = "IMAGE_ID")
     private Image image;
 
+    @JsonBackReference
     @OneToMany(
             cascade = CascadeType.ALL,
             orphanRemoval = true)
-    @JsonManagedReference
     private List<ProductCategory> childes;
 }

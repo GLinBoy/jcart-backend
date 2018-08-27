@@ -1,5 +1,6 @@
 package ir.sargoll.shop.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
@@ -48,7 +49,7 @@ public class Product extends BaseEntity {
     @OneToMany
     private List<Image> images;
 
-    @JsonManagedReference
+    @JsonBackReference
     @OneToMany(fetch= FetchType.LAZY, mappedBy = "product")
     private Set<Discount> discounts;
 
