@@ -1,6 +1,7 @@
 package ir.sargoll.shop.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,6 +21,7 @@ public class ProductComment extends BaseEntity {
     @Column
     private Integer rate;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "PRODUCT_ID")
     private Product product;

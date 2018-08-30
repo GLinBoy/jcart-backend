@@ -1,6 +1,7 @@
 package ir.sargoll.shop.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,12 +16,13 @@ public class OrderItem extends Product {
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name="ORDER_ID", updatable = false)
-    Order order;
+    private Order order;
 
     @Column
-    Integer number;
+    private Integer number;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "PRODUCT_ID", updatable = false)
-    Product product;
+    private Product product;
 }

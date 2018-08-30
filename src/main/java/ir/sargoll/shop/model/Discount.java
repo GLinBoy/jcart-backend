@@ -1,5 +1,6 @@
 package ir.sargoll.shop.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,12 +11,13 @@ import javax.persistence.*;
 @Table
 @Getter @Setter
 public class Discount  extends BaseEntity {
+
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "USR_ID")
-    @JsonManagedReference
     private User user;
 
-    @JsonManagedReference
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "PRODUCT_ID")
     private Product product;

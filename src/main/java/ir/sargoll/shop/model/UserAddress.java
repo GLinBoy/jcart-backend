@@ -1,6 +1,7 @@
 package ir.sargoll.shop.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @Getter @Setter
 public class UserAddress extends BaseEntity {
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "USER_ID", updatable = false)
     private User user;

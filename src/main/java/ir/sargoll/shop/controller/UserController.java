@@ -1,12 +1,10 @@
 package ir.sargoll.shop.controller;
 
-import ir.sargoll.shop.model.Order;
-import ir.sargoll.shop.model.OrderItem;
-import ir.sargoll.shop.model.User;
-import ir.sargoll.shop.model.UserAddress;
+import ir.sargoll.shop.model.*;
 import ir.sargoll.shop.service.OrderServiceApi;
 import ir.sargoll.shop.service.UserAddressServiceApi;
 import ir.sargoll.shop.service.UserServiceApi;
+import ir.sargoll.shop.service.UserTransactionServiceApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,6 +22,8 @@ public class UserController {
     private OrderServiceApi orderService;
     @Autowired
     private UserAddressServiceApi addressService;
+    @Autowired
+    private UserTransactionServiceApi transactionService;
 
     //--- administration section
 
@@ -135,5 +135,18 @@ public class UserController {
                                 @PathVariable("order_item_id") Long orderItemId,
                                 @PathVariable("number") Integer number){
         return orderService.updateOrderItemNumber(userId, orderItemId, number);
+    }
+
+    // User Transactions
+
+    @GetMapping(path = "/{user_id}/transactions")
+    public Page<UserTransaction> getUserTransactions(@PathVariable("user_id") Long id, Pageable pageable) {
+        return transactionService.findUserTransactions(id, pageable);
+    }
+
+    @GetMapping(path = "/{user_id}/transactions/{transaction_id}")
+    public UserTransaction getUserTransaction(@PathVariable("user_id") Long userId,
+                                              @PathVariable("transaction_id") Long transactionId) {
+        return transactionService.findByUserAndTransaction(userId, transactionId).get();
     }
 }

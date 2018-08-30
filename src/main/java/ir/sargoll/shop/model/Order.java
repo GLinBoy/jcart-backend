@@ -1,5 +1,6 @@
 package ir.sargoll.shop.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import java.util.Set;
 @Table(name = "ORDERS")
 @Getter @Setter
 public class Order extends BaseEntity {
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "USER_ID", updatable = false)
     private User user;
@@ -28,17 +30,6 @@ public class Order extends BaseEntity {
     )
     private Set<Coupon> coupons;
 
-    @ManyToOne
-    @JoinColumn(name = "ADDRESS_ID")
-    private UserAddress address;
-
-//    @ManyToMany
-//    @JoinTable(name = "ORDER_PRODUCT",
-//            joinColumns = @JoinColumn(name = "ORDER_ID"),
-//            inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID")
-//    )
-//    private List<Product> products;
-
     @JsonManagedReference
     @OneToMany (fetch= FetchType.LAZY, mappedBy = "order", cascade = {CascadeType.ALL})
     private List<OrderItem> items;
@@ -51,7 +42,7 @@ public class Order extends BaseEntity {
     private UserAddress deliveryAddress;
 
     @ManyToOne
-    @JoinColumn(name = "FACTORY_ADDRESS_ID")
+    @JoinColumn(name = "FACTOR_ADDRESS_ID")
     private UserAddress factorAddress;
 
     @Column
