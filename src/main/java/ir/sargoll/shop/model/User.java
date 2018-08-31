@@ -2,6 +2,7 @@ package ir.sargoll.shop.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -73,4 +74,9 @@ public class User extends BaseEntity {
 
     @Transient
     private Long wallet;
+
+    @JsonProperty
+    public String getFullName() {
+        return this.name + " " + this.family;
+    }
 }
