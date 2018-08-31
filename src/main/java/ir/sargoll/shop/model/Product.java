@@ -49,7 +49,7 @@ public class Product extends BaseEntity {
     @OneToMany
     private List<Image> images;
 
-    @JsonManagedReference
+    @JsonBackReference
     @OneToMany(fetch= FetchType.LAZY, mappedBy = "product")
     private Set<Discount> discounts;
 

@@ -14,7 +14,7 @@ import java.util.Set;
 @Table(name = "ORDERS")
 @Getter @Setter
 public class Order extends BaseEntity {
-    @JsonBackReference
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "USER_ID", updatable = false)
     private User user;

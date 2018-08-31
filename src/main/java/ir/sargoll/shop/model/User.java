@@ -48,7 +48,7 @@ public class User extends BaseEntity {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = {CascadeType.ALL})
     private List<Discount> discounts;
 
-    @JsonManagedReference
+    @JsonBackReference
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = {CascadeType.ALL})
     private List<Order> orders;
 

@@ -12,12 +12,12 @@ import javax.persistence.*;
 @Getter @Setter
 public class Discount  extends BaseEntity {
 
-    @JsonBackReference
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "USR_ID")
     private User user;
 
-    @JsonBackReference
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "PRODUCT_ID")
     private Product product;
