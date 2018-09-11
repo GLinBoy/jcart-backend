@@ -1,5 +1,6 @@
 package ir.sargoll.shop.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,7 +31,7 @@ public class Product extends BaseEntity {
 
     @JsonManagedReference
     @OneToMany(fetch= FetchType.LAZY, mappedBy = "product", cascade = {CascadeType.ALL})
-    private List<ProductComment> commencts;
+    private List<ProductComment> comments;
 
     @Transient
     private Double rate;
@@ -48,7 +49,7 @@ public class Product extends BaseEntity {
     @OneToMany
     private List<Image> images;
 
-    @JsonManagedReference
+    @JsonBackReference
     @OneToMany(fetch= FetchType.LAZY, mappedBy = "product")
     private Set<Discount> discounts;
 
@@ -57,4 +58,8 @@ public class Product extends BaseEntity {
 
     @Column
     private Integer requirementPoints;
+
+    @JsonManagedReference
+    @OneToMany(fetch= FetchType.LAZY, mappedBy = "product")
+    private List<OrderItem> items;
 }

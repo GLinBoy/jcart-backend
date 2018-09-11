@@ -48,4 +48,9 @@ public class CategoryController {
     public Page<Product> getProducts(@PathVariable Long id, Pageable pageable) {
         return productService.getProductsCategory(id, pageable);
     }
+
+    @GetMapping(path = "/{parentId}/childes")
+    public Page<ProductCategory> getChildes(@PathVariable("parentId") Long parentId, Pageable pageable) {
+        return categoryService.getChildMenu(parentId, pageable);
+    }
 }

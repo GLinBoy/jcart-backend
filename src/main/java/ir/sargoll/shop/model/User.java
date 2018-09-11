@@ -1,6 +1,8 @@
 package ir.sargoll.shop.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -43,11 +45,11 @@ public class User extends BaseEntity {
     )
     private List<UserGroup> groups;
 
-    @JsonManagedReference
+    @JsonBackReference
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = {CascadeType.ALL})
     private List<Discount> discounts;
 
-    @JsonManagedReference
+    @JsonBackReference
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = {CascadeType.ALL})
     private List<Order> orders;
 
@@ -64,6 +66,17 @@ public class User extends BaseEntity {
     @Column
     private Boolean verifiedMobile;
 
+    @Column (nullable = false)
+    private String codeIntroducing;
+
+    @Column
+    private String codeReagent;
+
     @Transient
     private Long wallet;
+
+    @JsonProperty
+    public String getFullName() {
+        return this.name + " " + this.family;
+    }
 }
