@@ -20,11 +20,11 @@ public abstract class Auditable<U> {
 
     @CreatedBy
     @Column(name = "CREATED_BY", updatable = false, nullable = false)
-    private String createdBy;
+    private Long createdBy;
 
     @LastModifiedBy
     @Column(name = "EDITED_BY", nullable = false)
-    private String editedBy;
+    private Long editedBy;
 
     @CreatedDate
     @Temporal(TIMESTAMP)

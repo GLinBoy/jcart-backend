@@ -28,8 +28,8 @@ public class User extends BaseEntity {
     @Column
     private String password;
 
-    @Column
-    private Boolean isDeleted;
+    @Column (nullable = false)
+    private Boolean isDeleted = Boolean.FALSE;
 
     @JsonManagedReference
     @OneToMany (fetch= FetchType.LAZY, mappedBy = "user", cascade = {CascadeType.ALL})
@@ -66,7 +66,7 @@ public class User extends BaseEntity {
     @Column
     private Boolean verifiedMobile;
 
-    @Column (nullable = false)
+    @Column (nullable = false, unique = true)
     private String codeIntroducing;
 
     @Column

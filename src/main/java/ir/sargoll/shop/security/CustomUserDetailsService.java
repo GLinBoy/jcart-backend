@@ -17,12 +17,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String usernameOrEmail)
+    public UserDetails loadUserByUsername(String maileOrMobile)
             throws UsernameNotFoundException {
         // Let people login with either username or email
-        User user = userRepository.findByEmailOrMobile(usernameOrEmail, usernameOrEmail)
+        User user = userRepository.findByEmailOrMobile(maileOrMobile, maileOrMobile)
                 .orElseThrow(() ->
-                        new UsernameNotFoundException("User not found with username or email : " + usernameOrEmail)
+                        new UsernameNotFoundException("User not found with Email or Mobile: " + maileOrMobile)
                 );
 
         return UserPrincipal.create(user);

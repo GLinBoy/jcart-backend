@@ -1,20 +1,20 @@
-package ir.sargoll.shop;
+package ir.sargoll.shop.security;
 
 import javax.validation.constraints.NotBlank;
 
 public class LoginRequest {
     @NotBlank
-    private String usernameOrEmail;
+    private String emailOrMobile;
 
     @NotBlank
     private String password;
 
-    public String getUsernameOrEmail() {
-        return usernameOrEmail;
+    public String getEmailOrMobile() {
+        return emailOrMobile;
     }
 
-    public void setUsernameOrEmail(String usernameOrEmail) {
-        this.usernameOrEmail = usernameOrEmail;
+    public void setEmailOrMobile(String emailOrMobile) {
+        this.emailOrMobile = emailOrMobile;
     }
 
     public String getPassword() {

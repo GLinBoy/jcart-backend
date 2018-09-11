@@ -1,4 +1,4 @@
-package ir.sargoll.shop;
+package ir.sargoll.shop.security;
 
 public class JwtAuthenticationResponse {
     private String accessToken;

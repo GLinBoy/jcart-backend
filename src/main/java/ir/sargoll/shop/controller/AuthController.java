@@ -3,10 +3,14 @@ package ir.sargoll.shop.controller;
 import ir.sargoll.shop.*;
 import ir.sargoll.shop.exception.AppException;
 import ir.sargoll.shop.model.User;
+import ir.sargoll.shop.model.UserGender;
 import ir.sargoll.shop.model.UserGroup;
 import ir.sargoll.shop.repository.UserGroupRepositoryApi;
 import ir.sargoll.shop.repository.UserRepositoryApi;
+import ir.sargoll.shop.security.JwtAuthenticationResponse;
 import ir.sargoll.shop.security.JwtTokenProvider;
+import ir.sargoll.shop.security.LoginRequest;
+import ir.sargoll.shop.security.SignUpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,7 +53,7 @@ public class AuthController {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsernameOrEmail(),
+                        loginRequest.getEmailOrMobile(),
                         loginRequest.getPassword()
                 )
         );
@@ -70,12 +74,20 @@ public class AuthController {
         // Creating user's account
         User user = new User();
         user.setName(signUpRequest.getName());
+        user.setFamily(signUpRequest.getFamily());
         user.setEmail(signUpRequest.getEmail());
+        user.setMobile(signUpRequest.getMobile());
         user.setPassword(signUpRequest.getPassword());
+        user.setGender(UserGender.valueOf(signUpRequest.getGender()));
+        user.setCreatedBy(1L);
+        user.setEditedBy(1L);
+        // FIXME by default, Must Not be activated
+        user.setIsActive(Boolean.TRUE);
+        user.setCodeIntroducing("ABC-123");
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        UserGroup userGroup = userGroupRepository.findByName("User")
+        UserGroup userGroup = userGroupRepository.findByName("ROLE_USER")
                 .orElseThrow(() -> new AppException("User Role not set."));
 
         user.setGroups(Collections.singletonList(userGroup));
