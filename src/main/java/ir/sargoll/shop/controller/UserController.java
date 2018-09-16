@@ -37,13 +37,13 @@ public class UserController {
     //--- profile management
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @GetMapping(path = "/{userId}")
-    public User getUser(@PathVariable Long id) {
+    @GetMapping(path = "/{user_id}")
+    public User getUser(@PathVariable("user_id") Long id) {
         return userService.getSingleById(id);
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @PutMapping(path = "/users/{user_id}")
+    @PutMapping(path = "/{user_id}")
     public User updateUser(@PathVariable("user_id") Long userId, @RequestBody User user) {
         return userService.update(user);
     }
@@ -55,7 +55,7 @@ public class UserController {
     }
 
     @Secured({"ROLE_ADMIN"})
-    @DeleteMapping(path = "/users/{user_id}")
+    @DeleteMapping(path = "/{user_id}")
     public void deleteUser(@PathVariable("user_id") Long userId) {
         userService.deleteSingleById(userId);
     }

@@ -27,7 +27,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
         jsr250Enabled = true,
         prePostEnabled = true
 )
-@EnableJpaAuditing
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -85,6 +84,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/auth/**")
                 .permitAll()
                 .antMatchers("/users/checkUsernameAvailability", "/users/checkEmailAvailability")
+                .permitAll()
+                .antMatchers("/h2-console/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated();

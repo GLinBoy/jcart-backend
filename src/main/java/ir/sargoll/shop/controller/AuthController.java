@@ -93,6 +93,7 @@ public class AuthController {
         user.setGroups(Collections.singletonList(userGroup));
 
         User result = userRepository.save(user);
+        System.out.println(user.getId());
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/users/{username}")
