@@ -9,11 +9,11 @@ import javax.validation.constraints.*;
 @Getter @Setter
 public class SignUpRequest {
     @NotBlank
-    @Size(min = 4, max = 40)
+    @Size(min = 3, max = 50)
     private String name;
 
     @NotBlank
-    @Size(min = 4, max = 40)
+    @Size(min = 3, max = 50)
     private String family;
 
     @NotBlank
@@ -21,12 +21,12 @@ public class SignUpRequest {
     private String mobile;
 
     @NotBlank
-    @Size(max = 40)
+    @Size(min = 15, max = 150)
     @Email
     private String email;
 
     @NotBlank
-    @Size(min = 6, max = 20)
+    @Size(min = 8, max = 20)
     private String password;
 
     @NotBlank

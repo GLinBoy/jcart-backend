@@ -83,6 +83,7 @@ public class AuthController {
         user.setEditedBy(1L);
         // FIXME by default, Must Not be activated
         user.setIsActive(Boolean.TRUE);
+        // FIXME Generate user code for introducing
         user.setCodeIntroducing("ABC-123");
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
