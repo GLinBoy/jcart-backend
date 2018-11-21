@@ -1,13 +1,14 @@
 package ir.sargoll.shop.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import java.time.LocalDate;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table (uniqueConstraints = @UniqueConstraint(name = "UNQ_COUPON", columnNames = {"CODE"}))

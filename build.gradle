@@ -21,8 +21,8 @@ apply plugin: 'io.spring.dependency-management'
 
 group = 'ir.sargoll'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 11.0
-targetCompatibility = 11.0
+sourceCompatibility = 11
+targetCompatibility = 11
 
 repositories {
 	mavenCentral()
