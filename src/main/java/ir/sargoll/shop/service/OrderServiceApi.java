@@ -1,11 +1,12 @@
 package ir.sargoll.shop.service;
 
-import ir.sargoll.shop.model.Order;
-import ir.sargoll.shop.model.OrderItem;
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.Optional;
+import ir.sargoll.shop.model.Order;
+import ir.sargoll.shop.model.OrderItem;
 
 public interface OrderServiceApi extends GenericService<Order> {
     Page<Order> getUserOrders(Long userId, Pageable pageable);

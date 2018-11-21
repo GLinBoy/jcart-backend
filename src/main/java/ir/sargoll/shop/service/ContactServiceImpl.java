@@ -1,10 +1,11 @@
 package ir.sargoll.shop.service;
 
-import ir.sargoll.shop.model.Contact;
-import ir.sargoll.shop.repository.ContactRepositoryApi;
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import ir.sargoll.shop.model.Contact;
+import ir.sargoll.shop.repository.ContactRepositoryApi;
 
 @Service
 @Transactional

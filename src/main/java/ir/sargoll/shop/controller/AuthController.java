@@ -1,18 +1,11 @@
 package ir.sargoll.shop.controller;
 
-import ir.sargoll.shop.*;
-import ir.sargoll.shop.exception.AppException;
-import ir.sargoll.shop.model.User;
-import ir.sargoll.shop.model.UserGender;
-import ir.sargoll.shop.model.UserGroup;
-import ir.sargoll.shop.repository.UserGroupRepositoryApi;
-import ir.sargoll.shop.repository.UserRepositoryApi;
-import ir.sargoll.shop.security.JwtAuthenticationResponse;
-import ir.sargoll.shop.security.JwtTokenProvider;
-import ir.sargoll.shop.security.LoginRequest;
-import ir.sargoll.shop.security.SignUpRequest;
+import java.net.URI;
+import java.util.Collections;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,9 +18,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.validation.Valid;
-import java.net.URI;
-import java.util.Collections;
+import ir.sargoll.shop.ApiResponse;
+import ir.sargoll.shop.exception.AppException;
+import ir.sargoll.shop.model.User;
+import ir.sargoll.shop.model.UserGender;
+import ir.sargoll.shop.model.UserGroup;
+import ir.sargoll.shop.repository.UserGroupRepositoryApi;
+import ir.sargoll.shop.repository.UserRepositoryApi;
+import ir.sargoll.shop.security.JwtAuthenticationResponse;
+import ir.sargoll.shop.security.JwtTokenProvider;
+import ir.sargoll.shop.security.LoginRequest;
+import ir.sargoll.shop.security.SignUpRequest;
 
 @RestController
 @RequestMapping("/auth")
@@ -67,8 +68,8 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
         if(userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return new ResponseEntity(new ApiResponse(false, "Email Address already in use!"),
-                    HttpStatus.BAD_REQUEST);
+        	return ResponseEntity.badRequest()
+        			.body(new ApiResponse(false, "Email Address already in use!"));
         }
 
         // Creating user's account

@@ -1,10 +1,11 @@
 package ir.sargoll.shop.security;
 
-import ir.sargoll.shop.model.UserGender;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.validation.constraints.*;
 
 @Getter @Setter
 public class SignUpRequest {

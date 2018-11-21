@@ -1,14 +1,15 @@
 package ir.sargoll.shop.security;
 
-import ir.sargoll.shop.controller.UserPrincipal;
-import ir.sargoll.shop.model.User;
-import ir.sargoll.shop.repository.UserRepositoryApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import ir.sargoll.shop.controller.UserPrincipal;
+import ir.sargoll.shop.model.User;
+import ir.sargoll.shop.repository.UserRepositoryApi;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {

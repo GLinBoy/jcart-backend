@@ -1,13 +1,8 @@
 package ir.sargoll.shop;
 
-import ir.sargoll.shop.security.CustomUserDetailsService;
-import ir.sargoll.shop.security.JwtAuthenticationEntryPoint;
-import ir.sargoll.shop.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -19,6 +14,10 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import ir.sargoll.shop.security.CustomUserDetailsService;
+import ir.sargoll.shop.security.JwtAuthenticationEntryPoint;
+import ir.sargoll.shop.security.JwtAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity

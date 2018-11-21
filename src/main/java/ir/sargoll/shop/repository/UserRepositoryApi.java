@@ -1,9 +1,10 @@
 package ir.sargoll.shop.repository;
 
-import ir.sargoll.shop.model.User;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
+import ir.sargoll.shop.model.User;
 
 public interface UserRepositoryApi extends JpaRepository<User, Long> {
     Optional<User> findUserByEmail(String email);
