@@ -1,12 +1,12 @@
 package ir.sargoll.shop.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "IMAGE",

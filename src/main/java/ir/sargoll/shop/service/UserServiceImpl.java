@@ -22,12 +22,14 @@ public class UserServiceImpl extends AbstractServiceImpl<User, UserRepositoryApi
 
     @Override
     public void recoveryByMail(String mail) {
-        Optional<User> userOptional = repository.findUserByEmail(mail);
+        User user = repository.findUserByEmail(mail)
+        		.orElseThrow(() -> new ResourceNotFoundException("WRONG_CREDENTIAL"));
     }
 
     @Override
     public void recoveryByMobile(String mobile) {
-        Optional<User> userOptional = repository.findUserByMobile(mobile);
+    	User user = repository.findUserByMobile(mobile)
+        		.orElseThrow(() -> new ResourceNotFoundException("WRONG_CREDENTIAL"));
     }
 
     @Override
