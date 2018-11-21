@@ -1,0 +1,5 @@
+server:
+  port: 8181
+app:
+  jwtSecret: JWTSuperSecretKey
+  jwtExpirationInMs: 604800000
