@@ -1,4 +1,4 @@
-package ir.sargoll.shop;
+package ir.sargoll.shop.configuration;
 
 import java.util.Optional;
 
