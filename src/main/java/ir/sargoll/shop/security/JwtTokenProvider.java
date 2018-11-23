@@ -15,7 +15,7 @@ import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
-import ir.sargoll.shop.controller.UserPrincipal;
+import ir.sargoll.shop.model.UserPrincipal;
 
 @Component
 public class JwtTokenProvider {

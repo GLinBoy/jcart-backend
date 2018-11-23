@@ -3,7 +3,7 @@ package ir.sargoll.shop.security;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import ir.sargoll.shop.controller.UserPrincipal;
+import ir.sargoll.shop.model.UserPrincipal;
 
 @Component
 public class DataGuard {

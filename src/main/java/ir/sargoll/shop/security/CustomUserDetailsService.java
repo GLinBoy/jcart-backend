@@ -7,8 +7,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ir.sargoll.shop.controller.UserPrincipal;
 import ir.sargoll.shop.model.User;
+import ir.sargoll.shop.model.UserPrincipal;
 import ir.sargoll.shop.repository.UserRepositoryApi;
 
 @Service

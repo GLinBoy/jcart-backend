@@ -13,13 +13,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class UserPrincipal implements UserDetails {
 
-	private static final long serialVersionUID = -8333470850576655857L;
+	private static final long serialVersionUID = 3559079520825941961L;
 
 	private Long id;
 
     private String name;
 
-    private String mobile;
+    private String username;
 
     @JsonIgnore
     private String email;
@@ -29,11 +29,10 @@ public class UserPrincipal implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserPrincipal(Long id, String name, String mobile, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+    public UserPrincipal(Long id, String name, String email, String password, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.mobile = mobile;
         this.password = password;
         this.authorities = authorities;
     }
@@ -46,7 +45,6 @@ public class UserPrincipal implements UserDetails {
         return new UserPrincipal(
                 user.getId(),
                 user.getName(),
-                user.getMobile(),
                 user.getEmail(),
                 user.getPassword(),
                 authorities
@@ -65,18 +63,14 @@ public class UserPrincipal implements UserDetails {
         return email;
     }
 
-    public String getMobile() {
-        return mobile;
+    @Override
+    public String getUsername() {
+        return username;
     }
 
     @Override
     public String getPassword() {
         return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return email;
     }
 
     @Override
