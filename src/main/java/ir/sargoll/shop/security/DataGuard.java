@@ -9,7 +9,8 @@ import ir.sargoll.shop.controller.UserPrincipal;
 public class DataGuard {
 
     public boolean checkUserId(Authentication authentication, Long id) {
-        Long userId = ((UserPrincipal)authentication.getPrincipal()).getId();
-        return userId.equals(id);
+    	UserPrincipal user = ((UserPrincipal)authentication.getPrincipal());
+        return (user.getId().equals(id) || user.getAuthorities().stream()
+        		.anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN")));
     }
 }
