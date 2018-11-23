@@ -78,7 +78,6 @@ public class AuthController {
         user.setFamily(signUpRequest.getFamily());
         user.setEmail(signUpRequest.getEmail());
         user.setMobile(signUpRequest.getMobile());
-        user.setPassword(signUpRequest.getPassword());
         user.setGender(UserGender.valueOf(signUpRequest.getGender()));
         user.setCreatedBy(1L);
         user.setEditedBy(1L);
@@ -87,7 +86,8 @@ public class AuthController {
         // FIXME Generate user code for introducing
         user.setCodeIntroducing("ABC-123");
 
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+//        user.setPassword(signUpRequest.getPassword());
+        user.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
 
         UserGroup userGroup = userGroupRepository.findByName("ROLE_USER")
                 .orElseThrow(() -> new AppException("User Role not set."));
@@ -95,7 +95,6 @@ public class AuthController {
         user.setGroups(Collections.singletonList(userGroup));
 
         User result = userRepository.save(user);
-        System.out.println(user.getId());
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/users/{username}")

@@ -17,7 +17,7 @@ import lombok.Setter;
 @Getter @Setter
 public abstract class BaseEntity extends Auditable<String>{
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", updatable = false, nullable = false)
     private Long id;
 

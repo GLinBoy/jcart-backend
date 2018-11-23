@@ -1,6 +1,6 @@
 package ir.sargoll.shop.service;
 
-import ir.sargoll.shop.model.OrderItem;
+import ir.sargoll.shop.model.ProductOrderItem;
 
-public interface OrderItemServiceApi extends GenericService<OrderItem> {
+public interface OrderItemServiceApi extends GenericService<ProductOrderItem> {
 }

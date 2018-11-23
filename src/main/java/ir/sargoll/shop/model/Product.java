@@ -65,13 +65,7 @@ public class Product extends BaseEntity {
     @OneToMany(fetch= FetchType.LAZY, mappedBy = "product")
     private Set<Discount> discounts;
 
-    @Column
-    private Integer points;
-
-    @Column
-    private Integer requirementPoints;
-
     @JsonManagedReference
     @OneToMany(fetch= FetchType.LAZY, mappedBy = "product")
-    private List<OrderItem> items;
+    private List<ProductOrderItem> items;
 }

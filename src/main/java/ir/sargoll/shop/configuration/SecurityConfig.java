@@ -71,19 +71,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/",
-                        "/favicon.ico",
-                        "/**/*.png",
-                        "/**/*.gif",
-                        "/**/*.svg",
-                        "/**/*.jpg",
-                        "/**/*.html",
-                        "/**/*.css",
-                        "/**/*.js")
-                .permitAll()
+                .antMatchers("/users/{user_id}/**")
+                .access("@dataGuard.checkUserId(authentication,#user_id)")
                 .antMatchers("/auth/**")
                 .permitAll()
-                .antMatchers("/users/checkUsernameAvailability", "/users/checkEmailAvailability")
+                .antMatchers("/users/checkEmailAvailability")
                 .permitAll()
                 .antMatchers("/h2-console/**")
                 .permitAll()

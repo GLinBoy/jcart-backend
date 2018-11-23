@@ -4,10 +4,10 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import ir.sargoll.shop.model.OrderItem;
+import ir.sargoll.shop.model.ProductOrderItem;
 import ir.sargoll.shop.repository.OrderItemRepositoryApi;
 
 @Service
 @Transactional
-public class OrderItemServiceImpl extends AbstractServiceImpl<OrderItem, OrderItemRepositoryApi> implements OrderItemServiceApi {
+public class OrderItemServiceImpl extends AbstractServiceImpl<ProductOrderItem, OrderItemRepositoryApi> implements OrderItemServiceApi {
 }

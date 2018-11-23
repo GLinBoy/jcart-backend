@@ -45,7 +45,7 @@ public class Order extends BaseEntity {
 
     @JsonManagedReference
     @OneToMany (fetch= FetchType.LAZY, mappedBy = "order", cascade = {CascadeType.ALL})
-    private List<OrderItem> items;
+    private List<ProductOrderItem> items;
 
     @Column
     private LocalDate orderDate;

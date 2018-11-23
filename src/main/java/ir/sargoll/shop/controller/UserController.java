@@ -1,11 +1,13 @@
 package ir.sargoll.shop.controller;
 
+import java.security.Principal;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ir.sargoll.shop.model.Order;
-import ir.sargoll.shop.model.OrderItem;
+import ir.sargoll.shop.model.ProductOrderItem;
 import ir.sargoll.shop.model.User;
 import ir.sargoll.shop.model.UserAddress;
 import ir.sargoll.shop.model.UserTransaction;
@@ -28,6 +30,7 @@ import ir.sargoll.shop.service.UserTransactionServiceApi;
 
 @RestController
 @RequestMapping(path = "/users")
+@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 public class UserController {
 
     @Autowired
@@ -41,7 +44,6 @@ public class UserController {
 
     //--- administration section
 
-    @Secured({"ROLE_ADMIN"})
     @GetMapping
     public Page<User> getUsers(Pageable pageable) {
         return userService.getAll(pageable);
@@ -49,13 +51,13 @@ public class UserController {
 
     //--- profile management
 
-    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @GetMapping(path = "/{user_id}")
-    public User getUser(@PathVariable("user_id") Long id) {
+    public User getUser(@PathVariable("user_id") Long id, Principal principal) {
         return userService.getSingleById(id);
     }
 
-    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @PutMapping(path = "/{user_id}")
     public User updateUser(@PathVariable("user_id") Long userId, @RequestBody User user) {
         return userService.update(user);
@@ -67,7 +69,6 @@ public class UserController {
         return userService.register(user);
     }
 
-    @Secured({"ROLE_ADMIN"})
     @DeleteMapping(path = "/{user_id}")
     public void deleteUser(@PathVariable("user_id") Long userId) {
         userService.deleteSingleById(userId);
@@ -91,7 +92,7 @@ public class UserController {
         //FIXME After apply security
     }
 
-    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @PostMapping(path = "/logout")
     public void logout() {
         //FIXME After apply security
@@ -99,13 +100,13 @@ public class UserController {
 
     //--- order section
 
-    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @GetMapping(path = "/{user_id}/orders")
     public Page<Order> getUserOrders(@PathVariable("user_id") Long userId, Pageable pageable) {
         return orderService.getUserOrders(userId, pageable);
     }
 
-    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @GetMapping(path = "/{user_id}/orders/{order_id}")
     public Optional<Order> getUserOrder(@PathVariable("user_id") Long userId,
                                         @PathVariable("order_id") Long orderId) {
@@ -114,26 +115,26 @@ public class UserController {
 
     //--- address section
 
-    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @GetMapping(path = "/{user_id}/addresses")
     public Page<UserAddress> getUserAddresses(@PathVariable("user_id") Long userId, Pageable pageable) {
         return addressService.getUserAddresses(userId, pageable);
     }
 
-    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @PostMapping(path = "/{user_id}/addresses")
     public UserAddress getUserAddress(@PathVariable("user_id") Long userId, @RequestBody UserAddress address) {
         return addressService.addAddressToUser(userId, address);
     }
 
-    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @DeleteMapping(path = "/{user_id}/addresses/{address_id}")
     public void deleteAddress(@PathVariable("user_id") Long userId,
                                       @PathVariable("address_id") Long addressId) {
         addressService.deleteAddress(userId, addressId);
     }
 
-    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @GetMapping(path = "/{user_id}/addresses/{address_id}")
     public UserAddress getUserAddress(@PathVariable("user_id") Long userId,
                                       @PathVariable("address_id") Long addressId) {
@@ -143,28 +144,28 @@ public class UserController {
 
     //--- cart section
 
-    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @GetMapping(path = "/{user_id}/cart")
     public Optional<Order> getUserCart(@PathVariable("user_id") Long userId) {
         return orderService.getCart(userId);
     }
 
-    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @PutMapping(path = "/{user_id}/cart")
-    public Order addOrderItem(@PathVariable("user_id") Long userId, @RequestBody OrderItem product){
+    public Order addOrderItem(@PathVariable("user_id") Long userId, @RequestBody ProductOrderItem product){
         return orderService.addToCart(userId, product);
     }
 
-    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @DeleteMapping(path = "/{user_id}/cart/{order_item_id}")
     public void deleteOrderItem(@PathVariable("user_id") Long userId,
                                 @PathVariable("order_item_id") Long orderItemId){
         orderService.deleteFromCart(userId, orderItemId);
     }
 
-    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @GetMapping(path = "/{user_id}/cart/{order_item_id}/{number}")
-    public OrderItem orderItemNumber(@PathVariable("user_id") Long userId,
+    public ProductOrderItem orderItemNumber(@PathVariable("user_id") Long userId,
                                 @PathVariable("order_item_id") Long orderItemId,
                                 @PathVariable("number") Integer number){
         return orderService.updateOrderItemNumber(userId, orderItemId, number);
@@ -172,7 +173,7 @@ public class UserController {
 
     // User Transactions
 
-    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @GetMapping(path = "/{user_id}/transactions")
     public Page<UserTransaction> getUserTransactions(@PathVariable("user_id") Long id, Pageable pageable) {
         return transactionService.findUserTransactions(id, pageable);
