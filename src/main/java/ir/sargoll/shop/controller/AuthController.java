@@ -3,6 +3,8 @@ package ir.sargoll.shop.controller;
 import java.net.URI;
 import java.util.Collections;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +52,8 @@ public class AuthController {
     JwtTokenProvider tokenProvider;
 
     @PostMapping("/signin")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest,
+    		HttpServletRequest request, HttpServletResponse response) {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -61,8 +64,8 @@ public class AuthController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        String jwt = tokenProvider.generateToken(authentication);
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+        tokenProvider.setTokenOnResponse(authentication, response);
+        return ResponseEntity.ok(new JwtAuthenticationResponse("SUCCESS"));
     }
 
     @PostMapping("/signup")
@@ -101,5 +104,11 @@ public class AuthController {
                 .buildAndExpand(result.getEmail()).toUri();
 
         return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
+    }
+    
+    @PostMapping("/signout")
+    public ResponseEntity<?> logoutUser(HttpServletRequest request, HttpServletResponse response) {
+    	tokenProvider.removeTokenOnResponse(response);
+    	return ResponseEntity.ok("");
     }
 }

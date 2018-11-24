@@ -2,11 +2,16 @@ package ir.sargoll.shop.security;
 
 import java.util.Date;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
+import org.springframework.web.util.WebUtils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -21,13 +26,16 @@ import ir.sargoll.shop.model.UserPrincipal;
 public class JwtTokenProvider {
     private static final Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
 
-    @Value("${app.jwtSecret}")
+    @Value("${app.jwt.Secret}")
     private String jwtSecret;
 
-    @Value("${app.jwtExpirationInMs}")
+    @Value("${app.jwt.ExpirationInMs}")
     private int jwtExpirationInMs;
+    
+    @Value("${app.jwt.TokenName}")
+    private String jwtTokenName;
 
-    public String generateToken(Authentication authentication) {
+    private String generateToken(Authentication authentication) {
 
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
 
@@ -41,6 +49,14 @@ public class JwtTokenProvider {
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
     }
+    
+    public void setTokenOnResponse(Authentication authentication, HttpServletResponse response) {
+        Cookie cookie = new Cookie(jwtTokenName, generateToken(authentication));
+        cookie.setPath("/");
+        cookie.setHttpOnly(true);
+//        cookie.setSecure(true);
+        response.addCookie(cookie);
+    }
 
     public Long getUserIdFromJWT(String token) {
         Claims claims = Jwts.parser()
@@ -49,6 +65,15 @@ public class JwtTokenProvider {
                 .getBody();
 
         return Long.parseLong(claims.getSubject());
+    }
+    
+    public String getTokenFromCookie(HttpServletRequest request) {
+    	Cookie cookie = WebUtils.getCookie(request, jwtTokenName);
+    	if (cookie != null) {
+    		return cookie.getValue();
+    	} else {
+    		return null;
+    	}
     }
 
     public boolean validateToken(String authToken) {
@@ -68,4 +93,13 @@ public class JwtTokenProvider {
         }
         return false;
     }
+
+	public void removeTokenOnResponse(HttpServletResponse response) {
+		Cookie cookie = new Cookie(jwtTokenName, null);
+        cookie.setPath("/");
+        cookie.setHttpOnly(true);
+//        cookie.setSecure(true);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+	}
 }
