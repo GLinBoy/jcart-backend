@@ -14,7 +14,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.csrf.CsrfFilter;
 
+import ir.sargoll.shop.security.CsrfHeaderFilter;
 import ir.sargoll.shop.security.CustomUserDetailsService;
 import ir.sargoll.shop.security.JwtAuthenticationEntryPoint;
 import ir.sargoll.shop.security.JwtAuthenticationFilter;
@@ -63,7 +65,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors()
                 .and()
                 .csrf()
-                .disable()
+                .ignoringAntMatchers("/auth/**")
+                .and()
                 .exceptionHandling()
                 .authenticationEntryPoint(unauthorizedHandler)
                 .and()
@@ -83,6 +86,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated();
         // Add our custom JWT security filter
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-
+        http.addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class);
     }
 }
