@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -27,7 +28,6 @@ import ir.sargoll.shop.model.UserGender;
 import ir.sargoll.shop.model.UserGroup;
 import ir.sargoll.shop.repository.UserGroupRepositoryApi;
 import ir.sargoll.shop.repository.UserRepositoryApi;
-import ir.sargoll.shop.security.JwtAuthenticationResponse;
 import ir.sargoll.shop.security.JwtTokenProvider;
 import ir.sargoll.shop.security.LoginRequest;
 import ir.sargoll.shop.security.SignUpRequest;
@@ -51,6 +51,7 @@ public class AuthController {
     @Autowired
     JwtTokenProvider tokenProvider;
 
+    @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest,
     		HttpServletRequest request, HttpServletResponse response) {
@@ -65,14 +66,17 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         tokenProvider.setTokenOnResponse(authentication, response);
-        return ResponseEntity.ok(new JwtAuthenticationResponse("SUCCESS"));
+        return ResponseEntity.ok(ApiResponse.builder().login(true).success(true)
+        		.message("You now are sign-in.").build());
     }
 
+    @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
         if(userRepository.existsByEmail(signUpRequest.getEmail())) {
         	return ResponseEntity.badRequest()
-        			.body(new ApiResponse(false, "Email Address already in use!"));
+        			.body(ApiResponse.builder().login(false).success(false)
+        					.message("Email is used!").build());
         }
 
         // Creating user's account
@@ -97,18 +101,22 @@ public class AuthController {
 
         user.setGroups(Collections.singletonList(userGroup));
 
-        User result = userRepository.save(user);
+        userRepository.save(user);
 
         URI location = ServletUriComponentsBuilder
-                .fromCurrentContextPath().path("/users/{username}")
-                .buildAndExpand(result.getEmail()).toUri();
+                .fromCurrentContextPath().path("/")
+                .buildAndExpand().toUri();
 
-        return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
+        return ResponseEntity.created(location)
+        		.body(ApiResponse.builder().login(false).success(true)
+        				.message("User registered successfully").build());
     }
     
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping("/signout")
     public ResponseEntity<?> logoutUser(HttpServletRequest request, HttpServletResponse response) {
     	tokenProvider.removeTokenOnResponse(response);
-    	return ResponseEntity.ok("");
+    	return ResponseEntity.ok(ApiResponse.builder().login(false).success(true)
+    			.message("You now are sign-out.").build());
     }
 }

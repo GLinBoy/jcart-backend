@@ -1,6 +1,5 @@
 package ir.sargoll.shop.controller;
 
-import java.security.Principal;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +34,13 @@ public class UserController {
 
     @Autowired
     private UserServiceApi userService;
+    
     @Autowired
     private OrderServiceApi orderService;
+    
     @Autowired
     private UserAddressServiceApi addressService;
+    
     @Autowired
     private UserTransactionServiceApi transactionService;
 
@@ -53,7 +55,7 @@ public class UserController {
 
     @PreAuthorize("hasAuthority('ROLE_USER')")
     @GetMapping(path = "/{user_id}")
-    public User getUser(@PathVariable("user_id") Long id, Principal principal) {
+    public User getUser(@PathVariable("user_id") Long id) {
         return userService.getSingleById(id);
     }
 

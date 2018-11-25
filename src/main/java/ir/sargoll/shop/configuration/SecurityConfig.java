@@ -65,7 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors()
                 .and()
                 .csrf()
-                .ignoringAntMatchers("/auth/**")
+                .ignoringAntMatchers("/auth/**", "/h2-console/**")
                 .and()
                 .exceptionHandling()
                 .authenticationEntryPoint(unauthorizedHandler)

@@ -34,6 +34,7 @@ public class CsrfHeaderFilter extends OncePerRequestFilter {
         if (cookie == null || value != null && !value.equals(cookie.getValue())) {
             cookie = new Cookie(cookieName, value);
             cookie.setPath("/");
+            cookie.setHttpOnly(true);
             response.addCookie(cookie);
         }
     }
