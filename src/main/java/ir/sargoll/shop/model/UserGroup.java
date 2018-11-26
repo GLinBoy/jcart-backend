@@ -5,12 +5,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Table
-@Getter @Setter
+@Data
+@EqualsAndHashCode(callSuper=true)
 public class UserGroup extends BaseEntity {
 
     @Column

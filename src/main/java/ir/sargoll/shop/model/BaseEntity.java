@@ -8,13 +8,14 @@ import javax.persistence.MappedSuperclass;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 
 @MappedSuperclass
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Getter @Setter
+@Data 
+@EqualsAndHashCode(callSuper=true)
 public abstract class BaseEntity extends Auditable<String>{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

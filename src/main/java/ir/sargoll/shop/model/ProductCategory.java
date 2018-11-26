@@ -14,12 +14,13 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Table
-@Getter @Setter
+@Data
+@EqualsAndHashCode(callSuper=true)
 public class ProductCategory extends BaseEntity {
     @Column
     private String name;

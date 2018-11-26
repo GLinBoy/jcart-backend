@@ -7,12 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Table (uniqueConstraints = @UniqueConstraint(name = "UNQ_COUPON", columnNames = {"CODE"}))
-@Getter @Setter
+@Data
+@EqualsAndHashCode(callSuper=true)
 public class Coupon extends BaseEntity {
     @Column
     private Double percent;

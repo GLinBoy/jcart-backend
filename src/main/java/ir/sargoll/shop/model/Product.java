@@ -18,12 +18,13 @@ import javax.persistence.Transient;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@Getter @Setter
+@Data
+@EqualsAndHashCode(callSuper=true)
 public class Product extends BaseEntity {
     @Column
     private String name;

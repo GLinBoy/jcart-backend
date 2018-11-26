@@ -20,12 +20,13 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Table(name = "ORDERS")
-@Getter @Setter
+@Data
+@EqualsAndHashCode(callSuper=true)
 public class Order extends BaseEntity {
     @JsonManagedReference
     @ManyToOne

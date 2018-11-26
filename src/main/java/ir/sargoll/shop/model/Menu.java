@@ -6,12 +6,13 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Table
-@Getter @Setter
+@Data
+@EqualsAndHashCode(callSuper=true)
 public class Menu extends BaseEntity {
     @Column
     private String name;

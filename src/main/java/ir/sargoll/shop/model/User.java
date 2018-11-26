@@ -20,12 +20,13 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Table
-@Getter @Setter
+@Data
+@EqualsAndHashCode(callSuper=true)
 public class User extends BaseEntity {
     @Column
     private String name;
