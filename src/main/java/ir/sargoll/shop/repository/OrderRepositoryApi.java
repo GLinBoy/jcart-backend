@@ -10,7 +10,7 @@ import ir.sargoll.shop.model.Order;
 import ir.sargoll.shop.model.OrderStatus;
 
 public interface OrderRepositoryApi extends JpaRepository<Order, Long> {
-    Page<Order> findAllByUser(Long userId, Pageable pageable);
-    Optional<Order> findByUserAndId(Long userId, Long orderId);
-    Optional<Order> findByUserAndStatus(Long userId, OrderStatus status);
+    Page<Order> findAllByUserId(Long userId, Pageable pageable);
+    Optional<Order> findByUserIdAndId(Long userId, Long orderId);
+    Optional<Order> findByUserIdAndStatus(Long userId, OrderStatus status);
 }

@@ -25,17 +25,17 @@ public class OrderServiceImpl extends AbstractServiceImpl<Order, OrderRepository
 
     @Override
     public Page<Order> getUserOrders(Long userId, Pageable pageable) {
-        return repository.findAllByUser(userId, pageable);
+        return repository.findAllByUserId(userId, pageable);
     }
 
     @Override
     public Optional<Order> getOrderByUser(Long userId, Long orderId) {
-        return repository.findByUserAndId(userId, orderId);
+        return repository.findByUserIdAndId(userId, orderId);
     }
 
     @Override
     public Optional<Order> getCart(Long userId) {
-        return repository.findByUserAndStatus(userId, OrderStatus.CART);
+        return repository.findByUserIdAndStatus(userId, OrderStatus.CART);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class OrderServiceImpl extends AbstractServiceImpl<Order, OrderRepository
 
     @Override
     public ProductOrderItem updateOrderItemNumber(Long userId, Long orderItemId, Integer number) {
-        Optional<Order> orderOptional = repository.findByUserAndStatus(userId, OrderStatus.CART);
+        Optional<Order> orderOptional = repository.findByUserIdAndStatus(userId, OrderStatus.CART);
         if(orderOptional.isPresent()){
             Optional<ProductOrderItem> orderItemOptional = orderOptional.get().getItems()
                     .stream().filter(oi -> oi.getId().equals(orderItemId)).findAny();
