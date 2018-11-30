@@ -65,7 +65,7 @@ public class AuthController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        tokenProvider.setTokenOnResponse(authentication, response);
+        tokenProvider.setTokenOnResponse(authentication, loginRequest.getRememberMe(), response);
         return ResponseEntity.ok(ApiResponse.builder().login(true).success(true)
         		.message("You now are sign-in.").build());
     }

@@ -24,23 +24,27 @@ import ir.sargoll.shop.model.UserPrincipal;
 
 @Component
 public class JwtTokenProvider {
+	
     private static final Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
+    
+    private static final int ONE_MONTH_IN_SECOUND = 2_592_000;
 
     @Value("${app.jwt.Secret}")
     private String jwtSecret;
 
-    @Value("${app.jwt.ExpirationInMs}")
-    private int jwtExpirationInMs;
+    @Value("${app.jwt.ExpirationInSecound}")
+    private int jwtExpirationInSecound;
     
     @Value("${app.jwt.TokenName}")
     private String jwtTokenName;
 
-    private String generateToken(Authentication authentication) {
+    private String generateToken(Authentication authentication, Boolean rememberMe) {
 
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
 
         Date now = new Date();
-        Date expiryDate = new Date(now.getTime() + jwtExpirationInMs);
+        Date expiryDate = new Date(now.getTime() + 
+        		(rememberMe ? ONE_MONTH_IN_SECOUND : jwtExpirationInSecound) * 1000L );
 
         return Jwts.builder()
                 .setSubject(Long.toString(userPrincipal.getId()))
@@ -50,11 +54,12 @@ public class JwtTokenProvider {
                 .compact();
     }
     
-    public void setTokenOnResponse(Authentication authentication, HttpServletResponse response) {
-        Cookie cookie = new Cookie(jwtTokenName, generateToken(authentication));
+    public void setTokenOnResponse(Authentication authentication,
+    		Boolean rememberMe, HttpServletResponse response) {
+        Cookie cookie = new Cookie(jwtTokenName, generateToken(authentication, rememberMe));
         cookie.setPath("/");
         cookie.setHttpOnly(true);
-//        cookie.setSecure(true);
+        cookie.setMaxAge(rememberMe ? ONE_MONTH_IN_SECOUND : jwtExpirationInSecound);
         response.addCookie(cookie);
     }
 
