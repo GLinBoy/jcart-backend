@@ -16,21 +16,22 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-@Getter @Setter
+@Data
+@EqualsAndHashCode(callSuper=false)
 public abstract class Auditable<U> {
 
     @CreatedBy
     @Column(name = "CREATED_BY", updatable = false, nullable = false)
-    private String createdBy;
+    private Long createdBy;
 
     @LastModifiedBy
     @Column(name = "EDITED_BY", nullable = false)
-    private String editedBy;
+    private Long editedBy;
 
     @CreatedDate
     @Temporal(TIMESTAMP)

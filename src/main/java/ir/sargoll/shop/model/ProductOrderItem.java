@@ -12,7 +12,7 @@ import lombok.Setter;
 
 @Entity
 @Getter @Setter
-public class OrderItem extends Product {
+public class ProductOrderItem extends Product {
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name="ORDER_ID", updatable = false)

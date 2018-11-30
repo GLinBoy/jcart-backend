@@ -1,5 +1,6 @@
 package ir.sargoll.shop.model;
 
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
@@ -19,12 +20,13 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Table(name = "ORDERS")
-@Getter @Setter
+@Data
+@EqualsAndHashCode(callSuper=true)
 public class Order extends BaseEntity {
     @JsonManagedReference
     @ManyToOne
@@ -44,7 +46,7 @@ public class Order extends BaseEntity {
 
     @JsonManagedReference
     @OneToMany (fetch= FetchType.LAZY, mappedBy = "order", cascade = {CascadeType.ALL})
-    private List<OrderItem> items;
+    private List<ProductOrderItem> items;
 
     @Column
     private LocalDate orderDate;

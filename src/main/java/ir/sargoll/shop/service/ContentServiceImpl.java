@@ -1,11 +1,12 @@
 package ir.sargoll.shop.service;
 
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Service;
+
 import ir.sargoll.shop.model.Content;
 import ir.sargoll.shop.model.ResourceNotFoundException;
 import ir.sargoll.shop.repository.ContentRepositoryApi;
-import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
 
 @Service
 @Transactional

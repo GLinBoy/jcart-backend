@@ -18,12 +18,13 @@ import javax.persistence.Transient;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@Getter @Setter
+@Data
+@EqualsAndHashCode(callSuper=true)
 public class Product extends BaseEntity {
     @Column
     private String name;
@@ -65,13 +66,7 @@ public class Product extends BaseEntity {
     @OneToMany(fetch= FetchType.LAZY, mappedBy = "product")
     private Set<Discount> discounts;
 
-    @Column
-    private Integer points;
-
-    @Column
-    private Integer requirementPoints;
-
     @JsonManagedReference
     @OneToMany(fetch= FetchType.LAZY, mappedBy = "product")
-    private List<OrderItem> items;
+    private List<ProductOrderItem> items;
 }

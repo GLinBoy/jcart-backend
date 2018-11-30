@@ -1,10 +1,11 @@
 package ir.sargoll.shop.service;
 
-import ir.sargoll.shop.model.ProductComment;
-import ir.sargoll.shop.repository.ProductCommentRepositoryApi;
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import ir.sargoll.shop.model.ProductComment;
+import ir.sargoll.shop.repository.ProductCommentRepositoryApi;
 
 @Service
 @Transactional

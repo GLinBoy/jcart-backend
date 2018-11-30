@@ -1,12 +1,13 @@
 package ir.sargoll.shop.service;
 
-import ir.sargoll.shop.model.ProductCategory;
-import ir.sargoll.shop.repository.ProductCategoryRepositoryApi;
+import javax.transaction.Transactional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import ir.sargoll.shop.model.ProductCategory;
+import ir.sargoll.shop.repository.ProductCategoryRepositoryApi;
 
 @Service
 @Transactional

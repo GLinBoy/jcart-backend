@@ -20,12 +20,13 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Table
-@Getter @Setter
+@Data
+@EqualsAndHashCode(callSuper=true)
 public class User extends BaseEntity {
     @Column
     private String name;
@@ -42,8 +43,8 @@ public class User extends BaseEntity {
     @Column
     private String password;
 
-    @Column
-    private Boolean isDeleted;
+    @Column (nullable = false)
+    private Boolean isDeleted = Boolean.FALSE;
 
     @JsonManagedReference
     @OneToMany (fetch= FetchType.LAZY, mappedBy = "user", cascade = {CascadeType.ALL})
@@ -80,7 +81,7 @@ public class User extends BaseEntity {
     @Column
     private Boolean verifiedMobile;
 
-    @Column (nullable = false)
+    @Column (nullable = false, unique = true)
     private String codeIntroducing;
 
     @Column

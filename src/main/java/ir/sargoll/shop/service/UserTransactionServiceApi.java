@@ -1,10 +1,11 @@
 package ir.sargoll.shop.service;
 
-import ir.sargoll.shop.model.UserTransaction;
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.Optional;
+import ir.sargoll.shop.model.UserTransaction;
 
 public interface UserTransactionServiceApi extends GenericService<UserTransaction> {
 

@@ -1,12 +1,11 @@
 package ir.sargoll.shop.service;
 
-import ir.sargoll.shop.model.ResourceNotFoundException;
-import ir.sargoll.shop.model.User;
-import ir.sargoll.shop.repository.UserRepositoryApi;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import ir.sargoll.shop.model.ResourceNotFoundException;
+import ir.sargoll.shop.model.User;
+import ir.sargoll.shop.repository.UserRepositoryApi;
 
 @Service
 @Transactional
@@ -22,14 +21,14 @@ public class UserServiceImpl extends AbstractServiceImpl<User, UserRepositoryApi
 
     @Override
     public void recoveryByMail(String mail) {
-        User user = repository.findUserByEmail(mail)
-        		.orElseThrow(() -> new ResourceNotFoundException("WRONG_CREDENTIAL"));
+//        User user = repository.findUserByEmail(mail)
+//        		.orElseThrow(() -> new ResourceNotFoundException("WRONG_CREDENTIAL"));
     }
 
     @Override
     public void recoveryByMobile(String mobile) {
-    	User user = repository.findUserByMobile(mobile)
-        		.orElseThrow(() -> new ResourceNotFoundException("WRONG_CREDENTIAL"));
+//    	User user = repository.findUserByMobile(mobile)
+//        		.orElseThrow(() -> new ResourceNotFoundException("WRONG_CREDENTIAL"));
     }
 
     @Override
