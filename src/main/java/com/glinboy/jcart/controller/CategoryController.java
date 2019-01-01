@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.glinboy.jcart.model.Product;
 import com.glinboy.jcart.model.ProductCategory;
+import com.glinboy.jcart.model.ProductShopItem;
 import com.glinboy.jcart.service.ProductCategoryServiceApi;
 import com.glinboy.jcart.service.ProductServiceApi;
 
@@ -55,7 +55,7 @@ public class CategoryController {
     }
 
     @GetMapping(path = "/{id}/products")
-    public Page<Product> getProducts(@PathVariable Long id, Pageable pageable) {
+    public Page<ProductShopItem> getProducts(@PathVariable Long id, Pageable pageable) {
         return productService.getProductsCategory(id, pageable);
     }
 

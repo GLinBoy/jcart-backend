@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.glinboy.jcart.model.Product;
+import com.glinboy.jcart.model.ProductShopItem;
 import com.glinboy.jcart.service.ProductServiceApi;
 
 @RestController
@@ -25,7 +26,7 @@ public class ProductController {
     private ProductServiceApi productService;
 
     @GetMapping
-    public Page<Product> getProducts(Pageable pageable) {
+    public Page<ProductShopItem> getProducts(Pageable pageable) {
         return productService.getAll(pageable);
     }
 
@@ -35,12 +36,12 @@ public class ProductController {
     }
 
     @PostMapping
-    public Product addProduct(@RequestBody Product product) {
+    public Product addProduct(@RequestBody ProductShopItem product) {
         return productService.save(product);
     }
 
     @PutMapping
-    public Product updateProduct(Product product) {
+    public Product updateProduct(ProductShopItem product) {
         return productService.update(product);
     }
 
