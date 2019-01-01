@@ -20,9 +20,4 @@ public class ProductOrderItem extends Product {
 
     @Column
     private Integer number;
-
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name = "PRODUCT_ID", updatable = false)
-    private Product product;
 }

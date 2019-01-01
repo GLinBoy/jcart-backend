@@ -24,8 +24,8 @@ public class Discount  extends BaseEntity {
 
     @JsonManagedReference
     @ManyToOne
-    @JoinColumn(name = "PRODUCT_ID")
-    private Product product;
+    @JoinColumn(name = "PRODUCT_SHOP_ID")
+    private ProductShopItem product;
 
     @Column
     private Double percent;

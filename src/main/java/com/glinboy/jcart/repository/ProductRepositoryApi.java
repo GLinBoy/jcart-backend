@@ -4,8 +4,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.glinboy.jcart.model.Product;
+import com.glinboy.jcart.model.ProductShopItem;
 
-public interface ProductRepositoryApi extends JpaRepository<Product, Long> {
-    Page<Product> findByCategories(Long categoryId, Pageable pageable);
+public interface ProductRepositoryApi extends JpaRepository<ProductShopItem, Long> {
+    Page<ProductShopItem> findByCategories(Long categoryId, Pageable pageable);
 }

@@ -29,6 +29,6 @@ public class ProductComment extends BaseEntity {
 
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "PRODUCT_ID")
-    private Product product;
+    @JoinColumn(name = "PRODUCT_SHOP_ID")
+    private ProductShopItem product;
 }
