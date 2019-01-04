@@ -35,7 +35,6 @@ import com.glinboy.jcart.security.SignUpRequest;
 
 @RestController
 @RequestMapping("/auth")
-@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 public class AuthController {
 
     @Autowired
