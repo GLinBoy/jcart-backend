@@ -16,16 +16,21 @@ import com.glinboy.jcart.service.OrderServiceApi;
 @RequestMapping(path = "/orders")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
 public class OrderController {
-    @Autowired
-    private OrderServiceApi orderService;
+	
+	private OrderServiceApi orderService;
 
-    @GetMapping
-    public Page<Order> getAllOrders(Pageable pageable) {
-        return orderService.getAll(pageable);
-    }
+	public OrderController(OrderServiceApi orderService) {
+		super();
+		this.orderService = orderService;
+	}
 
-    @GetMapping(path = "/{id}")
-    public Order getOrder(@PathVariable Long id) {
-        return orderService.getSingleById(id);
-    }
+	@GetMapping
+	public Page<Order> getAllOrders(Pageable pageable) {
+		return orderService.getAll(pageable);
+	}
+
+	@GetMapping(path = "/{id}")
+	public Order getOrder(@PathVariable Long id) {
+		return orderService.getSingleById(id);
+	}
 }

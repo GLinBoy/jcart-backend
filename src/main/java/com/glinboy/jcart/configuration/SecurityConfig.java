@@ -23,69 +23,48 @@ import com.glinboy.jcart.security.JwtAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(
-        securedEnabled = true,
-        jsr250Enabled = true,
-        prePostEnabled = true
-)
+@EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    CustomUserDetailsService customUserDetailsService;
-    @Autowired
-    private JwtAuthenticationEntryPoint unauthorizedHandler;
+	@Autowired
+	CustomUserDetailsService customUserDetailsService;
+	@Autowired
+	private JwtAuthenticationEntryPoint unauthorizedHandler;
 
-    @Bean
-    public JwtAuthenticationFilter jwtAuthenticationFilter() {
-        return new JwtAuthenticationFilter();
-    }
+	@Bean
+	public JwtAuthenticationFilter jwtAuthenticationFilter() {
+		return new JwtAuthenticationFilter();
+	}
 
-    @Override
-    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder
-                .userDetailsService(customUserDetailsService)
-                .passwordEncoder(passwordEncoder());
-    }
+	@Override
+	public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+		authenticationManagerBuilder.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
+	}
 
-    @Bean(BeanIds.AUTHENTICATION_MANAGER)
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
+	@Bean(BeanIds.AUTHENTICATION_MANAGER)
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
+	}
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.headers().frameOptions().disable();
-        http
-                .cors()
-                .and()
-                .csrf()
-                .ignoringAntMatchers("/auth/**", "/h2-console/**")
-                .and()
-                .exceptionHandling()
-                .authenticationEntryPoint(unauthorizedHandler)
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authorizeRequests()
-                .antMatchers("/users/{user_id}/**")
-                .access("@dataGuard.checkUserId(authentication,#user_id)")
-                .antMatchers("/auth/**")
-                .permitAll()
-                .antMatchers("/users/checkEmailAvailability")
-                .permitAll()
-                .antMatchers("/h2-console/**")
-                .permitAll()
-                .anyRequest()
-                .authenticated();
-        // Add our custom JWT security filter
-        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-        http.addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class);
-    }
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.headers().frameOptions().disable();
+		http.cors().and().csrf().ignoringAntMatchers("/auth/**", "/h2-console/**").and().exceptionHandling()
+				.authenticationEntryPoint(unauthorizedHandler).and().sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
+				.antMatchers("/users/{user_id}/**").access("@dataGuard.checkUserId(authentication,#user_id)")
+				.antMatchers("/auth/**").permitAll().antMatchers("/users/checkEmailAvailability").permitAll()
+				.antMatchers("/h2-console/**").permitAll().antMatchers("/v2/api-docs", "/configuration/ui",
+						"/swagger-resources/**", "/configuration/security", "/swagger-ui.html", "/webjars/**")
+				.permitAll().anyRequest().authenticated();
+		// Add our custom JWT security filter
+		http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+		http.addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class);
+	}
 }
