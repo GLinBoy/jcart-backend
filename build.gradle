@@ -19,11 +19,11 @@ ext {
 }
 
 dependencies {
-	compile('javax.xml.bind:jaxb-api:2.3.1')
+	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile("org.springframework.boot:spring-boot-starter-undertow")
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
-	compile('org.springframework.boot:spring-boot-starter-web')
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	runtime('org.springframework.boot:spring-boot-devtools')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	runtimeOnly('org.springframework.boot:spring-boot-devtools')
