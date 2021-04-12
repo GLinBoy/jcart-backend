@@ -1,6 +1,5 @@
 package com.glinboy.jcart.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,22 +11,24 @@ import org.springframework.web.bind.annotation.RestController;
 import com.glinboy.jcart.model.UserTransaction;
 import com.glinboy.jcart.service.UserTransactionServiceApi;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping(path = "/transactions")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+@RequiredArgsConstructor
 public class TransactionController {
 
-    @Autowired
-    private UserTransactionServiceApi transactionService;
+	private final UserTransactionServiceApi transactionService;
 
-    @GetMapping
-    public Page<UserTransaction> getAll(Pageable pageable) {
-        return transactionService.getAll(pageable);
-    }
+	@GetMapping
+	public Page<UserTransaction> getAll(Pageable pageable) {
+		return transactionService.getAll(pageable);
+	}
 
-    @GetMapping(path = "/{id}")
-    public UserTransaction get(@PathVariable Long id){
-        return transactionService.getSingleById(id);
-    }
+	@GetMapping(path = "/{id}")
+	public UserTransaction get(@PathVariable Long id) {
+		return transactionService.getSingleById(id);
+	}
 
 }

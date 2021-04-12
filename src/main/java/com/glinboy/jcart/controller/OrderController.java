@@ -11,17 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.glinboy.jcart.model.Order;
 import com.glinboy.jcart.service.OrderServiceApi;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping(path = "/orders")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+@RequiredArgsConstructor
 public class OrderController {
 	
-	private OrderServiceApi orderService;
-
-	public OrderController(OrderServiceApi orderService) {
-		super();
-		this.orderService = orderService;
-	}
+	private final OrderServiceApi orderService;
 
 	@GetMapping
 	public Page<Order> getAllOrders(Pageable pageable) {

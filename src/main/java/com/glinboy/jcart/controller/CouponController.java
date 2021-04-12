@@ -1,6 +1,5 @@
 package com.glinboy.jcart.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,33 +12,35 @@ import org.springframework.web.bind.annotation.RestController;
 import com.glinboy.jcart.model.Coupon;
 import com.glinboy.jcart.service.CouponServiceApi;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping(path = "/coupons")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+@RequiredArgsConstructor
 public class CouponController {
-    @Autowired
-    private CouponServiceApi couponService;
 
+	private final CouponServiceApi couponService;
 
-    @GetMapping
-    public Page<Coupon> getAllCoupons(Pageable pageable){
-        return couponService.getAll(pageable);
-    }
+	@GetMapping
+	public Page<Coupon> getAllCoupons(Pageable pageable) {
+		return couponService.getAll(pageable);
+	}
 
-    @DeleteMapping(path = "/{id}")
-    public void deleteCoupon(@PathVariable Long id){
-        couponService.deleteSingleById(id);
-    }
+	@DeleteMapping(path = "/{id}")
+	public void deleteCoupon(@PathVariable Long id) {
+		couponService.deleteSingleById(id);
+	}
 
-    @GetMapping(path = "/{id}/disable")
-    public Coupon disableCoupon(@PathVariable Long id){
-        return couponService.disableCoupon(id);
-    }
+	@GetMapping(path = "/{id}/disable")
+	public Coupon disableCoupon(@PathVariable Long id) {
+		return couponService.disableCoupon(id);
+	}
 
-    @GetMapping(path = "/verify/{code}")
-    public Boolean verifyCoupon(@PathVariable String code) {
-        return couponService.verify(code);
-    }
+	@GetMapping(path = "/verify/{code}")
+	public Boolean verifyCoupon(@PathVariable String code) {
+		return couponService.verify(code);
+	}
 
-    //TODO Generate Coupon
+	// TODO Generate Coupon
 }

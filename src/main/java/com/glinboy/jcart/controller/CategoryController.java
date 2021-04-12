@@ -1,6 +1,5 @@
 package com.glinboy.jcart.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,49 +17,50 @@ import com.glinboy.jcart.model.ProductShopItem;
 import com.glinboy.jcart.service.ProductCategoryServiceApi;
 import com.glinboy.jcart.service.ProductServiceApi;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping(path = "/categories")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+@RequiredArgsConstructor
 public class CategoryController {
 
-    @Autowired
-    private ProductCategoryServiceApi categoryService;
+	private final ProductCategoryServiceApi categoryService;
 
-    @Autowired
-    private ProductServiceApi productService;
+	private final ProductServiceApi productService;
 
-    @GetMapping
-    public Page<ProductCategory> getCategories(Pageable pageable) {
-        return categoryService.getAll(pageable);
-    }
+	@GetMapping
+	public Page<ProductCategory> getCategories(Pageable pageable) {
+		return categoryService.getAll(pageable);
+	}
 
-    @GetMapping(path = "/{id}")
-    public ProductCategory getCategory(@PathVariable Long id) {
-        return categoryService.getSingleById(id);
-    }
+	@GetMapping(path = "/{id}")
+	public ProductCategory getCategory(@PathVariable Long id) {
+		return categoryService.getSingleById(id);
+	}
 
-    @PostMapping
-    public ProductCategory addCategory(@RequestBody ProductCategory category) {
-        return categoryService.save(category);
-    }
+	@PostMapping
+	public ProductCategory addCategory(@RequestBody ProductCategory category) {
+		return categoryService.save(category);
+	}
 
-    @PutMapping
-    public ProductCategory updateCategory(@RequestBody ProductCategory category) {
-        return categoryService.update(category);
-    }
+	@PutMapping
+	public ProductCategory updateCategory(@RequestBody ProductCategory category) {
+		return categoryService.update(category);
+	}
 
-    @DeleteMapping(path = "/{id}")
-    public void deleteCategory(@PathVariable Long id) {
-        categoryService.deleteSingleById(id);
-    }
+	@DeleteMapping(path = "/{id}")
+	public void deleteCategory(@PathVariable Long id) {
+		categoryService.deleteSingleById(id);
+	}
 
-    @GetMapping(path = "/{id}/products")
-    public Page<ProductShopItem> getProducts(@PathVariable Long id, Pageable pageable) {
-        return productService.getProductsCategory(id, pageable);
-    }
+	@GetMapping(path = "/{id}/products")
+	public Page<ProductShopItem> getProducts(@PathVariable Long id, Pageable pageable) {
+		return productService.getProductsCategory(id, pageable);
+	}
 
-    @GetMapping(path = "/{parentId}/childes")
-    public Page<ProductCategory> getChildes(@PathVariable("parentId") Long parentId, Pageable pageable) {
-        return categoryService.getChildMenu(parentId, pageable);
-    }
+	@GetMapping(path = "/{parentId}/childes")
+	public Page<ProductCategory> getChildes(@PathVariable("parentId") Long parentId, Pageable pageable) {
+		return categoryService.getChildMenu(parentId, pageable);
+	}
 }

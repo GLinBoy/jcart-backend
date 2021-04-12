@@ -1,6 +1,5 @@
 package com.glinboy.jcart.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,35 +15,38 @@ import org.springframework.web.bind.annotation.RestController;
 import com.glinboy.jcart.model.Menu;
 import com.glinboy.jcart.service.MenuServiceApi;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping(path = "/menus")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+@RequiredArgsConstructor
 public class MenuController {
-    @Autowired
-    private MenuServiceApi menuService;
 
-    @GetMapping
-    public Page<Menu> getAllMenus(Pageable pageable) {
-        return menuService.getAll(pageable);
-    }
+	private final MenuServiceApi menuService;
 
-    @GetMapping(path = "/{id}")
-    public Menu getMenuById(@PathVariable Long id) {
-        return menuService.getSingleById(id);
-    }
+	@GetMapping
+	public Page<Menu> getAllMenus(Pageable pageable) {
+		return menuService.getAll(pageable);
+	}
 
-    @PostMapping
-    public Menu saveMenu(@RequestBody Menu menu) {
-        return menuService.save(menu);
-    }
+	@GetMapping(path = "/{id}")
+	public Menu getMenuById(@PathVariable Long id) {
+		return menuService.getSingleById(id);
+	}
 
-    @PutMapping
-    public Menu updateMenu(@RequestBody Menu menu) {
-        return menuService.update(menu);
-    }
+	@PostMapping
+	public Menu saveMenu(@RequestBody Menu menu) {
+		return menuService.save(menu);
+	}
 
-    @DeleteMapping(path = "/{id}")
-    public void deleteMenu(@PathVariable Long id) {
-        menuService.deleteSingleById(id);
-    }
+	@PutMapping
+	public Menu updateMenu(@RequestBody Menu menu) {
+		return menuService.update(menu);
+	}
+
+	@DeleteMapping(path = "/{id}")
+	public void deleteMenu(@PathVariable Long id) {
+		menuService.deleteSingleById(id);
+	}
 }

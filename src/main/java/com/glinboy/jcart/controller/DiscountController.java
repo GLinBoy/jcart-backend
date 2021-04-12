@@ -1,6 +1,5 @@
 package com.glinboy.jcart.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,40 +14,43 @@ import org.springframework.web.bind.annotation.RestController;
 import com.glinboy.jcart.model.Discount;
 import com.glinboy.jcart.service.DiscountServiceApi;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping(path = "/discounts")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+@RequiredArgsConstructor
 public class DiscountController {
-    @Autowired
-    private DiscountServiceApi discountService;
 
-    @GetMapping
-    public Page<Discount> getAllDiscount(Pageable pageable) {
-        return discountService.getAll(pageable);
-    }
+	private final DiscountServiceApi discountService;
 
-    @GetMapping(path = "/{id}")
-    public Discount getDiscount(@PathVariable Long id) {
-        return discountService.getSingleById(id);
-    }
+	@GetMapping
+	public Page<Discount> getAllDiscount(Pageable pageable) {
+		return discountService.getAll(pageable);
+	}
 
-    @PostMapping
-    public Discount saveDiscount(Discount discount) {
-        return discountService.save(discount);
-    }
+	@GetMapping(path = "/{id}")
+	public Discount getDiscount(@PathVariable Long id) {
+		return discountService.getSingleById(id);
+	}
 
-    @PutMapping
-    public Discount updateDiscount(Discount discount) {
-        return discountService.update(discount);
-    }
+	@PostMapping
+	public Discount saveDiscount(Discount discount) {
+		return discountService.save(discount);
+	}
 
-    @DeleteMapping(path = "/{id}")
-    public void deleteDiscount(@PathVariable Long id) {
-        discountService.deleteSingleById(id);
-    }
+	@PutMapping
+	public Discount updateDiscount(Discount discount) {
+		return discountService.update(discount);
+	}
 
-    @GetMapping(path = "/{id}/verify")
-    public Boolean verifyDiscount(@PathVariable Long id) {
-        return discountService.verify(id);
-    }
+	@DeleteMapping(path = "/{id}")
+	public void deleteDiscount(@PathVariable Long id) {
+		discountService.deleteSingleById(id);
+	}
+
+	@GetMapping(path = "/{id}/verify")
+	public Boolean verifyDiscount(@PathVariable Long id) {
+		return discountService.verify(id);
+	}
 }

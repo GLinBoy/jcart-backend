@@ -1,6 +1,5 @@
 package com.glinboy.jcart.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,36 +16,38 @@ import com.glinboy.jcart.model.Product;
 import com.glinboy.jcart.model.ProductShopItem;
 import com.glinboy.jcart.service.ProductServiceApi;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping(path = "/products")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+@RequiredArgsConstructor
 public class ProductController {
 
-    @Autowired
-    private ProductServiceApi productService;
+	private final ProductServiceApi productService;
 
-    @GetMapping
-    public Page<ProductShopItem> getProducts(Pageable pageable) {
-        return productService.getAll(pageable);
-    }
+	@GetMapping
+	public Page<ProductShopItem> getProducts(Pageable pageable) {
+		return productService.getAll(pageable);
+	}
 
-    @GetMapping(path = "/{id}")
-    public Product getProduct(@PathVariable("id") Long id) {
-        return productService.getSingleById(id);
-    }
+	@GetMapping(path = "/{id}")
+	public Product getProduct(@PathVariable("id") Long id) {
+		return productService.getSingleById(id);
+	}
 
-    @PostMapping
-    public Product addProduct(@RequestBody ProductShopItem product) {
-        return productService.save(product);
-    }
+	@PostMapping
+	public Product addProduct(@RequestBody ProductShopItem product) {
+		return productService.save(product);
+	}
 
-    @PutMapping
-    public Product updateProduct(ProductShopItem product) {
-        return productService.update(product);
-    }
+	@PutMapping
+	public Product updateProduct(ProductShopItem product) {
+		return productService.update(product);
+	}
 
-    @DeleteMapping(path = "/{id}")
-    public void deleteProduct(@PathVariable("id") Long productId) {
-        productService.deleteSingleById(productId);
-    }
+	@DeleteMapping(path = "/{id}")
+	public void deleteProduct(@PathVariable("id") Long productId) {
+		productService.deleteSingleById(productId);
+	}
 }
