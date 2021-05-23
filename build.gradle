@@ -20,6 +20,8 @@ ext {
 	problemVersion = '0.26.2'
 }
 
+defaultTasks "bootRun"
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
