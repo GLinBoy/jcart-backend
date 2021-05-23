@@ -15,8 +15,8 @@ repositories {
 }
 
 ext {
-	jsr310Version = '2.12.2'
-	springdocVersion = '1.5.7'
+	jsr310Version = '2.12.3'
+	springdocVersion = '1.5.8'
 	problemVersion = '0.26.2'
 }
 
