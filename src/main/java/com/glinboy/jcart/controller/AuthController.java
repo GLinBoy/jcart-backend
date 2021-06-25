@@ -50,7 +50,7 @@ public class AuthController {
 
 	@Secured("IS_AUTHENTICATED_ANONYMOUSLY")
 	@PostMapping("/signin")
-	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, HttpServletRequest request,
+	public ResponseEntity<ApiResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, HttpServletRequest request,
 			HttpServletResponse response) {
 
 		Authentication authentication = authenticationManager.authenticate(
@@ -65,7 +65,7 @@ public class AuthController {
 
 	@Secured("IS_AUTHENTICATED_ANONYMOUSLY")
 	@PostMapping("/signup")
-	public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
+	public ResponseEntity<ApiResponse> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
 		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
 			return ResponseEntity.badRequest()
 					.body(ApiResponse.builder().login(false).success(false).message("Email is used!").build());
@@ -103,7 +103,7 @@ public class AuthController {
 
 	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
 	@PostMapping("/signout")
-	public ResponseEntity<?> logoutUser(HttpServletRequest request, HttpServletResponse response) {
+	public ResponseEntity<ApiResponse> logoutUser(HttpServletRequest request, HttpServletResponse response) {
 		tokenProvider.removeTokenOnResponse(response);
 		return ResponseEntity
 				.ok(ApiResponse.builder().login(false).success(true).message("You now are sign-out.").build());
