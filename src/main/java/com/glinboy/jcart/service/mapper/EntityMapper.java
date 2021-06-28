@@ -6,6 +6,9 @@ import org.mapstruct.MappingTarget;
 import org.mapstruct.Named;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
+import com.glinboy.jcart.model.BaseEntity;
+import com.glinboy.jcart.service.dto.BaseDTO;
+
 /**
  * Contract for a generic dto to entity mapper.
  *
@@ -13,7 +16,7 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
  * @param <E> - Entity type parameter.
  */
 
-public interface EntityMapper<D, E> {
+public interface EntityMapper<D extends BaseDTO, E extends BaseEntity> {
 	E toEntity(D dto);
 
 	D toDto(E entity);
