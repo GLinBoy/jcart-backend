@@ -1,6 +1,6 @@
 root=true
 
-[*.{groovy,java,kt,xml}]
+[*.{groovy,java,kt,xml,gradle}]
 indent_style = tab
 indent_size = 4
 continuation_indent_size = 8
