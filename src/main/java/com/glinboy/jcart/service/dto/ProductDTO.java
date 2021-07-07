@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper=true)
-public class ProductDTO extends BaseDTO {
+public abstract class ProductDTO extends BaseDTO {
 	private String name;
 	private String description;
 	private List<ProductAttributeDTO> attributes;
