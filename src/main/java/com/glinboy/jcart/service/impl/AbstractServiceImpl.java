@@ -7,15 +7,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
-import com.glinboy.jcart.model.BaseEntity;
 import com.glinboy.jcart.model.ResourceNotFoundException;
 import com.glinboy.jcart.service.GenericService;
+import com.glinboy.jcart.service.dto.BaseDTO;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public abstract class AbstractServiceImpl<T extends BaseEntity, S extends JpaRepository<T, Long>>
+public abstract class AbstractServiceImpl<T extends BaseDTO, S extends JpaRepository<T, Long>>
 		implements GenericService<T> {
 
 	protected final S repository;
