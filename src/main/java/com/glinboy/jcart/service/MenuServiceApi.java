@@ -1,6 +1,6 @@
 package com.glinboy.jcart.service;
 
-import com.glinboy.jcart.model.Menu;
+import com.glinboy.jcart.service.dto.MenuDTO;
 
-public interface MenuServiceApi extends GenericService<Menu> {
+public interface MenuServiceApi extends GenericService<MenuDTO> {
 }
