@@ -22,6 +22,8 @@ public abstract class AbstractServiceImpl<T extends BaseDTO, E extends BaseEntit
 		implements GenericService<T> {
 
 	protected final S repository;
+	
+	protected final M mapper;
 
 	@Override
 	@Transactional
