@@ -1,6 +1,6 @@
 package com.glinboy.jcart.service;
 
-import com.glinboy.jcart.model.Setting;
+import com.glinboy.jcart.service.dto.SettingDTO;
 
-public interface SettingServiceApi extends GenericService<Setting> {
+public interface SettingServiceApi extends GenericService<SettingDTO> {
 }
