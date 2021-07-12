@@ -1,5 +1,6 @@
 package com.glinboy.jcart.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -59,9 +60,8 @@ public abstract class AbstractServiceImpl<T extends BaseDTO, E extends BaseEntit
 	}
 
 	@Override
-	public Page<T> findAll() {
-		// TODO apply search
-		return null;
+	public List<T> findAll() {
+		return mapper.toDto(repository.findAll());
 	}
 
 	@Override
