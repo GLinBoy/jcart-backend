@@ -55,7 +55,7 @@ public abstract class AbstractServiceImpl<T extends BaseDTO, E extends BaseEntit
 
 	@Override
 	public Page<T> getAll(Pageable pageable) {
-		return repository.findAll(pageable);
+		return repository.findAll(pageable).map(mapper::toDto);
 	}
 
 	@Override
