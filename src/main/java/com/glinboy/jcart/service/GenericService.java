@@ -1,5 +1,7 @@
 package com.glinboy.jcart.service;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -11,6 +13,8 @@ public interface GenericService<T extends BaseDTO> {
 	T update(T t);
 
 	T getSingleById(Long id);
+
+	Optional<T> findById(Long id);
 
 	Page<T> getAll(Pageable pageable);
 
