@@ -35,12 +35,9 @@ public abstract class AbstractServiceImpl<T extends BaseDTO, E extends BaseEntit
 
 	@Override
 	@Transactional
+	@Deprecated
 	public T update(T t) {
-		final Long id = t.getId();
-		t = repository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Resource not found with id = " + id));
-		// FIXME Handle update;
-		return repository.save(t);
+		return this.save(t);
 	}
 
 	@Override
