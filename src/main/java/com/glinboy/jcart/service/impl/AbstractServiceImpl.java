@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public abstract class AbstractServiceImpl<T extends BaseDTO, E extends BaseEntity,
-	M extends EntityMapper<T, E>, S extends JpaRepository<T, Long>>
+	M extends EntityMapper<T, E>, S extends JpaRepository<E, Long>>
 		implements GenericService<T> {
 
 	protected final S repository;
@@ -28,7 +28,9 @@ public abstract class AbstractServiceImpl<T extends BaseDTO, E extends BaseEntit
 	@Override
 	@Transactional
 	public T save(T t) {
-		return repository.save(t);
+		E e = this.mapper.toEntity(t);
+		e = repository.save(e);
+		return this.mapper.toDto(e);
 	}
 
 	@Override
