@@ -1,5 +1,7 @@
 package com.glinboy.jcart.service.impl;
 
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.domain.Page;
@@ -44,6 +46,11 @@ public abstract class AbstractServiceImpl<T extends BaseDTO, E extends BaseEntit
 	public T getSingleById(Long id) {
 		return repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Resource not found id = " + id));
+	}
+	
+	@Override
+	public Optional<T> findById(Long id) {
+		return this.repository.findById(id).map(mapper::toDto);
 	}
 
 	@Override
