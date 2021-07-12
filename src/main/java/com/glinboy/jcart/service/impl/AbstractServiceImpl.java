@@ -44,7 +44,7 @@ public abstract class AbstractServiceImpl<T extends BaseDTO, E extends BaseEntit
 
 	@Override
 	public T getSingleById(Long id) {
-		return repository.findById(id)
+		return this.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Resource not found id = " + id));
 	}
 	
