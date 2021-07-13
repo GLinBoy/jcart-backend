@@ -32,10 +32,10 @@ public class CouponServiceImpl extends AbstractServiceImpl<CouponDTO, Coupon, Co
 	}
 
 	@Override
-	public Coupon disableCoupon(Long id) {
+	public CouponDTO disableCoupon(Long id) {
 		Coupon coupon = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Coupon not found with id = " + id));
 		coupon.setIsActive(Boolean.FALSE);
-		return repository.save(coupon);
+		return this.mapper.toDto(repository.save(coupon));
 	}
 }
