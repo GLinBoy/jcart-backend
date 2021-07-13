@@ -73,9 +73,7 @@ public abstract class AbstractServiceImpl<T extends BaseDTO, E extends BaseEntit
 	@Override
 	@Transactional
 	public void deleteSingleByReference(T t) {
-		repository.findById(t.getId())
-				.orElseThrow(() -> new ResourceNotFoundException("Resource not found with id = " + t.getId()));
-		repository.delete(t);
+		this.deleteSingleById(t.getId());
 	}
 
 	@Override
