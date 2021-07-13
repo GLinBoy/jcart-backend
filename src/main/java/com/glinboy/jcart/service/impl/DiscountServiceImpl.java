@@ -7,14 +7,17 @@ import org.springframework.stereotype.Service;
 import com.glinboy.jcart.model.Discount;
 import com.glinboy.jcart.repository.DiscountRepositoryApi;
 import com.glinboy.jcart.service.DiscountServiceApi;
+import com.glinboy.jcart.service.dto.DiscountDTO;
+import com.glinboy.jcart.service.mapper.DiscountMapper;
 
 @Service
 @Transactional
-public class DiscountServiceImpl extends AbstractServiceImpl<Discount, DiscountRepositoryApi>
+public class DiscountServiceImpl
+		extends AbstractServiceImpl<DiscountDTO, Discount, DiscountMapper, DiscountRepositoryApi>
 		implements DiscountServiceApi {
-	
-	public DiscountServiceImpl(DiscountRepositoryApi repository) {
-		super(repository);
+
+	public DiscountServiceImpl(DiscountRepositoryApi repository, DiscountMapper mapper) {
+		super(repository, mapper);
 	}
 
 	@Override
