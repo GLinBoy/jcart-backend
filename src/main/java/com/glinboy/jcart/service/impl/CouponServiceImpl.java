@@ -10,13 +10,16 @@ import com.glinboy.jcart.model.Coupon;
 import com.glinboy.jcart.model.ResourceNotFoundException;
 import com.glinboy.jcart.repository.CouponRepositoryApi;
 import com.glinboy.jcart.service.CouponServiceApi;
+import com.glinboy.jcart.service.dto.CouponDTO;
+import com.glinboy.jcart.service.mapper.CouponMapper;
 
 @Service
 @Transactional
-public class CouponServiceImpl extends AbstractServiceImpl<Coupon, CouponRepositoryApi> implements CouponServiceApi {
-	
-	public CouponServiceImpl(CouponRepositoryApi repository) {
-		super(repository);
+public class CouponServiceImpl extends AbstractServiceImpl<CouponDTO, Coupon, CouponMapper, CouponRepositoryApi> implements CouponServiceApi {
+
+
+	public CouponServiceImpl(CouponRepositoryApi repository, CouponMapper mapper) {
+		super(repository, mapper);
 	}
 
 	@Override
