@@ -28,7 +28,7 @@ public class ProductCategoryServiceImpl extends
 	}
 
 	@Override
-	public Page<ProductCategory> getChildMenu(Long parentId, Pageable pageable) {
-		return repository.findAllByParent_Id(parentId, pageable);
+	public Page<ProductCategoryDTO> getChildMenu(Long parentId, Pageable pageable) {
+		return repository.findAllByParent_Id(parentId, pageable).map(mapper::toDto);
 	}
 }
