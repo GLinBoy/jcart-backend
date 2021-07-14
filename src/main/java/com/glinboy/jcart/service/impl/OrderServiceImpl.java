@@ -36,8 +36,8 @@ public class OrderServiceImpl extends AbstractServiceImpl<OrderDTO, Order, Order
 	}
 
 	@Override
-	public Optional<Order> getOrderByUser(Long userId, Long orderId) {
-		return repository.findByUserIdAndId(userId, orderId);
+	public Optional<OrderDTO> getOrderByUser(Long userId, Long orderId) {
+		return repository.findByUserIdAndId(userId, orderId).map(mapper::toDto);
 	}
 
 	@Override
