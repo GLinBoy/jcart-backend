@@ -31,8 +31,8 @@ public class OrderServiceImpl extends AbstractServiceImpl<OrderDTO, Order, Order
 	}
 
 	@Override
-	public Page<Order> getUserOrders(Long userId, Pageable pageable) {
-		return repository.findAllByUserId(userId, pageable);
+	public Page<OrderDTO> getUserOrders(Long userId, Pageable pageable) {
+		return repository.findAllByUserId(userId, pageable).map(mapper::toDto);
 	}
 
 	@Override
