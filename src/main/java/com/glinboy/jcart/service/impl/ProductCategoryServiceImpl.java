@@ -23,8 +23,8 @@ public class ProductCategoryServiceImpl extends
 	}
 
 	@Override
-	public Page<ProductCategory> getAll(Pageable pageable) {
-		return repository.findAllByParentIsNull(pageable);
+	public Page<ProductCategoryDTO> getAll(Pageable pageable) {
+		return repository.findAllByParentIsNull(pageable).map(mapper::toDto);
 	}
 
 	@Override
