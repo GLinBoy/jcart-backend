@@ -16,6 +16,7 @@ import com.glinboy.jcart.repository.OrderItemRepositoryApi;
 import com.glinboy.jcart.repository.OrderRepositoryApi;
 import com.glinboy.jcart.service.OrderServiceApi;
 import com.glinboy.jcart.service.dto.OrderDTO;
+import com.glinboy.jcart.service.dto.ProductOrderItemDTO;
 import com.glinboy.jcart.service.mapper.OrderMapper;
 
 @Service
@@ -46,14 +47,15 @@ public class OrderServiceImpl extends AbstractServiceImpl<OrderDTO, Order, Order
 	}
 
 	@Override
-	public Order addToCart(Long userId, ProductOrderItem product) {
-		Order order = getCart(userId).orElseGet(() -> {
-			Order o = new Order();
+	public OrderDTO addToCart(Long userId, ProductOrderItemDTO product) {
+		OrderDTO orderDTO = getCart(userId).orElseGet(() -> {
+			OrderDTO o = new OrderDTO();
 			o.setStatus(OrderStatus.CART);
 			return o;
 		});
-		order.getItems().add(product);
-		return repository.save(order);
+		orderDTO.getItems().add(product);
+		Order order = mapper.toEntity(orderDTO);
+		return mapper.toDto(repository.save(order));
 	}
 
 	@Override
