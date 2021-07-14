@@ -15,16 +15,18 @@ import com.glinboy.jcart.model.ResourceNotFoundException;
 import com.glinboy.jcart.repository.OrderItemRepositoryApi;
 import com.glinboy.jcart.repository.OrderRepositoryApi;
 import com.glinboy.jcart.service.OrderServiceApi;
+import com.glinboy.jcart.service.dto.OrderDTO;
+import com.glinboy.jcart.service.mapper.OrderMapper;
 
 @Service
 @Transactional
-public class OrderServiceImpl extends AbstractServiceImpl<Order, OrderRepositoryApi> implements OrderServiceApi {
+public class OrderServiceImpl extends AbstractServiceImpl<OrderDTO, Order, OrderMapper, OrderRepositoryApi>
+		implements OrderServiceApi {
 
 	private final OrderItemRepositoryApi itemRepository;
 
-	public OrderServiceImpl(OrderRepositoryApi repository,
-			OrderItemRepositoryApi itemRepository) {
-		super(repository);
+	public OrderServiceImpl(OrderRepositoryApi repository, OrderMapper mapper, OrderItemRepositoryApi itemRepository) {
+		super(repository, mapper);
 		this.itemRepository = itemRepository;
 	}
 
