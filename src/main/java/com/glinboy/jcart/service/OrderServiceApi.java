@@ -5,9 +5,8 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.glinboy.jcart.model.Order;
-import com.glinboy.jcart.model.ProductOrderItem;
 import com.glinboy.jcart.service.dto.OrderDTO;
+import com.glinboy.jcart.service.dto.ProductOrderItemDTO;
 
 public interface OrderServiceApi extends GenericService<OrderDTO> {
 	Page<OrderDTO> getUserOrders(Long userId, Pageable pageable);
@@ -16,9 +15,9 @@ public interface OrderServiceApi extends GenericService<OrderDTO> {
 
 	Optional<OrderDTO> getCart(Long userId);
 
-	Order addToCart(Long userId, ProductOrderItem product);
+	OrderDTO addToCart(Long userId, ProductOrderItemDTO product);
 
 	void deleteFromCart(Long userId, Long orderItemId);
 
-	ProductOrderItem updateOrderItemNumber(Long userId, Long orderItemId, Integer number);
+	ProductOrderItemDTO updateOrderItemNumber(Long userId, Long orderItemId, Integer number);
 }
