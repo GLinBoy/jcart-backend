@@ -60,12 +60,12 @@ public class OrderServiceImpl extends AbstractServiceImpl<OrderDTO, Order, Order
 
 	@Override
 	public void deleteFromCart(Long userId, Long orderItemId) {
-		Optional<Order> cart = getCart(userId);
+		Optional<OrderDTO> cart = getCart(userId);
 		if (cart.isPresent()) {
-			Optional<ProductOrderItem> orderItem = cart.get().getItems().stream()
+			Optional<ProductOrderItemDTO> orderItem = cart.get().getItems().stream()
 					.filter(oi -> oi.getId().equals(orderItemId)).findAny();
 			if (orderItem.isPresent()) {
-				itemRepository.delete(orderItem.get());
+				itemRepository.deleteById(orderItem.get().getId());
 			}
 		}
 	}
