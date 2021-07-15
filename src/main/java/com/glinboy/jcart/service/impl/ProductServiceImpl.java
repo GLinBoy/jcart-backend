@@ -9,14 +9,17 @@ import org.springframework.stereotype.Service;
 import com.glinboy.jcart.model.ProductShopItem;
 import com.glinboy.jcart.repository.ProductRepositoryApi;
 import com.glinboy.jcart.service.ProductServiceApi;
+import com.glinboy.jcart.service.dto.ProductShopItemDTO;
+import com.glinboy.jcart.service.mapper.ProductShopItemMapper;
 
 @Service
 @Transactional
-public class ProductServiceImpl extends AbstractServiceImpl<ProductShopItem, ProductRepositoryApi>
+public class ProductServiceImpl
+		extends AbstractServiceImpl<ProductShopItemDTO, ProductShopItem, ProductShopItemMapper, ProductRepositoryApi>
 		implements ProductServiceApi {
-	
-	public ProductServiceImpl(ProductRepositoryApi repository) {
-		super(repository);
+
+	public ProductServiceImpl(ProductRepositoryApi repository, ProductShopItemMapper mapper) {
+		super(repository, mapper);
 	}
 
 	@Override
