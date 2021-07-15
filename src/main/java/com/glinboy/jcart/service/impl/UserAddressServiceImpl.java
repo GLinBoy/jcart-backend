@@ -11,17 +11,20 @@ import com.glinboy.jcart.model.UserAddress;
 import com.glinboy.jcart.repository.UserAddressRepositoryApi;
 import com.glinboy.jcart.repository.UserRepositoryApi;
 import com.glinboy.jcart.service.UserAddressServiceApi;
+import com.glinboy.jcart.service.dto.UserAddressDTO;
+import com.glinboy.jcart.service.mapper.UserAddressMapper;
 
 @Service
 @Transactional
-public class UserAddressServiceImpl extends AbstractServiceImpl<UserAddress, UserAddressRepositoryApi>
+public class UserAddressServiceImpl
+		extends AbstractServiceImpl<UserAddressDTO, UserAddress, UserAddressMapper, UserAddressRepositoryApi>
 		implements UserAddressServiceApi {
 
 	private final UserRepositoryApi userRepository;
 
-	public UserAddressServiceImpl(UserAddressRepositoryApi repository,
+	public UserAddressServiceImpl(UserAddressRepositoryApi repository, UserAddressMapper userAddressMapper,
 			UserRepositoryApi userRepository) {
-		super(repository);
+		super(repository, userAddressMapper);
 		this.userRepository = userRepository;
 	}
 
