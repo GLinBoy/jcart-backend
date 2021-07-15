@@ -29,8 +29,8 @@ public class UserAddressServiceImpl
 	}
 
 	@Override
-	public Page<UserAddress> getUserAddresses(Long userId, Pageable pageable) {
-		return repository.findByUser(userId, pageable);
+	public Page<UserAddressDTO> getUserAddresses(Long userId, Pageable pageable) {
+		return repository.findByUser(userId, pageable).map(mapper::toDto);
 	}
 
 	@Override
