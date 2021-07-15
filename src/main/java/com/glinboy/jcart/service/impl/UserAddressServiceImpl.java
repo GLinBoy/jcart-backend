@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.glinboy.jcart.model.ResourceNotFoundException;
 import com.glinboy.jcart.model.User;
 import com.glinboy.jcart.model.UserAddress;
 import com.glinboy.jcart.repository.UserAddressRepositoryApi;
@@ -34,8 +35,9 @@ public class UserAddressServiceImpl
 	}
 
 	@Override
-	public UserAddress getAddressByUser(Long userId, Long addressId) {
-		return repository.findByUserAndId(userId, addressId);
+	public UserAddressDTO getAddressByUser(Long userId, Long addressId) {
+		return repository.findByUserAndId(userId, addressId).map(mapper::toDto)
+				.orElseThrow(() -> new ResourceNotFoundException("Resource not found id = " + addressId));
 	}
 
 	@Override
