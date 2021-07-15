@@ -41,10 +41,11 @@ public class UserAddressServiceImpl
 	}
 
 	@Override
-	public UserAddress addAddressToUser(Long userId, UserAddress address) {
+	public UserAddressDTO addAddressToUser(Long userId, UserAddressDTO addressDTO) {
+		UserAddress address = mapper.toEntity(addressDTO);
 		User user = userRepository.getOne(userId);
 		address.setUser(user);
-		return repository.save(address);
+		return mapper.toDto(repository.save(address));
 	}
 
 	@Override
