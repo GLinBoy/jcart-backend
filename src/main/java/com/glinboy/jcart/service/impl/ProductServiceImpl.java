@@ -23,7 +23,7 @@ public class ProductServiceImpl
 	}
 
 	@Override
-	public Page<ProductShopItem> getProductsCategory(Long categoryId, Pageable pageable) {
-		return repository.findByCategories(categoryId, pageable);
+	public Page<ProductShopItemDTO> getProductsCategory(Long categoryId, Pageable pageable) {
+		return repository.findByCategories(categoryId, pageable).map(mapper::toDto);
 	}
 }
