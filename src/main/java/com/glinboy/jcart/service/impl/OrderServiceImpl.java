@@ -18,6 +18,7 @@ import com.glinboy.jcart.service.OrderServiceApi;
 import com.glinboy.jcart.service.dto.OrderDTO;
 import com.glinboy.jcart.service.dto.ProductOrderItemDTO;
 import com.glinboy.jcart.service.mapper.OrderMapper;
+import com.glinboy.jcart.service.mapper.ProductOrderItemMapper;
 
 @Service
 @Transactional
@@ -25,10 +26,14 @@ public class OrderServiceImpl extends AbstractServiceImpl<OrderDTO, Order, Order
 		implements OrderServiceApi {
 
 	private final OrderItemRepositoryApi itemRepository;
+	
+	private final ProductOrderItemMapper productOrderItemMapper;
 
-	public OrderServiceImpl(OrderRepositoryApi repository, OrderMapper mapper, OrderItemRepositoryApi itemRepository) {
+	public OrderServiceImpl(OrderRepositoryApi repository, OrderMapper mapper,
+			OrderItemRepositoryApi itemRepository, ProductOrderItemMapper productOrderItemMapper) {
 		super(repository, mapper);
 		this.itemRepository = itemRepository;
+		this.productOrderItemMapper = productOrderItemMapper;
 	}
 
 	@Override
@@ -71,7 +76,7 @@ public class OrderServiceImpl extends AbstractServiceImpl<OrderDTO, Order, Order
 	}
 
 	@Override
-	public ProductOrderItem updateOrderItemNumber(Long userId, Long orderItemId, Integer number) {
+	public ProductOrderItemDTO updateOrderItemNumber(Long userId, Long orderItemId, Integer number) {
 		Optional<Order> orderOptional = repository.findByUserIdAndStatus(userId, OrderStatus.CART);
 		if (orderOptional.isPresent()) {
 			Optional<ProductOrderItem> orderItemOptional = orderOptional.get().getItems().stream()
@@ -79,7 +84,7 @@ public class OrderServiceImpl extends AbstractServiceImpl<OrderDTO, Order, Order
 			if (orderItemOptional.isPresent()) {
 				ProductOrderItem item = orderItemOptional.get();
 				item.setNumber(number);
-				return itemRepository.save(item);
+				return productOrderItemMapper.toDto(itemRepository.save(item));
 			} else {
 				throw new ResourceNotFoundException(
 						String.format("Order with ID = %s doesn't exist!", orderItemId.toString()));
