@@ -25,8 +25,8 @@ public class UserTransactionServiceImpl extends
 	}
 
 	@Override
-	public Page<UserTransaction> findUserTransactions(Long userId, Pageable pageable) {
-		return repository.findAllByUser_Id(userId, pageable);
+	public Page<UserTransactionDTO> findUserTransactions(Long userId, Pageable pageable) {
+		return repository.findAllByUser_Id(userId, pageable).map(mapper::toDto);
 	}
 
 	@Override
