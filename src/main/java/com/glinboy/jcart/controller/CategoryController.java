@@ -36,7 +36,7 @@ public class CategoryController {
 	}
 
 	@GetMapping(path = "/{id}")
-	public ProductCategory getCategory(@PathVariable Long id) {
+	public ProductCategoryDTO getCategory(@PathVariable Long id) {
 		return categoryService.getSingleById(id);
 	}
 
