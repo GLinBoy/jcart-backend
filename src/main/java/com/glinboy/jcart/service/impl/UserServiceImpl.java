@@ -7,13 +7,15 @@ import com.glinboy.jcart.model.ResourceNotFoundException;
 import com.glinboy.jcart.model.User;
 import com.glinboy.jcart.repository.UserRepositoryApi;
 import com.glinboy.jcart.service.UserServiceApi;
+import com.glinboy.jcart.service.dto.UserDTO;
+import com.glinboy.jcart.service.mapper.UserMapper;
 
 @Service
 @Transactional
-public class UserServiceImpl extends AbstractServiceImpl<User, UserRepositoryApi> implements UserServiceApi {
+public class UserServiceImpl extends AbstractServiceImpl<UserDTO, User, UserMapper, UserRepositoryApi> implements UserServiceApi {
 
-	public UserServiceImpl(UserRepositoryApi repository) {
-		super(repository);
+	public UserServiceImpl(UserRepositoryApi repository, UserMapper mapper) {
+		super(repository, mapper);
 	}
 
 	@Override
