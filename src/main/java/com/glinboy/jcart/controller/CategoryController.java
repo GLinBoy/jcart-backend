@@ -16,6 +16,7 @@ import com.glinboy.jcart.model.ProductCategory;
 import com.glinboy.jcart.model.ProductShopItem;
 import com.glinboy.jcart.service.ProductCategoryServiceApi;
 import com.glinboy.jcart.service.ProductServiceApi;
+import com.glinboy.jcart.service.dto.ProductCategoryDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -30,7 +31,7 @@ public class CategoryController {
 	private final ProductServiceApi productService;
 
 	@GetMapping
-	public Page<ProductCategory> getCategories(Pageable pageable) {
+	public Page<ProductCategoryDTO> getCategories(Pageable pageable) {
 		return categoryService.getAll(pageable);
 	}
 
