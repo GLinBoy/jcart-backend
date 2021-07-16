@@ -12,15 +12,17 @@ import com.glinboy.jcart.service.mapper.UserMapper;
 
 @Service
 @Transactional
-public class UserServiceImpl extends AbstractServiceImpl<UserDTO, User, UserMapper, UserRepositoryApi> implements UserServiceApi {
+public class UserServiceImpl extends AbstractServiceImpl<UserDTO, User, UserMapper, UserRepositoryApi>
+		implements UserServiceApi {
 
 	public UserServiceImpl(UserRepositoryApi repository, UserMapper mapper) {
 		super(repository, mapper);
 	}
 
 	@Override
-	public User register(User user) {
-		return repository.save(user);
+	public UserDTO register(UserDTO userDTO) {
+		User user = mapper.toEntity(userDTO);
+		return mapper.toDto(repository.save(user));
 	}
 
 	@Override
