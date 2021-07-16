@@ -30,7 +30,7 @@ public class UserTransactionServiceImpl extends
 	}
 
 	@Override
-	public Optional<UserTransaction> findByUserAndTransaction(Long userId, Long transactionId) {
-		return repository.findByIdAndUser_Id(userId, transactionId);
+	public Optional<UserTransactionDTO> findByUserAndTransaction(Long userId, Long transactionId) {
+		return repository.findByIdAndUser_Id(userId, transactionId).map(mapper::toDto);
 	}
 }
