@@ -11,14 +11,17 @@ import org.springframework.stereotype.Service;
 import com.glinboy.jcart.model.UserTransaction;
 import com.glinboy.jcart.repository.UserTransactionRepositoryApi;
 import com.glinboy.jcart.service.UserTransactionServiceApi;
+import com.glinboy.jcart.service.dto.UserTransactionDTO;
+import com.glinboy.jcart.service.mapper.UserTransactionMapper;
 
 @Service
 @Transactional
-public class UserTransactionServiceImpl extends AbstractServiceImpl<UserTransaction, UserTransactionRepositoryApi>
+public class UserTransactionServiceImpl extends
+		AbstractServiceImpl<UserTransactionDTO, UserTransaction, UserTransactionMapper, UserTransactionRepositoryApi>
 		implements UserTransactionServiceApi {
-	
-	public UserTransactionServiceImpl(UserTransactionRepositoryApi repository) {
-		super(repository);
+
+	public UserTransactionServiceImpl(UserTransactionRepositoryApi repository, UserTransactionMapper mapper) {
+		super(repository, mapper);
 	}
 
 	@Override
