@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.glinboy.jcart.model.ProductCategory;
-import com.glinboy.jcart.model.ProductShopItem;
 import com.glinboy.jcart.service.ProductCategoryServiceApi;
 import com.glinboy.jcart.service.ProductServiceApi;
 import com.glinboy.jcart.service.dto.ProductCategoryDTO;
@@ -62,7 +60,7 @@ public class CategoryController {
 	}
 
 	@GetMapping(path = "/{parentId}/childes")
-	public Page<ProductCategory> getChildes(@PathVariable("parentId") Long parentId, Pageable pageable) {
+	public Page<ProductCategoryDTO> getChildes(@PathVariable("parentId") Long parentId, Pageable pageable) {
 		return categoryService.getChildMenu(parentId, pageable);
 	}
 }
