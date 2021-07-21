@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.glinboy.jcart.model.Content;
 import com.glinboy.jcart.service.ContentServiceApi;
+import com.glinboy.jcart.service.dto.ContentDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,7 +25,7 @@ public class ContentController {
 	private final ContentServiceApi contentService;
 
 	@GetMapping(path = "/{id}")
-	public Content getContentById(@PathVariable Long id) {
+	public ContentDTO getContentById(@PathVariable Long id) {
 		return contentService.getSingleById(id);
 	}
 
