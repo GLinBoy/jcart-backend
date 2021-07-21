@@ -17,6 +17,7 @@ import com.glinboy.jcart.model.ProductShopItem;
 import com.glinboy.jcart.service.ProductCategoryServiceApi;
 import com.glinboy.jcart.service.ProductServiceApi;
 import com.glinboy.jcart.service.dto.ProductCategoryDTO;
+import com.glinboy.jcart.service.dto.ProductShopItemDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -56,7 +57,7 @@ public class CategoryController {
 	}
 
 	@GetMapping(path = "/{id}/products")
-	public Page<ProductShopItem> getProducts(@PathVariable Long id, Pageable pageable) {
+	public Page<ProductShopItemDTO> getProducts(@PathVariable Long id, Pageable pageable) {
 		return productService.getProductsCategory(id, pageable);
 	}
 
