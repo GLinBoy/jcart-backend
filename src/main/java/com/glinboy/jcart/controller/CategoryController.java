@@ -46,7 +46,7 @@ public class CategoryController {
 	}
 
 	@PutMapping
-	public ProductCategory updateCategory(@RequestBody ProductCategory category) {
+	public ProductCategoryDTO updateCategory(@RequestBody ProductCategoryDTO category) {
 		return categoryService.update(category);
 	}
 
