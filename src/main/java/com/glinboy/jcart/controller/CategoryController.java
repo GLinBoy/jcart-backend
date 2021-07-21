@@ -41,7 +41,7 @@ public class CategoryController {
 	}
 
 	@PostMapping
-	public ProductCategory addCategory(@RequestBody ProductCategory category) {
+	public ProductCategoryDTO addCategory(@RequestBody ProductCategoryDTO category) {
 		return categoryService.save(category);
 	}
 
