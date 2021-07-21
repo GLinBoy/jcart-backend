@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.glinboy.jcart.model.Contact;
 import com.glinboy.jcart.service.ContactServiceApi;
+import com.glinboy.jcart.service.dto.ContactDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,7 +23,7 @@ public class ContactController {
 	private final ContactServiceApi contactService;
 
 	@GetMapping
-	public Contact getContact(Pageable pageable) {
+	public ContactDTO getContact(Pageable pageable) {
 		return contactService.getAll(pageable).getContent().get(0);
 	}
 
