@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.glinboy.jcart.model.Contact;
 import com.glinboy.jcart.service.ContactServiceApi;
 import com.glinboy.jcart.service.dto.ContactDTO;
 
@@ -28,7 +27,7 @@ public class ContactController {
 	}
 
 	@PutMapping
-	public Contact updateContact(@RequestBody Contact contact) {
+	public ContactDTO updateContact(@RequestBody ContactDTO contact) {
 		return contactService.update(contact);
 	}
 }
