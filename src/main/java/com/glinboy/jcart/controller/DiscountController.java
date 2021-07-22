@@ -36,8 +36,8 @@ public class DiscountController {
 	}
 
 	@PostMapping
-	public Discount saveDiscount(Discount discount) {
-		return discountService.save(discount);
+	public DiscountDTO saveDiscount(DiscountDTO discountDTO) {
+		return discountService.save(discountDTO);
 	}
 
 	@PutMapping
