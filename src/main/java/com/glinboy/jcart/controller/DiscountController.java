@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.glinboy.jcart.model.Discount;
 import com.glinboy.jcart.service.DiscountServiceApi;
+import com.glinboy.jcart.service.dto.DiscountDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,7 +26,7 @@ public class DiscountController {
 	private final DiscountServiceApi discountService;
 
 	@GetMapping
-	public Page<Discount> getAllDiscount(Pageable pageable) {
+	public Page<DiscountDTO> getAllDiscount(Pageable pageable) {
 		return discountService.getAll(pageable);
 	}
 
