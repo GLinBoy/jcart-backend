@@ -30,7 +30,7 @@ public class ContentController {
 	}
 
 	@GetMapping(path = "/{title}")
-	public Content getContentById(@PathVariable String title) {
+	public ContentDTO getContentById(@PathVariable String title) {
 		return contentService.getSingleByTitle(title);
 	}
 
