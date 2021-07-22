@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.glinboy.jcart.model.Coupon;
 import com.glinboy.jcart.service.CouponServiceApi;
+import com.glinboy.jcart.service.dto.CouponDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,7 +24,7 @@ public class CouponController {
 	private final CouponServiceApi couponService;
 
 	@GetMapping
-	public Page<Coupon> getAllCoupons(Pageable pageable) {
+	public Page<CouponDTO> getAllCoupons(Pageable pageable) {
 		return couponService.getAll(pageable);
 	}
 
