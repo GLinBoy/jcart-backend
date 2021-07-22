@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.glinboy.jcart.model.Coupon;
 import com.glinboy.jcart.service.CouponServiceApi;
 import com.glinboy.jcart.service.dto.CouponDTO;
 
@@ -34,7 +33,7 @@ public class CouponController {
 	}
 
 	@GetMapping(path = "/{id}/disable")
-	public Coupon disableCoupon(@PathVariable Long id) {
+	public CouponDTO disableCoupon(@PathVariable Long id) {
 		return couponService.disableCoupon(id);
 	}
 
