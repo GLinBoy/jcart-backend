@@ -21,8 +21,9 @@ public class ContentServiceImpl extends AbstractServiceImpl<ContentDTO, Content,
 	}
 
 	@Override
-	public Content getSingleByTitle(String title) {
-		return repository.findByTitle(title).orElseThrow(
+	public ContentDTO getSingleByTitle(String title) {
+		Content c = repository.findByTitle(title).orElseThrow(
 				() -> new ResourceNotFoundException(String.format("Content by title %s doesn't exist!", title)));
+		return mapper.toDto(c);
 	}
 }
