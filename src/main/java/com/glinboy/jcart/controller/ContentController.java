@@ -35,8 +35,8 @@ public class ContentController {
 	}
 
 	@PostMapping
-	public Content saveContent(@RequestBody Content content) {
-		return contentService.save(content);
+	public ContentDTO saveContent(@RequestBody ContentDTO contentDTO) {
+		return contentService.save(contentDTO);
 	}
 
 	@PutMapping
