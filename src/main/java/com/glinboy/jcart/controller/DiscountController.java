@@ -31,7 +31,7 @@ public class DiscountController {
 	}
 
 	@GetMapping(path = "/{id}")
-	public Discount getDiscount(@PathVariable Long id) {
+	public DiscountDTO getDiscount(@PathVariable Long id) {
 		return discountService.getSingleById(id);
 	}
 
