@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.glinboy.jcart.model.Content;
 import com.glinboy.jcart.service.ContentServiceApi;
 import com.glinboy.jcart.service.dto.ContentDTO;
 
@@ -40,8 +39,8 @@ public class ContentController {
 	}
 
 	@PutMapping
-	public Content updateContent(@RequestBody Content content) {
-		return contentService.update(content);
+	public ContentDTO updateContent(@RequestBody ContentDTO contentDTO) {
+		return contentService.update(contentDTO);
 	}
 
 	@DeleteMapping(path = "/{id}")
