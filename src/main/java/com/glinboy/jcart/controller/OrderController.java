@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.glinboy.jcart.model.Order;
 import com.glinboy.jcart.service.OrderServiceApi;
+import com.glinboy.jcart.service.dto.OrderDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,7 +23,7 @@ public class OrderController {
 	private final OrderServiceApi orderService;
 
 	@GetMapping
-	public Page<Order> getAllOrders(Pageable pageable) {
+	public Page<OrderDTO> getAllOrders(Pageable pageable) {
 		return orderService.getAll(pageable);
 	}
 
