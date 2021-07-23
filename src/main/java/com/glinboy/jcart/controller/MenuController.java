@@ -37,8 +37,8 @@ public class MenuController {
 	}
 
 	@PostMapping
-	public Menu saveMenu(@RequestBody Menu menu) {
-		return menuService.save(menu);
+	public MenuDTO saveMenu(@RequestBody MenuDTO menuDTO) {
+		return menuService.save(menuDTO);
 	}
 
 	@PutMapping
