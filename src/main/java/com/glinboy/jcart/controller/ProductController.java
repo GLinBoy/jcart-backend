@@ -39,8 +39,8 @@ public class ProductController {
 	}
 
 	@PostMapping
-	public Product addProduct(@RequestBody ProductShopItem product) {
-		return productService.save(product);
+	public ProductDTO addProduct(@RequestBody ProductShopItemDTO productDTO) {
+		return productService.save(productDTO);
 	}
 
 	@PutMapping
