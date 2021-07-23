@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.glinboy.jcart.model.Menu;
 import com.glinboy.jcart.service.MenuServiceApi;
+import com.glinboy.jcart.service.dto.MenuDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,7 +27,7 @@ public class MenuController {
 	private final MenuServiceApi menuService;
 
 	@GetMapping
-	public Page<Menu> getAllMenus(Pageable pageable) {
+	public Page<MenuDTO> getAllMenus(Pageable pageable) {
 		return menuService.getAll(pageable);
 	}
 
