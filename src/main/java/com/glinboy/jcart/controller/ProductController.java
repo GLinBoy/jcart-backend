@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.glinboy.jcart.model.Product;
 import com.glinboy.jcart.model.ProductShopItem;
 import com.glinboy.jcart.service.ProductServiceApi;
+import com.glinboy.jcart.service.dto.ProductDTO;
 import com.glinboy.jcart.service.dto.ProductShopItemDTO;
 
 import lombok.RequiredArgsConstructor;
@@ -33,7 +34,7 @@ public class ProductController {
 	}
 
 	@GetMapping(path = "/{id}")
-	public Product getProduct(@PathVariable("id") Long id) {
+	public ProductDTO getProduct(@PathVariable("id") Long id) {
 		return productService.getSingleById(id);
 	}
 
