@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.glinboy.jcart.model.Menu;
 import com.glinboy.jcart.service.MenuServiceApi;
 import com.glinboy.jcart.service.dto.MenuDTO;
 
@@ -42,8 +41,8 @@ public class MenuController {
 	}
 
 	@PutMapping
-	public Menu updateMenu(@RequestBody Menu menu) {
-		return menuService.update(menu);
+	public MenuDTO updateMenu(@RequestBody MenuDTO menuDTO) {
+		return menuService.update(menuDTO);
 	}
 
 	@DeleteMapping(path = "/{id}")
