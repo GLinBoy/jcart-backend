@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.glinboy.jcart.model.Order;
 import com.glinboy.jcart.service.OrderServiceApi;
 import com.glinboy.jcart.service.dto.OrderDTO;
 
@@ -28,7 +27,7 @@ public class OrderController {
 	}
 
 	@GetMapping(path = "/{id}")
-	public Order getOrder(@PathVariable Long id) {
+	public OrderDTO getOrder(@PathVariable Long id) {
 		return orderService.getSingleById(id);
 	}
 }
