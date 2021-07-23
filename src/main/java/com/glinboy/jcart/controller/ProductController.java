@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.glinboy.jcart.model.Product;
 import com.glinboy.jcart.model.ProductShopItem;
 import com.glinboy.jcart.service.ProductServiceApi;
+import com.glinboy.jcart.service.dto.ProductShopItemDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,7 +28,7 @@ public class ProductController {
 	private final ProductServiceApi productService;
 
 	@GetMapping
-	public Page<ProductShopItem> getProducts(Pageable pageable) {
+	public Page<ProductShopItemDTO> getProducts(Pageable pageable) {
 		return productService.getAll(pageable);
 	}
 
