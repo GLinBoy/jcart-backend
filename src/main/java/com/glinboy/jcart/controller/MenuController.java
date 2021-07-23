@@ -32,7 +32,7 @@ public class MenuController {
 	}
 
 	@GetMapping(path = "/{id}")
-	public Menu getMenuById(@PathVariable Long id) {
+	public MenuDTO getMenuById(@PathVariable Long id) {
 		return menuService.getSingleById(id);
 	}
 
