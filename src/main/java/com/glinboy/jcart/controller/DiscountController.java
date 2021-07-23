@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.glinboy.jcart.model.Discount;
 import com.glinboy.jcart.service.DiscountServiceApi;
 import com.glinboy.jcart.service.dto.DiscountDTO;
 
@@ -41,8 +40,8 @@ public class DiscountController {
 	}
 
 	@PutMapping
-	public Discount updateDiscount(Discount discount) {
-		return discountService.update(discount);
+	public DiscountDTO updateDiscount(DiscountDTO discountDTO) {
+		return discountService.update(discountDTO);
 	}
 
 	@DeleteMapping(path = "/{id}")
