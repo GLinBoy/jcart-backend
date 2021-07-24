@@ -25,6 +25,7 @@ import com.glinboy.jcart.service.OrderServiceApi;
 import com.glinboy.jcart.service.UserAddressServiceApi;
 import com.glinboy.jcart.service.UserServiceApi;
 import com.glinboy.jcart.service.UserTransactionServiceApi;
+import com.glinboy.jcart.service.dto.UserDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -45,7 +46,7 @@ public class UserController {
 	// --- administration section
 
 	@GetMapping
-	public Page<User> getUsers(Pageable pageable) {
+	public Page<UserDTO> getUsers(Pageable pageable) {
 		return userService.getAll(pageable);
 	}
 
