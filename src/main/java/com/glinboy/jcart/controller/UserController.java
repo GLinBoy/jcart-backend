@@ -110,7 +110,7 @@ public class UserController {
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
 	@GetMapping(path = "/{user_id}/orders/{order_id}")
-	public Optional<Order> getUserOrder(@PathVariable("user_id") Long userId, @PathVariable("order_id") Long orderId) {
+	public Optional<OrderDTO> getUserOrder(@PathVariable("user_id") Long userId, @PathVariable("order_id") Long orderId) {
 		return orderService.getOrderByUser(userId, orderId);
 	}
 
