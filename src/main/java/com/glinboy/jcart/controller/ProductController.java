@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.glinboy.jcart.model.Product;
-import com.glinboy.jcart.model.ProductShopItem;
 import com.glinboy.jcart.service.ProductServiceApi;
 import com.glinboy.jcart.service.dto.ProductDTO;
 import com.glinboy.jcart.service.dto.ProductShopItemDTO;
@@ -44,8 +42,8 @@ public class ProductController {
 	}
 
 	@PutMapping
-	public Product updateProduct(ProductShopItem product) {
-		return productService.update(product);
+	public ProductDTO updateProduct(ProductShopItemDTO productDTO) {
+		return productService.update(productDTO);
 	}
 
 	@DeleteMapping(path = "/{id}")
