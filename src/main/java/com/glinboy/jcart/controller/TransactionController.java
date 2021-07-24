@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.glinboy.jcart.model.UserTransaction;
 import com.glinboy.jcart.service.UserTransactionServiceApi;
+import com.glinboy.jcart.service.dto.UserTransactionDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,7 +23,7 @@ public class TransactionController {
 	private final UserTransactionServiceApi transactionService;
 
 	@GetMapping
-	public Page<UserTransaction> getAll(Pageable pageable) {
+	public Page<UserTransactionDTO> getAll(Pageable pageable) {
 		return transactionService.getAll(pageable);
 	}
 
