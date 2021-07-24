@@ -26,6 +26,7 @@ import com.glinboy.jcart.service.UserAddressServiceApi;
 import com.glinboy.jcart.service.UserServiceApi;
 import com.glinboy.jcart.service.UserTransactionServiceApi;
 import com.glinboy.jcart.service.dto.OrderDTO;
+import com.glinboy.jcart.service.dto.UserAddressDTO;
 import com.glinboy.jcart.service.dto.UserDTO;
 
 import lombok.RequiredArgsConstructor;
@@ -118,7 +119,7 @@ public class UserController {
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
 	@GetMapping(path = "/{user_id}/addresses")
-	public Page<UserAddress> getUserAddresses(@PathVariable("user_id") Long userId, Pageable pageable) {
+	public Page<UserAddressDTO> getUserAddresses(@PathVariable("user_id") Long userId, Pageable pageable) {
 		return addressService.getUserAddresses(userId, pageable);
 	}
 
