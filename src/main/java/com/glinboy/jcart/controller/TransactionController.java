@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.glinboy.jcart.model.UserTransaction;
 import com.glinboy.jcart.service.UserTransactionServiceApi;
 import com.glinboy.jcart.service.dto.UserTransactionDTO;
 
@@ -28,7 +27,7 @@ public class TransactionController {
 	}
 
 	@GetMapping(path = "/{id}")
-	public UserTransaction get(@PathVariable Long id) {
+	public UserTransactionDTO get(@PathVariable Long id) {
 		return transactionService.getSingleById(id);
 	}
 
