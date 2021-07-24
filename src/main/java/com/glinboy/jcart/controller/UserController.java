@@ -60,8 +60,8 @@ public class UserController {
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
 	@PutMapping(path = "/{user_id}")
-	public User updateUser(@PathVariable("user_id") Long userId, @RequestBody User user) {
-		return userService.update(user);
+	public UserDTO updateUser(@PathVariable("user_id") Long userId, @RequestBody UserDTO userDTO) {
+		return userService.update(userDTO);
 	}
 
 	@Secured("IS_AUTHENTICATED_ANONYMOUSLY")
