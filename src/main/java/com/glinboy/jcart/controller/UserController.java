@@ -26,6 +26,7 @@ import com.glinboy.jcart.service.UserAddressServiceApi;
 import com.glinboy.jcart.service.UserServiceApi;
 import com.glinboy.jcart.service.UserTransactionServiceApi;
 import com.glinboy.jcart.service.dto.OrderDTO;
+import com.glinboy.jcart.service.dto.ProductOrderItemDTO;
 import com.glinboy.jcart.service.dto.UserAddressDTO;
 import com.glinboy.jcart.service.dto.UserDTO;
 
@@ -152,8 +153,8 @@ public class UserController {
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
 	@PutMapping(path = "/{user_id}/cart")
-	public Order addOrderItem(@PathVariable("user_id") Long userId, @RequestBody ProductOrderItem product) {
-		return orderService.addToCart(userId, product);
+	public OrderDTO addOrderItem(@PathVariable("user_id") Long userId, @RequestBody ProductOrderItemDTO productDTO) {
+		return orderService.addToCart(userId, productDTO);
 	}
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
