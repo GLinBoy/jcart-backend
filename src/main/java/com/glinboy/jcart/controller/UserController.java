@@ -137,7 +137,7 @@ public class UserController {
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
 	@GetMapping(path = "/{user_id}/addresses/{address_id}")
-	public UserAddress getUserAddress(@PathVariable("user_id") Long userId,
+	public UserAddressDTO getUserAddress(@PathVariable("user_id") Long userId,
 			@PathVariable("address_id") Long addressId) {
 		return addressService.getAddressByUser(userId, addressId);
 	}
