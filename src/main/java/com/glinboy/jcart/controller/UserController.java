@@ -16,11 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.glinboy.jcart.model.Order;
-import com.glinboy.jcart.model.ProductOrderItem;
-import com.glinboy.jcart.model.User;
-import com.glinboy.jcart.model.UserAddress;
-import com.glinboy.jcart.model.UserTransaction;
 import com.glinboy.jcart.service.OrderServiceApi;
 import com.glinboy.jcart.service.UserAddressServiceApi;
 import com.glinboy.jcart.service.UserServiceApi;
@@ -127,8 +122,8 @@ public class UserController {
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
 	@PostMapping(path = "/{user_id}/addresses")
-	public UserAddress getUserAddress(@PathVariable("user_id") Long userId, @RequestBody UserAddress address) {
-		return addressService.addAddressToUser(userId, address);
+	public UserAddressDTO getUserAddress(@PathVariable("user_id") Long userId, @RequestBody UserAddressDTO addressDTO) {
+		return addressService.addAddressToUser(userId, addressDTO);
 	}
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
