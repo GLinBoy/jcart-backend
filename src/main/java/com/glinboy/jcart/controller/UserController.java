@@ -146,7 +146,7 @@ public class UserController {
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
 	@GetMapping(path = "/{user_id}/cart")
-	public Optional<Order> getUserCart(@PathVariable("user_id") Long userId) {
+	public Optional<OrderDTO> getUserCart(@PathVariable("user_id") Long userId) {
 		return orderService.getCart(userId);
 	}
 
