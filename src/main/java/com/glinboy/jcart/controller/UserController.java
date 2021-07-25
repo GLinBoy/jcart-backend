@@ -180,7 +180,7 @@ public class UserController {
 	}
 
 	@GetMapping(path = "/{user_id}/transactions/{transaction_id}")
-	public UserTransaction getUserTransaction(@PathVariable("user_id") Long userId,
+	public UserTransactionDTO getUserTransaction(@PathVariable("user_id") Long userId,
 			@PathVariable("transaction_id") Long transactionId) {
 		return transactionService.findByUserAndTransaction(userId, transactionId).get();
 	}
