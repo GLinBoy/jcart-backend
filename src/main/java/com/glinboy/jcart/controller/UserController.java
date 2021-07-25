@@ -165,7 +165,7 @@ public class UserController {
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
 	@GetMapping(path = "/{user_id}/cart/{order_item_id}/{number}")
-	public ProductOrderItem orderItemNumber(@PathVariable("user_id") Long userId,
+	public ProductOrderItemDTO orderItemNumber(@PathVariable("user_id") Long userId,
 			@PathVariable("order_item_id") Long orderItemId, @PathVariable("number") Integer number) {
 		return orderService.updateOrderItemNumber(userId, orderItemId, number);
 	}
