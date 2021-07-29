@@ -46,8 +46,8 @@ public class CategoryController {
 	}
 
 	@PutMapping
-	public ProductCategoryDTO updateCategory(@RequestBody ProductCategoryDTO category) {
-		return categoryService.update(category);
+	public ResponseEntity<ProductCategoryDTO> updateCategory(@RequestBody ProductCategoryDTO category) {
+		return ResponseEntity.ok(categoryService.update(category));
 	}
 
 	@DeleteMapping(path = "/{id}")
