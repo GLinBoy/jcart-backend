@@ -28,7 +28,7 @@ public class ContactController {
 	}
 
 	@PutMapping
-	public ContactDTO updateContact(@RequestBody ContactDTO contact) {
-		return contactService.update(contact);
+	public ResponseEntity<ContactDTO> updateContact(@RequestBody ContactDTO contact) {
+		return ResponseEntity.ok(contactService.update(contact));
 	}
 }
