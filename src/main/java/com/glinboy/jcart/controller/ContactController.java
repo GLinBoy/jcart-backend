@@ -1,6 +1,7 @@
 package com.glinboy.jcart.controller;
 
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -22,8 +23,8 @@ public class ContactController {
 	private final ContactServiceApi contactService;
 
 	@GetMapping
-	public ContactDTO getContact(Pageable pageable) {
-		return contactService.getAll(pageable).getContent().get(0);
+	public ResponseEntity<ContactDTO> getContact(Pageable pageable) {
+		return ResponseEntity.ok(contactService.getAll(pageable).getContent().get(0));
 	}
 
 	@PutMapping
