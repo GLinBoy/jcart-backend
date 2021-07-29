@@ -1,5 +1,6 @@
 package com.glinboy.jcart.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +25,8 @@ public class ContentController {
 	private final ContentServiceApi contentService;
 
 	@GetMapping(path = "/{id}")
-	public ContentDTO getContentById(@PathVariable Long id) {
-		return contentService.getSingleById(id);
+	public ResponseEntity<ContentDTO> getContentById(@PathVariable Long id) {
+		return ResponseEntity.ok(contentService.getSingleById(id));
 	}
 
 	@GetMapping(path = "/{title}")
