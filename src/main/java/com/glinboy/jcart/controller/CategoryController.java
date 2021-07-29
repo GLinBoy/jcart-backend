@@ -57,8 +57,8 @@ public class CategoryController {
 	}
 
 	@GetMapping(path = "/{id}/products")
-	public Page<ProductShopItemDTO> getProducts(@PathVariable Long id, Pageable pageable) {
-		return productService.getProductsCategory(id, pageable);
+	public ResponseEntity<Page<ProductShopItemDTO>> getProducts(@PathVariable Long id, Pageable pageable) {
+		return ResponseEntity.ok(productService.getProductsCategory(id, pageable));
 	}
 
 	@GetMapping(path = "/{parentId}/childes")
