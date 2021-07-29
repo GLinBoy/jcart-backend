@@ -36,8 +36,8 @@ public class CategoryController {
 	}
 
 	@GetMapping(path = "/{id}")
-	public ProductCategoryDTO getCategory(@PathVariable Long id) {
-		return categoryService.getSingleById(id);
+	public ResponseEntity<ProductCategoryDTO> getCategory(@PathVariable Long id) {
+		return ResponseEntity.ok(categoryService.getSingleById(id));
 	}
 
 	@PostMapping
