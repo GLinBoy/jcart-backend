@@ -30,8 +30,8 @@ public class ContentController {
 	}
 
 	@GetMapping(path = "/{title}")
-	public ContentDTO getContentById(@PathVariable String title) {
-		return contentService.getSingleByTitle(title);
+	public ResponseEntity<ContentDTO> getContentById(@PathVariable String title) {
+		return ResponseEntity.ok(contentService.getSingleByTitle(title));
 	}
 
 	@PostMapping
