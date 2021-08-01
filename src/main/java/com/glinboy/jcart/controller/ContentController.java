@@ -40,8 +40,8 @@ public class ContentController {
 	}
 
 	@PutMapping
-	public ContentDTO updateContent(@RequestBody ContentDTO contentDTO) {
-		return contentService.update(contentDTO);
+	public ResponseEntity<ContentDTO> updateContent(@RequestBody ContentDTO contentDTO) {
+		return ResponseEntity.ok(contentService.update(contentDTO));
 	}
 
 	@DeleteMapping(path = "/{id}")
