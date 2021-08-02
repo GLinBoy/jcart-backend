@@ -29,8 +29,9 @@ public class CouponController {
 	}
 
 	@DeleteMapping(path = "/{id}")
-	public void deleteCoupon(@PathVariable Long id) {
+	public ResponseEntity<Void> deleteCoupon(@PathVariable Long id) {
 		couponService.deleteSingleById(id);
+		return ResponseEntity.ok().build();
 	}
 
 	@GetMapping(path = "/{id}/disable")
