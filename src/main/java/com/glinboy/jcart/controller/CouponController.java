@@ -35,8 +35,8 @@ public class CouponController {
 	}
 
 	@GetMapping(path = "/{id}/disable")
-	public CouponDTO disableCoupon(@PathVariable Long id) {
-		return couponService.disableCoupon(id);
+	public ResponseEntity<CouponDTO> disableCoupon(@PathVariable Long id) {
+		return ResponseEntity.ok(couponService.disableCoupon(id));
 	}
 
 	@GetMapping(path = "/verify/{code}")
