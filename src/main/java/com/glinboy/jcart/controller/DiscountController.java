@@ -41,8 +41,8 @@ public class DiscountController {
 	}
 
 	@PutMapping
-	public DiscountDTO updateDiscount(DiscountDTO discountDTO) {
-		return discountService.update(discountDTO);
+	public ResponseEntity<DiscountDTO> updateDiscount(DiscountDTO discountDTO) {
+		return ResponseEntity.ok(discountService.update(discountDTO));
 	}
 
 	@DeleteMapping(path = "/{id}")
