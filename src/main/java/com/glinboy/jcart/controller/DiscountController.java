@@ -31,8 +31,8 @@ public class DiscountController {
 	}
 
 	@GetMapping(path = "/{id}")
-	public DiscountDTO getDiscount(@PathVariable Long id) {
-		return discountService.getSingleById(id);
+	public ResponseEntity<DiscountDTO> getDiscount(@PathVariable Long id) {
+		return ResponseEntity.ok(discountService.getSingleById(id));
 	}
 
 	@PostMapping
