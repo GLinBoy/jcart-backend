@@ -40,8 +40,11 @@ public class CouponController {
 	}
 
 	@GetMapping(path = "/verify/{code}")
-	public Boolean verifyCoupon(@PathVariable String code) {
-		return couponService.verify(code);
+	public ResponseEntity<Void> verifyCoupon(@PathVariable String code) {
+		if(couponService.verify(code).booleanValue()) {
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.notFound().build();
 	}
 
 	// TODO Generate Coupon
