@@ -36,8 +36,8 @@ public class DiscountController {
 	}
 
 	@PostMapping
-	public DiscountDTO saveDiscount(DiscountDTO discountDTO) {
-		return discountService.save(discountDTO);
+	public ResponseEntity<DiscountDTO> saveDiscount(DiscountDTO discountDTO) {
+		return ResponseEntity.ok(discountService.save(discountDTO));
 	}
 
 	@PutMapping
