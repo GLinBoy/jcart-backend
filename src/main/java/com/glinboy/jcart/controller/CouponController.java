@@ -2,6 +2,7 @@ package com.glinboy.jcart.controller;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,8 +24,8 @@ public class CouponController {
 	private final CouponServiceApi couponService;
 
 	@GetMapping
-	public Page<CouponDTO> getAllCoupons(Pageable pageable) {
-		return couponService.getAll(pageable);
+	public ResponseEntity<Page<CouponDTO>> getAllCoupons(Pageable pageable) {
+		return ResponseEntity.ok(couponService.getAll(pageable));
 	}
 
 	@DeleteMapping(path = "/{id}")
