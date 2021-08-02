@@ -46,8 +46,9 @@ public class DiscountController {
 	}
 
 	@DeleteMapping(path = "/{id}")
-	public void deleteDiscount(@PathVariable Long id) {
+	public ResponseEntity<Void> deleteDiscount(@PathVariable Long id) {
 		discountService.deleteSingleById(id);
+		return ResponseEntity.ok().build();
 	}
 
 	@GetMapping(path = "/{id}/verify")
