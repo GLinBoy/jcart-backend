@@ -2,6 +2,7 @@ package com.glinboy.jcart.controller;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,8 +28,8 @@ public class ProductController {
 	private final ProductServiceApi productService;
 
 	@GetMapping
-	public Page<ProductShopItemDTO> getProducts(Pageable pageable) {
-		return productService.getAll(pageable);
+	public ResponseEntity<Page<ProductShopItemDTO>> getProducts(Pageable pageable) {
+		return ResponseEntity.ok(productService.getAll(pageable));
 	}
 
 	@GetMapping(path = "/{id}")
