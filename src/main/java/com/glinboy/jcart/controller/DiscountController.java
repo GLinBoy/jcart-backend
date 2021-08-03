@@ -52,7 +52,10 @@ public class DiscountController {
 	}
 
 	@GetMapping(path = "/{id}/verify")
-	public Boolean verifyDiscount(@PathVariable Long id) {
-		return discountService.verify(id);
+	public ResponseEntity<Void> verifyDiscount(@PathVariable Long id) {
+		if(discountService.verify(id).booleanValue()) {
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.notFound().build();
 	}
 }
