@@ -32,8 +32,8 @@ public class MenuController {
 	}
 
 	@GetMapping(path = "/{id}")
-	public MenuDTO getMenuById(@PathVariable Long id) {
-		return menuService.getSingleById(id);
+	public ResponseEntity<MenuDTO> getMenuById(@PathVariable Long id) {
+		return ResponseEntity.ok(menuService.getSingleById(id));
 	}
 
 	@PostMapping
