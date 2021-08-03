@@ -28,7 +28,7 @@ public class OrderController {
 	}
 
 	@GetMapping(path = "/{id}")
-	public OrderDTO getOrder(@PathVariable Long id) {
-		return orderService.getSingleById(id);
+	public ResponseEntity<OrderDTO> getOrder(@PathVariable Long id) {
+		return ResponseEntity.ok(orderService.getSingleById(id));
 	}
 }
