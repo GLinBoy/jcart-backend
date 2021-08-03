@@ -42,8 +42,8 @@ public class MenuController {
 	}
 
 	@PutMapping
-	public MenuDTO updateMenu(@RequestBody MenuDTO menuDTO) {
-		return menuService.update(menuDTO);
+	public ResponseEntity<MenuDTO> updateMenu(@RequestBody MenuDTO menuDTO) {
+		return ResponseEntity.ok(menuService.update(menuDTO));
 	}
 
 	@DeleteMapping(path = "/{id}")
