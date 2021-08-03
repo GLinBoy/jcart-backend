@@ -2,6 +2,7 @@ package com.glinboy.jcart.controller;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +27,8 @@ public class MenuController {
 	private final MenuServiceApi menuService;
 
 	@GetMapping
-	public Page<MenuDTO> getAllMenus(Pageable pageable) {
-		return menuService.getAll(pageable);
+	public ResponseEntity<Page<MenuDTO>> getAllMenus(Pageable pageable) {
+		return ResponseEntity.ok(menuService.getAll(pageable));
 	}
 
 	@GetMapping(path = "/{id}")
