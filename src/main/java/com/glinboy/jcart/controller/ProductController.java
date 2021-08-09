@@ -43,8 +43,8 @@ public class ProductController {
 	}
 
 	@PutMapping
-	public ProductDTO updateProduct(ProductShopItemDTO productDTO) {
-		return productService.update(productDTO);
+	public ResponseEntity<ProductDTO> updateProduct(ProductShopItemDTO productDTO) {
+		return ResponseEntity.ok(productService.update(productDTO));
 	}
 
 	@DeleteMapping(path = "/{id}")
