@@ -38,8 +38,8 @@ public class ProductController {
 	}
 
 	@PostMapping
-	public ProductDTO addProduct(@RequestBody ProductShopItemDTO productDTO) {
-		return productService.save(productDTO);
+	public ResponseEntity<ProductDTO> addProduct(@RequestBody ProductShopItemDTO productDTO) {
+		return ResponseEntity.ok(productService.save(productDTO));
 	}
 
 	@PutMapping
