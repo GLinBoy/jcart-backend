@@ -78,8 +78,9 @@ public class UserController {
 
 	@Secured("IS_AUTHENTICATED_ANONYMOUSLY")
 	@RequestMapping(path = "/recovery", params = "mail")
-	public void recoveryByMail(@RequestParam String mail) {
+	public ResponseEntity<Void> recoveryByMail(@RequestParam String mail) {
 		userService.recoveryByMail(mail);
+		return ResponseEntity.ok().build();
 	}
 
 	@Secured("IS_AUTHENTICATED_ANONYMOUSLY")
