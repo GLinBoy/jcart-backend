@@ -66,8 +66,8 @@ public class UserController {
 
 	@Secured("IS_AUTHENTICATED_ANONYMOUSLY")
 	@PostMapping
-	public UserDTO register(@RequestBody UserDTO userDTO) {
-		return userService.register(userDTO);
+	public ResponseEntity<UserDTO> register(@RequestBody UserDTO userDTO) {
+		return ResponseEntity.ok(userService.register(userDTO));
 	}
 
 	@DeleteMapping(path = "/{user_id}")
