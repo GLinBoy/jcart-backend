@@ -28,8 +28,8 @@ public class TransactionController {
 	}
 
 	@GetMapping(path = "/{id}")
-	public UserTransactionDTO get(@PathVariable Long id) {
-		return transactionService.getSingleById(id);
+	public ResponseEntity<UserTransactionDTO> get(@PathVariable Long id) {
+		return ResponseEntity.ok(transactionService.getSingleById(id));
 	}
 
 }
