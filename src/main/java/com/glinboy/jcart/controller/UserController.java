@@ -85,8 +85,9 @@ public class UserController {
 
 	@Secured("IS_AUTHENTICATED_ANONYMOUSLY")
 	@RequestMapping(path = "/recovery", params = "mobile")
-	public void recoveryByMobile(@RequestParam String mobile) {
+	public ResponseEntity<Void> recoveryByMobile(@RequestParam String mobile) {
 		userService.recoveryByMobile(mobile);
+		return ResponseEntity.ok().build();
 	}
 
 	@Secured("IS_AUTHENTICATED_ANONYMOUSLY")
