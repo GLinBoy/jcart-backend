@@ -71,8 +71,9 @@ public class UserController {
 	}
 
 	@DeleteMapping(path = "/{user_id}")
-	public void deleteUser(@PathVariable("user_id") Long userId) {
+	public ResponseEntity<Void> deleteUser(@PathVariable("user_id") Long userId) {
 		userService.deleteSingleById(userId);
+		return ResponseEntity.ok().build();
 	}
 
 	@Secured("IS_AUTHENTICATED_ANONYMOUSLY")
