@@ -54,8 +54,8 @@ public class UserController {
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
 	@GetMapping(path = "/{user_id}")
-	public UserDTO getUser(@PathVariable("user_id") Long id) {
-		return userService.getSingleById(id);
+	public ResponseEntity<UserDTO> getUser(@PathVariable("user_id") Long id) {
+		return ResponseEntity.ok(userService.getSingleById(id));
 	}
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
