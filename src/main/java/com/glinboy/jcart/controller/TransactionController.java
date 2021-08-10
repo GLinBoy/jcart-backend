@@ -2,6 +2,7 @@ package com.glinboy.jcart.controller;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,8 +23,8 @@ public class TransactionController {
 	private final UserTransactionServiceApi transactionService;
 
 	@GetMapping
-	public Page<UserTransactionDTO> getAll(Pageable pageable) {
-		return transactionService.getAll(pageable);
+	public ResponseEntity<Page<UserTransactionDTO>> getAll(Pageable pageable) {
+		return ResponseEntity.ok(transactionService.getAll(pageable));
 	}
 
 	@GetMapping(path = "/{id}")
