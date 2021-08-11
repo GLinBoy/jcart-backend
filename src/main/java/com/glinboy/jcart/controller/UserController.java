@@ -164,8 +164,8 @@ public class UserController {
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
 	@PutMapping(path = "/{user_id}/cart")
-	public OrderDTO addOrderItem(@PathVariable("user_id") Long userId, @RequestBody ProductOrderItemDTO productDTO) {
-		return orderService.addToCart(userId, productDTO);
+	public ResponseEntity<OrderDTO> addOrderItem(@PathVariable("user_id") Long userId, @RequestBody ProductOrderItemDTO productDTO) {
+		return ResponseEntity.ok(orderService.addToCart(userId, productDTO));
 	}
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
