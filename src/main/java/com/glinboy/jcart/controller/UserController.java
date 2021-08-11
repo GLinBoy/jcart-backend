@@ -99,8 +99,9 @@ public class UserController {
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
 	@PostMapping(path = "/logout")
-	public void logout() {
+	public ResponseEntity<Void> logout() {
 		// FIXME After apply security
+		return ResponseEntity.ok().build();
 	}
 
 	// --- order section
