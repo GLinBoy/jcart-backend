@@ -92,8 +92,9 @@ public class UserController {
 
 	@Secured("IS_AUTHENTICATED_ANONYMOUSLY")
 	@PostMapping(path = "/login")
-	public void login() {
+	public ResponseEntity<Void> login() {
 		// FIXME After apply security
+		return ResponseEntity.ok().build();
 	}
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
