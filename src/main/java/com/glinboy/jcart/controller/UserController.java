@@ -154,8 +154,12 @@ public class UserController {
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
 	@GetMapping(path = "/{user_id}/cart")
-	public Optional<OrderDTO> getUserCart(@PathVariable("user_id") Long userId) {
-		return orderService.getCart(userId);
+	public ResponseEntity<OrderDTO> getUserCart(@PathVariable("user_id") Long userId) {
+		Optional<OrderDTO> cart = orderService.getCart(userId);
+		if(cart.isPresent()) {
+			return ResponseEntity.ok(cart.get());
+		}
+		return ResponseEntity.notFound().build();
 	}
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
