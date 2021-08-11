@@ -108,8 +108,8 @@ public class UserController {
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
 	@GetMapping(path = "/{user_id}/orders")
-	public Page<OrderDTO> getUserOrders(@PathVariable("user_id") Long userId, Pageable pageable) {
-		return orderService.getUserOrders(userId, pageable);
+	public ResponseEntity<Page<OrderDTO>> getUserOrders(@PathVariable("user_id") Long userId, Pageable pageable) {
+		return ResponseEntity.ok(orderService.getUserOrders(userId, pageable));
 	}
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
