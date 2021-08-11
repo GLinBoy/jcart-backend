@@ -138,8 +138,9 @@ public class UserController {
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
 	@DeleteMapping(path = "/{user_id}/addresses/{address_id}")
-	public void deleteAddress(@PathVariable("user_id") Long userId, @PathVariable("address_id") Long addressId) {
+	public ResponseEntity<Void> deleteAddress(@PathVariable("user_id") Long userId, @PathVariable("address_id") Long addressId) {
 		addressService.deleteAddress(userId, addressId);
+		return ResponseEntity.ok().build();
 	}
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
