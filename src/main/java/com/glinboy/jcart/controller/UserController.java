@@ -114,8 +114,12 @@ public class UserController {
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
 	@GetMapping(path = "/{user_id}/orders/{order_id}")
-	public Optional<OrderDTO> getUserOrder(@PathVariable("user_id") Long userId, @PathVariable("order_id") Long orderId) {
-		return orderService.getOrderByUser(userId, orderId);
+	public ResponseEntity<OrderDTO> getUserOrder(@PathVariable("user_id") Long userId, @PathVariable("order_id") Long orderId) {
+		Optional<OrderDTO> orderByUser = orderService.getOrderByUser(userId, orderId);
+		if(orderByUser.isPresent()) {
+			return ResponseEntity.ok(orderByUser.get());
+		}
+		return ResponseEntity.notFound().build();
 	}
 
 	// --- address section
