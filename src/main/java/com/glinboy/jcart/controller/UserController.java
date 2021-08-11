@@ -132,8 +132,8 @@ public class UserController {
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
 	@PostMapping(path = "/{user_id}/addresses")
-	public UserAddressDTO getUserAddress(@PathVariable("user_id") Long userId, @RequestBody UserAddressDTO addressDTO) {
-		return addressService.addAddressToUser(userId, addressDTO);
+	public ResponseEntity<UserAddressDTO> getUserAddress(@PathVariable("user_id") Long userId, @RequestBody UserAddressDTO addressDTO) {
+		return ResponseEntity.ok(addressService.addAddressToUser(userId, addressDTO));
 	}
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
