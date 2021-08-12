@@ -170,8 +170,9 @@ public class UserController {
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
 	@DeleteMapping(path = "/{user_id}/cart/{order_item_id}")
-	public void deleteOrderItem(@PathVariable("user_id") Long userId, @PathVariable("order_item_id") Long orderItemId) {
+	public ResponseEntity<Void> deleteOrderItem(@PathVariable("user_id") Long userId, @PathVariable("order_item_id") Long orderItemId) {
 		orderService.deleteFromCart(userId, orderItemId);
+		return ResponseEntity.ok().build();
 	}
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
