@@ -23,12 +23,15 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping(path = "/categories")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-@RequiredArgsConstructor
-public class CategoryController {
-
-	private final ProductCategoryServiceApi categoryService;
+public class CategoryController extends GenericController<ProductCategoryDTO, ProductCategoryServiceApi> {
 
 	private final ProductServiceApi productService;
+
+	public CategoryController(ProductCategoryServiceApi service,
+			ProductServiceApi productService) {
+		super(service);
+		this.productService = productService;
+	}
 
 	@GetMapping
 	public ResponseEntity<Page<ProductCategoryDTO>> getCategories(Pageable pageable) {
