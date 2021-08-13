@@ -186,8 +186,8 @@ public class UserController {
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
 	@GetMapping(path = "/{user_id}/transactions")
-	public Page<UserTransactionDTO> getUserTransactions(@PathVariable("user_id") Long id, Pageable pageable) {
-		return transactionService.findUserTransactions(id, pageable);
+	public ResponseEntity<Page<UserTransactionDTO>> getUserTransactions(@PathVariable("user_id") Long id, Pageable pageable) {
+		return ResponseEntity.ok(transactionService.findUserTransactions(id, pageable));
 	}
 
 	@GetMapping(path = "/{user_id}/transactions/{transaction_id}")
