@@ -18,8 +18,6 @@ import com.glinboy.jcart.service.ProductServiceApi;
 import com.glinboy.jcart.service.dto.ProductCategoryDTO;
 import com.glinboy.jcart.service.dto.ProductShopItemDTO;
 
-import lombok.RequiredArgsConstructor;
-
 @RestController
 @RequestMapping(path = "/categories")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
@@ -35,27 +33,27 @@ public class CategoryController extends GenericController<ProductCategoryDTO, Pr
 
 	@GetMapping
 	public ResponseEntity<Page<ProductCategoryDTO>> getCategories(Pageable pageable) {
-		return ResponseEntity.ok(categoryService.getAll(pageable));
+		return ResponseEntity.ok(this.service.getAll(pageable));
 	}
 
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<ProductCategoryDTO> getCategory(@PathVariable Long id) {
-		return ResponseEntity.ok(categoryService.getSingleById(id));
+		return ResponseEntity.ok(this.service.getSingleById(id));
 	}
 
 	@PostMapping
 	public ResponseEntity<ProductCategoryDTO> addCategory(@RequestBody ProductCategoryDTO category) {
-		return ResponseEntity.ok(categoryService.save(category));
+		return ResponseEntity.ok(this.service.save(category));
 	}
 
 	@PutMapping
 	public ResponseEntity<ProductCategoryDTO> updateCategory(@RequestBody ProductCategoryDTO category) {
-		return ResponseEntity.ok(categoryService.update(category));
+		return ResponseEntity.ok(this.service.update(category));
 	}
 
 	@DeleteMapping(path = "/{id}")
 	public ResponseEntity<Void> deleteCategory(@PathVariable Long id) {
-		categoryService.deleteSingleById(id);
+		this.service.deleteSingleById(id);
 		return ResponseEntity.ok().build();
 	}
 
@@ -66,6 +64,6 @@ public class CategoryController extends GenericController<ProductCategoryDTO, Pr
 
 	@GetMapping(path = "/{parentId}/childes")
 	public ResponseEntity<Page<ProductCategoryDTO>> getChildes(@PathVariable("parentId") Long parentId, Pageable pageable) {
-		return ResponseEntity.ok(categoryService.getChildMenu(parentId, pageable));
+		return ResponseEntity.ok(this.service.getChildMenu(parentId, pageable));
 	}
 }
