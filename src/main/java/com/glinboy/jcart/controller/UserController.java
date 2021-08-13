@@ -191,8 +191,12 @@ public class UserController {
 	}
 
 	@GetMapping(path = "/{user_id}/transactions/{transaction_id}")
-	public UserTransactionDTO getUserTransaction(@PathVariable("user_id") Long userId,
+	public ResponseEntity<UserTransactionDTO> getUserTransaction(@PathVariable("user_id") Long userId,
 			@PathVariable("transaction_id") Long transactionId) {
-		return transactionService.findByUserAndTransaction(userId, transactionId).get();
+		Optional<UserTransactionDTO> foundTransaction = transactionService.findByUserAndTransaction(userId, transactionId);
+		if(foundTransaction.isPresent()) {
+			return ResponseEntity.ok(foundTransaction.get());
+		}
+		return ResponseEntity.notFound().build();
 	}
 }
