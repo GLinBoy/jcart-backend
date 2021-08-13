@@ -4,12 +4,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,32 +25,6 @@ public class CategoryController extends GenericController<ProductCategoryDTO, Pr
 			ProductServiceApi productService) {
 		super(service);
 		this.productService = productService;
-	}
-
-	@GetMapping
-	public ResponseEntity<Page<ProductCategoryDTO>> getCategories(Pageable pageable) {
-		return ResponseEntity.ok(this.service.getAll(pageable));
-	}
-
-	@GetMapping(path = "/{id}")
-	public ResponseEntity<ProductCategoryDTO> getCategory(@PathVariable Long id) {
-		return ResponseEntity.ok(this.service.getSingleById(id));
-	}
-
-	@PostMapping
-	public ResponseEntity<ProductCategoryDTO> addCategory(@RequestBody ProductCategoryDTO category) {
-		return ResponseEntity.ok(this.service.save(category));
-	}
-
-	@PutMapping
-	public ResponseEntity<ProductCategoryDTO> updateCategory(@RequestBody ProductCategoryDTO category) {
-		return ResponseEntity.ok(this.service.update(category));
-	}
-
-	@DeleteMapping(path = "/{id}")
-	public ResponseEntity<Void> deleteCategory(@PathVariable Long id) {
-		this.service.deleteSingleById(id);
-		return ResponseEntity.ok().build();
 	}
 
 	@GetMapping(path = "/{id}/products")
