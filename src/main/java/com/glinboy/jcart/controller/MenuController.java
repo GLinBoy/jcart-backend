@@ -16,39 +16,38 @@ import org.springframework.web.bind.annotation.RestController;
 import com.glinboy.jcart.service.MenuServiceApi;
 import com.glinboy.jcart.service.dto.MenuDTO;
 
-import lombok.RequiredArgsConstructor;
-
 @RestController
 @RequestMapping(path = "/menus")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-@RequiredArgsConstructor
-public class MenuController {
+public class MenuController extends GenericController<MenuDTO, MenuServiceApi> {
 
-	private final MenuServiceApi menuService;
+	public MenuController(MenuServiceApi service) {
+		super(service);
+	}
 
 	@GetMapping
 	public ResponseEntity<Page<MenuDTO>> getAllMenus(Pageable pageable) {
-		return ResponseEntity.ok(menuService.getAll(pageable));
+		return ResponseEntity.ok(this.service.getAll(pageable));
 	}
 
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<MenuDTO> getMenuById(@PathVariable Long id) {
-		return ResponseEntity.ok(menuService.getSingleById(id));
+		return ResponseEntity.ok(this.service.getSingleById(id));
 	}
 
 	@PostMapping
 	public ResponseEntity<MenuDTO> saveMenu(@RequestBody MenuDTO menuDTO) {
-		return ResponseEntity.ok(menuService.save(menuDTO));
+		return ResponseEntity.ok(this.service.save(menuDTO));
 	}
 
 	@PutMapping
 	public ResponseEntity<MenuDTO> updateMenu(@RequestBody MenuDTO menuDTO) {
-		return ResponseEntity.ok(menuService.update(menuDTO));
+		return ResponseEntity.ok(this.service.update(menuDTO));
 	}
 
 	@DeleteMapping(path = "/{id}")
 	public ResponseEntity<Void> deleteMenu(@PathVariable Long id) {
-		menuService.deleteSingleById(id);
+		this.service.deleteSingleById(id);
 		return ResponseEntity.ok().build();
 	}
 }
