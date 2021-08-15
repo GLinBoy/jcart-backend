@@ -15,45 +15,44 @@ import org.springframework.web.bind.annotation.RestController;
 import com.glinboy.jcart.service.DiscountServiceApi;
 import com.glinboy.jcart.service.dto.DiscountDTO;
 
-import lombok.RequiredArgsConstructor;
-
 @RestController
 @RequestMapping(path = "/discounts")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-@RequiredArgsConstructor
-public class DiscountController {
+public class DiscountController extends GenericController<DiscountDTO, DiscountServiceApi> {
 
-	private final DiscountServiceApi discountService;
+	public DiscountController(DiscountServiceApi service) {
+		super(service);
+	}
 
 	@GetMapping
 	public ResponseEntity<Page<DiscountDTO>> getAllDiscount(Pageable pageable) {
-		return ResponseEntity.ok(discountService.getAll(pageable));
+		return ResponseEntity.ok(this.service.getAll(pageable));
 	}
 
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<DiscountDTO> getDiscount(@PathVariable Long id) {
-		return ResponseEntity.ok(discountService.getSingleById(id));
+		return ResponseEntity.ok(this.service.getSingleById(id));
 	}
 
 	@PostMapping
 	public ResponseEntity<DiscountDTO> saveDiscount(DiscountDTO discountDTO) {
-		return ResponseEntity.ok(discountService.save(discountDTO));
+		return ResponseEntity.ok(this.service.save(discountDTO));
 	}
 
 	@PutMapping
 	public ResponseEntity<DiscountDTO> updateDiscount(DiscountDTO discountDTO) {
-		return ResponseEntity.ok(discountService.update(discountDTO));
+		return ResponseEntity.ok(this.service.update(discountDTO));
 	}
 
 	@DeleteMapping(path = "/{id}")
 	public ResponseEntity<Void> deleteDiscount(@PathVariable Long id) {
-		discountService.deleteSingleById(id);
+		this.service.deleteSingleById(id);
 		return ResponseEntity.ok().build();
 	}
 
 	@GetMapping(path = "/{id}/verify")
 	public ResponseEntity<Void> verifyDiscount(@PathVariable Long id) {
-		if(discountService.verify(id).booleanValue()) {
+		if(this.service.verify(id).booleanValue()) {
 			return ResponseEntity.ok().build();
 		}
 		return ResponseEntity.notFound().build();
