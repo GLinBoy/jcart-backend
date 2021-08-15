@@ -13,35 +13,34 @@ import org.springframework.web.bind.annotation.RestController;
 import com.glinboy.jcart.service.CouponServiceApi;
 import com.glinboy.jcart.service.dto.CouponDTO;
 
-import lombok.RequiredArgsConstructor;
-
 @RestController
 @RequestMapping(path = "/coupons")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-@RequiredArgsConstructor
-public class CouponController {
+public class CouponController extends GenericController<CouponDTO, CouponServiceApi> {
 
-	private final CouponServiceApi couponService;
+	public CouponController(CouponServiceApi service) {
+		super(service);
+	}
 
 	@GetMapping
 	public ResponseEntity<Page<CouponDTO>> getAllCoupons(Pageable pageable) {
-		return ResponseEntity.ok(couponService.getAll(pageable));
+		return ResponseEntity.ok(this.service.getAll(pageable));
 	}
 
 	@DeleteMapping(path = "/{id}")
 	public ResponseEntity<Void> deleteCoupon(@PathVariable Long id) {
-		couponService.deleteSingleById(id);
+		this.service.deleteSingleById(id);
 		return ResponseEntity.ok().build();
 	}
 
 	@GetMapping(path = "/{id}/disable")
 	public ResponseEntity<CouponDTO> disableCoupon(@PathVariable Long id) {
-		return ResponseEntity.ok(couponService.disableCoupon(id));
+		return ResponseEntity.ok(this.service.disableCoupon(id));
 	}
 
 	@GetMapping(path = "/verify/{code}")
 	public ResponseEntity<Void> verifyCoupon(@PathVariable String code) {
-		if(couponService.verify(code).booleanValue()) {
+		if(this.service.verify(code).booleanValue()) {
 			return ResponseEntity.ok().build();
 		}
 		return ResponseEntity.notFound().build();
