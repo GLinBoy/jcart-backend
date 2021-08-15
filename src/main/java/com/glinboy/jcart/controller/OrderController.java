@@ -12,23 +12,22 @@ import org.springframework.web.bind.annotation.RestController;
 import com.glinboy.jcart.service.OrderServiceApi;
 import com.glinboy.jcart.service.dto.OrderDTO;
 
-import lombok.RequiredArgsConstructor;
-
 @RestController
 @RequestMapping(path = "/orders")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-@RequiredArgsConstructor
-public class OrderController {
-	
-	private final OrderServiceApi orderService;
+public class OrderController extends GenericController<OrderDTO, OrderServiceApi> {
+
+	public OrderController(OrderServiceApi service) {
+		super(service);
+	}
 
 	@GetMapping
 	public ResponseEntity<Page<OrderDTO>> getAllOrders(Pageable pageable) {
-		return ResponseEntity.ok(orderService.getAll(pageable));
+		return ResponseEntity.ok(this.service.getAll(pageable));
 	}
 
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<OrderDTO> getOrder(@PathVariable Long id) {
-		return ResponseEntity.ok(orderService.getSingleById(id));
+		return ResponseEntity.ok(this.service.getSingleById(id));
 	}
 }
