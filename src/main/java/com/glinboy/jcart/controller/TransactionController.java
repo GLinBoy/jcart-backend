@@ -12,24 +12,23 @@ import org.springframework.web.bind.annotation.RestController;
 import com.glinboy.jcart.service.UserTransactionServiceApi;
 import com.glinboy.jcart.service.dto.UserTransactionDTO;
 
-import lombok.RequiredArgsConstructor;
-
 @RestController
 @RequestMapping(path = "/transactions")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-@RequiredArgsConstructor
-public class TransactionController {
+public class TransactionController extends GenericController<UserTransactionDTO, UserTransactionServiceApi> {
 
-	private final UserTransactionServiceApi transactionService;
+	public TransactionController(UserTransactionServiceApi service) {
+		super(service);
+	}
 
 	@GetMapping
 	public ResponseEntity<Page<UserTransactionDTO>> getAll(Pageable pageable) {
-		return ResponseEntity.ok(transactionService.getAll(pageable));
+		return ResponseEntity.ok(this.service.getAll(pageable));
 	}
 
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<UserTransactionDTO> get(@PathVariable Long id) {
-		return ResponseEntity.ok(transactionService.getSingleById(id));
+		return ResponseEntity.ok(this.service.getSingleById(id));
 	}
 
 }
