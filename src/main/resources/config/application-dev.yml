@@ -15,8 +15,9 @@ spring:
     init:
       platform: h2
 
-app:
-  jwt:
-    Secret: JWTSuperSecretKey
-    ExpirationInSecound: 604800
-    TokenName: token
+application:
+  security:
+    jwt:
+      Secret: JWTSuperSecretKey
+      ExpirationInSecound: 604800
+      TokenName: token
