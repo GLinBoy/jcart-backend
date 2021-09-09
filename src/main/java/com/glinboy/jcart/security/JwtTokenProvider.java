@@ -35,13 +35,13 @@ public class JwtTokenProvider {
 
 	private static final int ONE_MONTH_IN_SECOUND = 2_592_000;
 
-	@Value("${app.jwt.Secret}")
+	@Value("${application.security.jwt.Secret}")
 	private String jwtSecret;
 
-	@Value("${app.jwt.ExpirationInSecound}")
+	@Value("${application.security.jwt.ExpirationInSecound}")
 	private int jwtExpirationInSecound;
 
-	@Value("${app.jwt.TokenName}")
+	@Value("${application.security.jwt.TokenName}")
 	private String jwtTokenName;
 
 	private String generateToken(Authentication authentication, Boolean rememberMe) {
