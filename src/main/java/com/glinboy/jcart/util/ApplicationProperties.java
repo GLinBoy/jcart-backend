@@ -9,18 +9,33 @@ import lombok.Data;
 public final class ApplicationProperties {
 
 	private Security security;
+	private Info info;
 
 	@Data
-	public static class Security {
+	public static final class Security {
 
 		private Jwt jwt;
 
 		@Data
-		public static class Jwt {
+		public static final class Jwt {
+
 			private String secret;
 			private Integer expirationInSecound;
 			private String tokenName;
+
 		}
+	}
+
+	@Data
+	public static final class Info {
+
+		private String name;
+		private String description;
+		private String version;
+		private String license;
+		private String licenseUrl;
+		private String githubUrl;
+
 	}
 
 }
