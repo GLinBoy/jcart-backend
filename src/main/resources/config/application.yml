@@ -15,3 +15,12 @@ server:
     session:
       cookie:
         secure: false
+
+application:
+  info:
+    name: JCart
+    description: Yet Another Cart Application On Cutting-Edge of Java Technologies With Sprin Boot
+    version: 0.0.1-SNAPSHO
+    license: MIT
+    license-url: https://github.com/GLinBoy/jcart-backend/LICENSE.md
+    github-url: https://github.com/GLinBoy/jcart-backend
