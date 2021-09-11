@@ -15,14 +15,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.csrf.CsrfFilter;
+import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
 
 import com.glinboy.jcart.security.CsrfHeaderFilter;
 import com.glinboy.jcart.security.CustomUserDetailsService;
-import com.glinboy.jcart.security.JwtAuthenticationEntryPoint;
 import com.glinboy.jcart.security.JwtAuthenticationFilter;
+
+import lombok.RequiredArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 @EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
@@ -47,8 +50,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	CustomUserDetailsService customUserDetailsService;
-	@Autowired
-	private JwtAuthenticationEntryPoint unauthorizedHandler;
+	
+	private final SecurityProblemSupport problemSupport;
 
 	@Bean
 	public JwtAuthenticationFilter jwtAuthenticationFilter() {
@@ -78,7 +81,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.ignoringAntMatchers("/auth/**", "/h2-console/**")
 			.and()
 			.exceptionHandling()
-			.authenticationEntryPoint(unauthorizedHandler)
+			.authenticationEntryPoint(problemSupport)
+			.accessDeniedHandler(problemSupport)
 			.and()
 			.sessionManagement()
 			.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
