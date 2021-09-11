@@ -1,6 +1,5 @@
 package com.glinboy.jcart.configuration;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -48,8 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			// other public endpoints of your API may be appended to this array
 	};
 
-	@Autowired
-	CustomUserDetailsService customUserDetailsService;
+	private final CustomUserDetailsService customUserDetailsService;
 	
 	private final SecurityProblemSupport problemSupport;
 
