@@ -2,6 +2,7 @@ package com.glinboy.jcart.controller;
 
 import java.util.Optional;
 
+import org.springdoc.core.converters.models.PageableAsQueryParam;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,7 @@ import com.glinboy.jcart.service.dto.UserAddressDTO;
 import com.glinboy.jcart.service.dto.UserDTO;
 import com.glinboy.jcart.service.dto.UserTransactionDTO;
 
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -46,7 +48,8 @@ public class UserController {
 	// --- administration section
 
 	@GetMapping
-	public ResponseEntity<Page<UserDTO>> getUsers(Pageable pageable) {
+	@PageableAsQueryParam
+	public ResponseEntity<Page<UserDTO>> getUsers(@Parameter(hidden = true) Pageable pageable) {
 		return ResponseEntity.ok(userService.getAll(pageable));
 	}
 
@@ -108,7 +111,9 @@ public class UserController {
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
 	@GetMapping(path = "/{user_id}/orders")
-	public ResponseEntity<Page<OrderDTO>> getUserOrders(@PathVariable("user_id") Long userId, Pageable pageable) {
+	@PageableAsQueryParam
+	public ResponseEntity<Page<OrderDTO>> getUserOrders(@PathVariable("user_id") Long userId,
+			@Parameter(hidden = true) Pageable pageable) {
 		return ResponseEntity.ok(orderService.getUserOrders(userId, pageable));
 	}
 
@@ -126,7 +131,9 @@ public class UserController {
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
 	@GetMapping(path = "/{user_id}/addresses")
-	public ResponseEntity<Page<UserAddressDTO>> getUserAddresses(@PathVariable("user_id") Long userId, Pageable pageable) {
+	@PageableAsQueryParam
+	public ResponseEntity<Page<UserAddressDTO>> getUserAddresses(@PathVariable("user_id") Long userId,
+			@Parameter(hidden = true) Pageable pageable) {
 		return ResponseEntity.ok(addressService.getUserAddresses(userId, pageable));
 	}
 
@@ -186,7 +193,9 @@ public class UserController {
 
 	@PreAuthorize("hasAuthority('ROLE_USER')")
 	@GetMapping(path = "/{user_id}/transactions")
-	public ResponseEntity<Page<UserTransactionDTO>> getUserTransactions(@PathVariable("user_id") Long id, Pageable pageable) {
+	@PageableAsQueryParam
+	public ResponseEntity<Page<UserTransactionDTO>> getUserTransactions(@PathVariable("user_id") Long id,
+			@Parameter(hidden = true) Pageable pageable) {
 		return ResponseEntity.ok(transactionService.findUserTransactions(id, pageable));
 	}
 
