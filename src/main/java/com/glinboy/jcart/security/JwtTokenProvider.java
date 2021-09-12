@@ -8,6 +8,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -65,7 +66,7 @@ public class JwtTokenProvider {
 		Cookie cookie = new Cookie(jwtTokenName, generateToken(authentication, rememberMe));
 		cookie.setPath("/");
 		cookie.setHttpOnly(true);
-		cookie.setMaxAge(rememberMe ? ONE_MONTH_IN_SECOUND : jwtExpirationInSecound);
+		cookie.setMaxAge(rememberMe.booleanValue() ? ONE_MONTH_IN_SECOUND : jwtExpirationInSecound);
 		response.addCookie(cookie);
 	}
 
@@ -76,12 +77,15 @@ public class JwtTokenProvider {
 	}
 
 	public String getTokenFromCookie(HttpServletRequest request) {
-		Cookie cookie = WebUtils.getCookie(request, jwtTokenName);
-		if (cookie != null) {
-			return cookie.getValue();
-		} else {
-			return null;
+		String bearerToken = request.getHeader("Authorization");
+		if(StringUtils.isBlank(bearerToken) && WebUtils.getCookie(request, jwtTokenName) != null &&
+				StringUtils.isNotBlank(WebUtils.getCookie(request, jwtTokenName).getValue())) {
+			bearerToken = WebUtils.getCookie(request, jwtTokenName).getValue();
 		}
+		if (StringUtils.isNotBlank(bearerToken) && bearerToken.startsWith("Bearer ")) {
+			return bearerToken.substring(7, bearerToken.length());
+		}
+		return bearerToken;
 	}
 
 	public boolean validateToken(String authToken) {
