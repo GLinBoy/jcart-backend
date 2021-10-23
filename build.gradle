@@ -16,7 +16,7 @@ repositories {
 }
 
 ext {
-	jsr310Version = '2.12.3'
+	jsr310Version = '2.13.0'
 	springdocVersion = '1.5.10'
 	problemVersion = '0.27.0'
 	mapstructVersion = '1.4.2.Final'
