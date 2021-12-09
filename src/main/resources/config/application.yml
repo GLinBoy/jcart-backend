@@ -16,6 +16,10 @@ server:
       cookie:
         secure: false
 
+springdoc:
+  swagger-ui:
+    docExpansion: none
+
 application:
   info:
     name: JCart
