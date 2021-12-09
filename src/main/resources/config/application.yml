@@ -17,6 +17,7 @@ server:
         secure: false
 
 springdoc:
+  writer-with-order-by-keys: true
   swagger-ui:
     docExpansion: none
 
