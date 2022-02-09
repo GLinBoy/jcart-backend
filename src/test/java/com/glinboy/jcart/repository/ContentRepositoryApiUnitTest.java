@@ -21,7 +21,9 @@ class ContentRepositoryApiUnitTest {
 
 	@Test
 	void testFindByTitle() {
-		fail("Not yet implemented");
+		Optional<Content> optional = contentRepository.findByTitle(DEFAULT_TITLE);
+		assertEquals(Boolean.TRUE, optional.isPresent());
+		assertThat(optional.get().getTitle()).isNotEmpty().isEqualTo(DEFAULT_TITLE);
 	}
 
 }
