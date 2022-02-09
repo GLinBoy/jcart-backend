@@ -14,6 +14,9 @@ import com.glinboy.jcart.model.Content;
 @DataJpaTest
 class ContentRepositoryApiUnitTest {
 
+	@Autowired
+	private ContentRepositoryApi contentRepository;
+
 	@Test
 	void testFindByTitle() {
 		fail("Not yet implemented");
