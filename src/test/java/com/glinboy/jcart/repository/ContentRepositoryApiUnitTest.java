@@ -17,6 +17,8 @@ class ContentRepositoryApiUnitTest {
 	@Autowired
 	private ContentRepositoryApi contentRepository;
 
+	private final String DEFAULT_TITLE = "test";
+
 	@Test
 	void testFindByTitle() {
 		fail("Not yet implemented");
