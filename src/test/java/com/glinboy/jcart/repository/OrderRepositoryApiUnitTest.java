@@ -18,6 +18,8 @@ class OrderRepositoryApiUnitTest {
 	@Autowired
 	private OrderRepositoryApi orderRepository;
 
+	private final Long DEFAULT_ID = 10001L;
+
 	@Test
 	void testFindAllByUserId() {
 		fail("Not yet implemented");
