@@ -15,6 +15,9 @@ import com.glinboy.jcart.model.Order;
 @DataJpaTest
 class OrderRepositoryApiUnitTest {
 
+	@Autowired
+	private OrderRepositoryApi orderRepository;
+
 	@Test
 	void testFindAllByUserId() {
 		fail("Not yet implemented");
