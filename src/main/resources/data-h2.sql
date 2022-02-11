@@ -805,5 +805,5 @@ INSERT INTO JOIN_USERS_GROUPS(USER_ID, GROUP_ID) VALUES
 
 -- CONTENT DATA SAMPLE
 INSERT INTO CONTENT(ID, TITLE, CONTENT, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) VALUES
-	(10001, 'title', 'content', 1, 10001,'2018-01-01', 10001,'2018-01-01', 0),
-	(10002, 'test', 'test content', 1, 10001,'2018-01-01', 10001,'2018-01-01', 0);
+	(10001, 'title', 'content', 1, 'john.doe@gmail.com','2018-01-01', 'john.doe@gmail.com','2018-01-01', 0),
+	(10002, 'test', 'test content', 1, 'john.doe@gmail.com','2018-01-01', 'john.doe@gmail.com','2018-01-01', 0);
