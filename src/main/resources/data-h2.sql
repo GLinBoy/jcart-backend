@@ -6,13 +6,15 @@
 -- USER DATA SAMPLE
 -- Default password for john.doe@gmail.com is: asd@123456
 INSERT INTO USER("ID","CREATED_BY","CREATED_ON","EDITED_BY","EDITED_ON","VERSION","IS_ACTIVE","EMAIL","FAMILY","GENDER","MOBILE","NAME","PASSWORD","VERIFIED_EMAIL","VERIFIED_MOBILE", "IS_DELETED", "CODE_INTRODUCING") VALUES
-				(10001, 'john.doe@gmail.com','2018-01-01', 'john.doe@gmail.com','2018-01-01', 0, 1,'john.doe@gmail.com','Doe','MALE','+987654321','Jane','$2a$10$Zj38WYKI.gGbhQWuATpY2.nI8CowD/ujyC7c2MozoyMBGNi8z6bui',1,1, 0, 'AAAA');
+				(10001, 'john.doe@gmail.com','2018-01-01', 'john.doe@gmail.com','2018-01-01', 0, 1,'john.doe@gmail.com','Doe','MALE','+9876543210','John','$2a$10$Zj38WYKI.gGbhQWuATpY2.nI8CowD/ujyC7c2MozoyMBGNi8z6bui',1,1, 0, 'AAAA'),
+				(10002, 'jane.doe@gmail.com','2018-01-01', 'jane.doe@gmail.com','2018-01-01', 0, 1,'jane.doe@gmail.com','Doe','FEMALE','+9876543211','Jane','$2a$10$Zj38WYKI.gGbhQWuATpY2.nI8CowD/ujyC7c2MozoyMBGNi8z6bui',1,1, 0, 'BBBB');
 INSERT INTO USER_GROUP("ID","CREATED_BY","CREATED_ON","EDITED_BY","EDITED_ON","VERSION","IS_ACTIVE", name) VALUES
 	(10001, 'john.doe@gmail.com','2018-01-01', 'john.doe@gmail.com','2018-01-01',1,1,'ROLE_ADMIN'),
 	(10002, 'john.doe@gmail.com','2018-01-01', 'john.doe@gmail.com','2018-01-01',1,1,'ROLE_USER');
 INSERT INTO JOIN_USERS_GROUPS(USER_ID, GROUP_ID) VALUES
 	(10001, 10001),
-	(10001, 10002);
+	(10001, 10002),
+	(10002, 10002);
 --
 -- insert into USER (id, NAME, FAMILY, EMAIL, VERIFIED_EMAIL, MOBILE, VERIFIED_MOBILE, PASSWORD, gender, CODE_INTRODUCING, IS_ACTIVE, IS_DELETED, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (1, 'Jena', 'Bradtke', 'jbradtke0@t-online.de', true, '+995-187-797-0193', false, 'M7bkPaLm3qSp', 'FEMALE', '0RPA4KZ', true, false, 'jbradtke0', '2017-10-27', 'jbradtke0', '2018-08-16', 3);
 -- insert into USER (id, NAME, FAMILY, EMAIL, VERIFIED_EMAIL, MOBILE, VERIFIED_MOBILE, PASSWORD, gender, CODE_INTRODUCING, IS_ACTIVE, IS_DELETED, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (2, 'Lexy', 'Gwyer', 'lgwyer1@cornell.edu', true, '+420-112-789-8710', false, 'cykOOJ', 'FEMALE', '05UN0KZ', true, true, 'lgwyer1', '2018-07-14', 'lgwyer1', '2018-07-30', 3);
