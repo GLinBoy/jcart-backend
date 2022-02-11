@@ -78,8 +78,8 @@ public class AuthController {
 		user.setEmail(signUpRequest.getEmail());
 		user.setMobile(signUpRequest.getMobile());
 		user.setGender(UserGender.valueOf(signUpRequest.getGender()));
-		user.setCreatedBy(1L);
-		user.setEditedBy(1L);
+		user.setCreatedBy(signUpRequest.getEmail());
+		user.setEditedBy(signUpRequest.getEmail());
 		// FIXME by default, Must Not be activated
 		user.setIsActive(Boolean.TRUE);
 		// FIXME Generate user code for introducing
