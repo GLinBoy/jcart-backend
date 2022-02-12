@@ -31,7 +31,7 @@ public abstract class Auditable<U> {
 
     @LastModifiedBy
     @Column(name = "EDITED_BY", nullable = false)
-    private Long editedBy;
+    private String editedBy;
 
     @CreatedDate
     @Temporal(TIMESTAMP)
