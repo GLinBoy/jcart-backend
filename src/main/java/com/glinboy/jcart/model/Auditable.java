@@ -2,6 +2,7 @@ package com.glinboy.jcart.model;
 
 import static javax.persistence.TemporalType.TIMESTAMP;
 
+import java.time.Instant;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -34,9 +35,8 @@ public abstract class Auditable<U> {
     private String editedBy;
 
     @CreatedDate
-    @Temporal(TIMESTAMP)
     @Column(name = "CREATED_ON", updatable = false, nullable = false)
-    private Date createdOn;
+    private Instant createdOn;
 
     @LastModifiedDate
     @Temporal(TIMESTAMP)
