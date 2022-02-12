@@ -39,9 +39,8 @@ public abstract class Auditable<U> {
     private Instant createdOn;
 
     @LastModifiedDate
-    @Temporal(TIMESTAMP)
     @Column(name = "EDITED_ON", nullable = false)
-    private Date editedOn;
+    private Instant editedOn;
 
     @Version
     @Column(name = "VERSION", nullable = false)
