@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,11 +16,13 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-	@Autowired
+
 	private JwtTokenProvider tokenProvider;
 
-	@Autowired
 	private CustomUserDetailsService customUserDetailsService;
 
 	private static final Logger logger = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
