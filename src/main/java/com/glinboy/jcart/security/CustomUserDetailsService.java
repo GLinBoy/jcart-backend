@@ -1,6 +1,5 @@
 package com.glinboy.jcart.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,10 +10,13 @@ import com.glinboy.jcart.model.User;
 import com.glinboy.jcart.model.UserPrincipal;
 import com.glinboy.jcart.repository.UserRepositoryApi;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
-    @Autowired
-    UserRepositoryApi userRepository;
+
+	UserRepositoryApi userRepository;
 
     @Override
     @Transactional
