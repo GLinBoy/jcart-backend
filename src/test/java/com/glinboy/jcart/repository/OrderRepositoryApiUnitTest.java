@@ -22,7 +22,11 @@ class OrderRepositoryApiUnitTest {
 
 	@Test
 	void testFindAllByUserId() {
-		fail("Not yet implemented");
+		List<Order> orders = orderRepository.findAllById(List.of(DEFAULT_ID, DEFAULT_ID + 1L));
+		assertThat(orders).isNotNull().isNotEmpty().hasSize(2);
+		assertThat(orders.stream().map(Order::getId)
+				.collect(Collectors.toList()))
+			.containsAll(List.of(DEFAULT_ID, DEFAULT_ID + 1L));
 	}
 
 	@Test
