@@ -19,7 +19,7 @@ ext {
 	jsr310Version = '2.14.1'
 	springdocVersion = '1.6.11'
 	problemVersion = '0.27.0'
-	mapstructVersion = '1.5.2.Final'
+	mapstructVersion = '1.5.3.Final'
 	jjwtVersion = '0.9.1'
 }
 
