@@ -3,8 +3,6 @@ package com.glinboy.jcart.service.impl;
 import java.util.List;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,6 +14,7 @@ import com.glinboy.jcart.service.GenericService;
 import com.glinboy.jcart.service.dto.BaseDTO;
 import com.glinboy.jcart.service.mapper.EntityMapper;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service

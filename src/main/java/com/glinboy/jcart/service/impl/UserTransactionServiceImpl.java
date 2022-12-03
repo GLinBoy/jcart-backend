@@ -2,8 +2,6 @@ package com.glinboy.jcart.service.impl;
 
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -13,6 +11,8 @@ import com.glinboy.jcart.repository.UserTransactionRepositoryApi;
 import com.glinboy.jcart.service.UserTransactionServiceApi;
 import com.glinboy.jcart.service.dto.UserTransactionDTO;
 import com.glinboy.jcart.service.mapper.UserTransactionMapper;
+
+import jakarta.transaction.Transactional;
 
 @Service
 @Transactional

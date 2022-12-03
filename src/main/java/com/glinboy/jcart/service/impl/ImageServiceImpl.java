@@ -1,7 +1,5 @@
 package com.glinboy.jcart.service.impl;
 
-import javax.transaction.Transactional;
-
 import org.springframework.stereotype.Service;
 
 import com.glinboy.jcart.model.Image;
@@ -9,6 +7,8 @@ import com.glinboy.jcart.repository.ImageRepositoryApi;
 import com.glinboy.jcart.service.ImageServiceApi;
 import com.glinboy.jcart.service.dto.ImageDTO;
 import com.glinboy.jcart.service.mapper.ImageMapper;
+
+import jakarta.transaction.Transactional;
 
 @Service
 @Transactional

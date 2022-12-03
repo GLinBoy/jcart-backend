@@ -2,8 +2,6 @@ package com.glinboy.jcart.service.impl;
 
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
 import org.springframework.stereotype.Service;
 
 import com.glinboy.jcart.model.Coupon;
@@ -12,6 +10,8 @@ import com.glinboy.jcart.repository.CouponRepositoryApi;
 import com.glinboy.jcart.service.CouponServiceApi;
 import com.glinboy.jcart.service.dto.CouponDTO;
 import com.glinboy.jcart.service.mapper.CouponMapper;
+
+import jakarta.transaction.Transactional;
 
 @Service
 @Transactional
