@@ -3,8 +3,6 @@ package com.glinboy.jcart.controller;
 import java.net.URI;
 import java.util.Collections;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
@@ -31,6 +29,8 @@ import com.glinboy.jcart.security.JwtTokenProvider;
 import com.glinboy.jcart.security.LoginRequest;
 import com.glinboy.jcart.security.SignUpRequest;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
 @RestController

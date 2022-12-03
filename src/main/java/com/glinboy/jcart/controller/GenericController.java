@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springdoc.core.converters.models.PageableAsQueryParam;
@@ -29,6 +28,7 @@ import com.glinboy.jcart.service.dto.BaseDTO;
 import com.glinboy.jcart.util.PaginationUtil;
 
 import io.swagger.v3.oas.annotations.Parameter;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
