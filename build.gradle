@@ -1,8 +1,8 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '2.7.5'
-	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
-	id 'com.github.ben-manes.versions' version '0.42.0'
+	id 'org.springframework.boot' version '3.0.0'
+	id 'io.spring.dependency-management' version '1.1.0'
+	id 'com.github.ben-manes.versions' version '0.44.0'
 	id "org.ec4j.editorconfig" version "0.0.3"
 }
 
@@ -16,10 +16,10 @@ repositories {
 }
 
 ext {
-	jsr310Version = '2.13.3'
-	springdocVersion = '1.6.11'
+	jsr310Version = '2.14.1'
+	springdocVersion = '1.6.13'
 	problemVersion = '0.27.0'
-	mapstructVersion = '1.5.2.Final'
+	mapstructVersion = '1.5.3.Final'
 	jjwtVersion = '0.9.1'
 }
 
