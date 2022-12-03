@@ -9,10 +9,9 @@ import com.glinboy.jcart.model.UserPrincipal;
 public class DataGuard {
 
 	public boolean checkUserId(Authentication authentication, Long id) {
-		if (authentication.getPrincipal() != null && authentication.getPrincipal() instanceof UserPrincipal) {
-			UserPrincipal user = ((UserPrincipal) authentication.getPrincipal());
-			return (user.getId().equals(id)
-					|| user.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN")));
+		if (authentication.getPrincipal() instanceof UserPrincipal userPrincipal) {
+			return (userPrincipal.getId().equals(id)
+					|| userPrincipal.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN")));
 		} else {
 			return false;
 		}
