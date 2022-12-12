@@ -2,16 +2,15 @@ package com.glinboy.jcart.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.authentication.configurers.userdetails.DaoAuthenticationConfigurer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
@@ -25,8 +24,8 @@ import lombok.RequiredArgsConstructor;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-@EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+@EnableMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
+public class SecurityConfig {
 	
 	private static final String[] AUTH_WHITELIST = {
 			"/",
@@ -56,15 +55,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return new JwtAuthenticationFilter();
 	}
 
-	@Override
-	public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-		authenticationManagerBuilder.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
-	}
-
-	@Bean(BeanIds.AUTHENTICATION_MANAGER)
-	@Override
-	public AuthenticationManager authenticationManagerBean() throws Exception {
-		return super.authenticationManagerBean();
+	@Bean
+	public DaoAuthenticationConfigurer<AuthenticationManagerBuilder, CustomUserDetailsService> configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+		return authenticationManagerBuilder.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
 	}
 
 	@Bean
@@ -72,8 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.headers().frameOptions().disable();
 		http.cors().and().csrf().disable()
 			.exceptionHandling()
@@ -83,15 +75,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.sessionManagement()
 			.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()
-			.authorizeRequests()
-			.antMatchers("/users/{user_id}/**")
-			.access("@dataGuard.checkUserId(authentication,#user_id)")
-			.antMatchers(AUTH_WHITELIST)
-			.permitAll()
-			.anyRequest()
-			.authenticated();
+			.authorizeHttpRequests(requests -> requests
+//					.requestMatchers("/users/{user_id}/**")
+//					.access("@dataGuard.checkUserId(authentication,#user_id)")
+					.requestMatchers(AUTH_WHITELIST).permitAll()
+					.anyRequest().authenticated()
+				);
 		// Add our custom JWT security filter
 		http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 		http.addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class);
+		return http.build();
 	}
 }
