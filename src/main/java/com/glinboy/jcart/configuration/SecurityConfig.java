@@ -2,6 +2,8 @@ package com.glinboy.jcart.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configurers.userdetails.DaoAuthenticationConfigurer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -46,18 +48,18 @@ public class SecurityConfig {
 			// other public endpoints of your API may be appended to this array
 	};
 
-	private final CustomUserDetailsService customUserDetailsService;
-	
-	private final SecurityProblemSupport problemSupport;
-
 	@Bean
 	public JwtAuthenticationFilter jwtAuthenticationFilter() {
 		return new JwtAuthenticationFilter();
 	}
 
 	@Bean
-	public DaoAuthenticationConfigurer<AuthenticationManagerBuilder, CustomUserDetailsService> configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-		return authenticationManagerBuilder.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
+	public DaoAuthenticationConfigurer<AuthenticationManagerBuilder, CustomUserDetailsService>
+		configure(AuthenticationManagerBuilder authenticationManagerBuilder,
+				CustomUserDetailsService customUserDetailsService) throws Exception {
+		return authenticationManagerBuilder
+				.userDetailsService(customUserDetailsService)
+				.passwordEncoder(passwordEncoder());
 	}
 
 	@Bean
@@ -65,7 +67,8 @@ public class SecurityConfig {
 		return new BCryptPasswordEncoder();
 	}
 
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	public SecurityFilterChain securityFilterChain(HttpSecurity http,
+			SecurityProblemSupport problemSupport) throws Exception {
 		http.headers().frameOptions().disable();
 		http.cors().and().csrf().disable()
 			.exceptionHandling()
@@ -85,5 +88,20 @@ public class SecurityConfig {
 		http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 		http.addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class);
 		return http.build();
+	}
+	
+	@Bean
+	public AuthenticationManager authManager(AuthenticationManagerBuilder auth,
+			DaoAuthenticationProvider authenticationProvider) throws Exception {
+		return auth.authenticationProvider(authenticationProvider).build();
+	}
+	
+	@Bean
+	public DaoAuthenticationProvider authenticationProvider(CustomUserDetailsService detailsService,
+			PasswordEncoder encoder) {
+		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+		provider.setPasswordEncoder(encoder);
+		provider.setUserDetailsService(detailsService);
+		return provider;
 	}
 }
