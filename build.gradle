@@ -20,7 +20,7 @@ ext {
 	springdocVersion = '2.0.2'
 	problemVersion = '0.27.0'
 	mapstructVersion = '1.5.3.Final'
-	jjwtVersion = '0.9.1'
+	jjwtVersion = '0.11.5'
 }
 
 defaultTasks "bootRun"
@@ -40,7 +40,9 @@ dependencies {
 
 	implementation "org.springframework.boot:spring-boot-starter-undertow"
 	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
-	implementation "io.jsonwebtoken:jjwt:${jjwtVersion}"
+	implementation 'io.jsonwebtoken:jjwt-api:${jjwtVersion}'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:${jjwtVersion}',
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:${jjwtVersion}'
 	implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jsr310Version}"
 	implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springdocVersion}"
 	implementation "org.springdoc:springdoc-openapi-starter-common:${springdocVersion}"
