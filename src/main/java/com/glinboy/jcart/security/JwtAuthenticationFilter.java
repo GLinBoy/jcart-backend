@@ -11,6 +11,8 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.glinboy.jcart.service.UserServiceApi;
+
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,7 +24,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 	private JwtTokenProvider tokenProvider;
 
-	private CustomUserDetailsService customUserDetailsService;
+	private UserServiceApi userService;
 
 	private static final Logger logger = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
 
@@ -35,7 +37,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 			if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
 				String email = tokenProvider.getUserIdFromJWT(jwt);
 
-				UserDetails userDetails = customUserDetailsService.loadUserByUsername(email);
+				UserDetails userDetails = userService.loadUserByUsername(email);
 				UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
 						userDetails, null, userDetails.getAuthorities());
 				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
