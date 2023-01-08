@@ -1,27 +1,33 @@
 package com.glinboy.jcart.security;
 
+import java.security.Key;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.WebUtils;
 
 import com.glinboy.jcart.model.UserPrincipal;
+import com.glinboy.jcart.util.ApplicationProperties;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -35,51 +41,71 @@ public class JwtTokenProvider {
 
 	private static final int ONE_MONTH_IN_SECOUND = 2_592_000;
 
-	@Value("${application.security.jwt.secret}")
-	private String jwtSecret;
+	private final ApplicationProperties properties;
 
-	@Value("${application.security.jwt.expirationInSecound}")
-	private int jwtExpirationInSecound;
+	private final JwtParser jwtParser;
+	
+	private final Key key;
+	
+	public JwtTokenProvider(ApplicationProperties properties) {
+		this.properties = properties;
+		this.jwtParser = Jwts.parserBuilder()
+				.setSigningKey(Decoders.BASE64.decode(properties.getSecurity().getJwt().getBase64Secret()))
+				.build();
+		this.key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(properties.getSecurity().getJwt().getBase64Secret()));
+	}
 
-	@Value("${application.security.jwt.tokenName}")
-	private String jwtTokenName;
+	public Authentication getAuthentication(String token) {
+		Claims claims = (Claims) jwtParser.parse(token).getBody();
+		var authorities = Arrays.asList(claims.get(ROLES_CLAIM_NAME)
+		.toString()
+		.split(","))
+		.stream().filter(StringUtils::isNotBlank)
+		.map(SimpleGrantedAuthority::new)
+		.toList();
+		var principal = new User(claims.getSubject(), "", authorities);
+		return new UsernamePasswordAuthenticationToken(principal, token, authorities);
+	}
 
 	private String generateToken(Authentication authentication, Boolean rememberMe) {
-
-		UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
-
-		Date now = new Date();
 		Date expiryDate = new Date(
-				now.getTime() + (rememberMe ? ONE_MONTH_IN_SECOUND : jwtExpirationInSecound) * 1000L);
-		final List<String> authorities = authentication.getAuthorities().stream().map(GrantedAuthority::getAuthority)
-				.collect(Collectors.toList());
+				new Date().getTime() +
+				(rememberMe.booleanValue() ? ONE_MONTH_IN_SECOUND :
+					properties.getSecurity().getJwt().getExpirationInSecound()) * 1000L);
+		final List<String> authorities = authentication
+				.getAuthorities()
+				.stream()
+				.map(GrantedAuthority::getAuthority)
+				.toList();
+		
 		return Jwts.builder()
+				.setSubject(((UserPrincipal) authentication.getPrincipal()).getEmail())
 				.claim(ROLES_CLAIM_NAME, authorities)
-				.setSubject(userPrincipal.getEmail())
-				.setIssuedAt(new Date()).setExpiration(expiryDate)
-				.signWith(SignatureAlgorithm.HS512, jwtSecret)
+				.setIssuedAt(new Date())
+				.setExpiration(expiryDate)
+				.signWith(key, SignatureAlgorithm.HS512)
 				.compact();
 	}
 
 	public void setTokenOnResponse(Authentication authentication, Boolean rememberMe, HttpServletResponse response) {
-		Cookie cookie = new Cookie(jwtTokenName, generateToken(authentication, rememberMe));
+		Cookie cookie = new Cookie(properties.getSecurity().getJwt().getTokenName(), generateToken(authentication, rememberMe));
 		cookie.setPath("/");
 		cookie.setHttpOnly(true);
-		cookie.setMaxAge(rememberMe.booleanValue() ? ONE_MONTH_IN_SECOUND : jwtExpirationInSecound);
+		cookie.setMaxAge(rememberMe.booleanValue() ? ONE_MONTH_IN_SECOUND :
+			properties.getSecurity().getJwt().getExpirationInSecound());
 		response.addCookie(cookie);
 	}
 
 	public String getUserIdFromJWT(String token) {
-		Claims claims = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
-
-		return claims.getSubject();
+		return jwtParser.parseClaimsJws(token).getBody().getSubject();
 	}
 
 	public String getTokenFromCookie(HttpServletRequest request) {
 		String bearerToken = request.getHeader("Authorization");
-		if(StringUtils.isBlank(bearerToken) && WebUtils.getCookie(request, jwtTokenName) != null &&
-				StringUtils.isNotBlank(WebUtils.getCookie(request, jwtTokenName).getValue())) {
-			bearerToken = WebUtils.getCookie(request, jwtTokenName).getValue();
+		if(StringUtils.isBlank(bearerToken) &&
+				WebUtils.getCookie(request, properties.getSecurity().getJwt().getTokenName()) != null &&
+				StringUtils.isNotBlank(WebUtils.getCookie(request, properties.getSecurity().getJwt().getTokenName()).getValue())) {
+			bearerToken = WebUtils.getCookie(request, properties.getSecurity().getJwt().getTokenName()).getValue();
 		}
 		if (StringUtils.isNotBlank(bearerToken) && bearerToken.startsWith("Bearer ")) {
 			return bearerToken.substring(7, bearerToken.length());
@@ -89,9 +115,9 @@ public class JwtTokenProvider {
 
 	public boolean validateToken(String authToken) {
 		try {
-			Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
+			jwtParser.parseClaimsJws(authToken);
 			return true;
-		} catch (SignatureException ex) {
+		} catch (SecurityException ex) {
 			logger.error("Invalid JWT signature");
 		} catch (MalformedJwtException ex) {
 			logger.error("Invalid JWT token");
@@ -106,7 +132,7 @@ public class JwtTokenProvider {
 	}
 
 	public void removeTokenOnResponse(HttpServletResponse response) {
-		Cookie cookie = new Cookie(jwtTokenName, null);
+		Cookie cookie = new Cookie(properties.getSecurity().getJwt().getTokenName(), null);
 		cookie.setPath("/");
 		cookie.setHttpOnly(true);
 //        cookie.setSecure(true);
