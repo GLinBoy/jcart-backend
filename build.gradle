@@ -40,9 +40,9 @@ dependencies {
 
 	implementation "org.springframework.boot:spring-boot-starter-undertow"
 	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
-	implementation 'io.jsonwebtoken:jjwt-api:${jjwtVersion}'
-	runtimeOnly 'io.jsonwebtoken:jjwt-impl:${jjwtVersion}',
-	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:${jjwtVersion}'
+	implementation "io.jsonwebtoken:jjwt-api:${jjwtVersion}"
+	runtimeOnly "io.jsonwebtoken:jjwt-impl:${jjwtVersion}"
+	runtimeOnly "io.jsonwebtoken:jjwt-jackson:${jjwtVersion}"
 	implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jsr310Version}"
 	implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springdocVersion}"
 	implementation "org.springdoc:springdoc-openapi-starter-common:${springdocVersion}"
