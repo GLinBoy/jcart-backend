@@ -22,11 +22,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-	private JwtTokenProvider tokenProvider;
+	private final JwtTokenProvider tokenProvider;
 
-	private UserServiceApi userService;
+	private final UserServiceApi userService;
 
-	private static final Logger logger = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
+	private static final Logger log = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -45,7 +45,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 			}
 		} catch (Exception ex) {
-			logger.error("Could not set user authentication in security context", ex);
+			log.error("Could not set user authentication in security context", ex);
 		}
 
 		filterChain.doFilter(request, response);
