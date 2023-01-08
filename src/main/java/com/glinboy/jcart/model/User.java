@@ -22,9 +22,9 @@ import jakarta.persistence.Transient;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Entity
-@Table
 @Data
+@Entity
+@Table(name = "USERS")
 @EqualsAndHashCode(callSuper=true)
 public class User extends BaseEntity {
     @Column
