@@ -19,7 +19,7 @@ public final class ApplicationProperties {
 		@Data
 		public static final class Jwt {
 
-			private String secret;
+			private String base64Secret;
 			private Integer expirationInSecound;
 			private String tokenName;
 
