@@ -24,8 +24,8 @@ public class Coupon extends BaseEntity {
     private String code;
 
     @Column
-    private LocalDate start;
+    private LocalDate startDate;
 
     @Column
-    private LocalDate end;
+    private LocalDate endDate;
 }
