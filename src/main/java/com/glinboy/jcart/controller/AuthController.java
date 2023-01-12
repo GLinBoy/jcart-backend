@@ -7,8 +7,8 @@ import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -38,7 +38,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthController {
 
-	private final AuthenticationManager authenticationManager;
+	private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
 	private final UserRepositoryApi userRepository;
 
@@ -48,12 +48,10 @@ public class AuthController {
 
 	private final JwtTokenProvider tokenProvider;
 
-	@Secured("IS_AUTHENTICATED_ANONYMOUSLY")
 	@PostMapping("/signin")
 	public ResponseEntity<ApiResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, HttpServletRequest request,
 			HttpServletResponse response) {
-
-		Authentication authentication = authenticationManager.authenticate(
+		Authentication authentication = authenticationManagerBuilder.getObject().authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getEmailOrMobile(), loginRequest.getPassword()));
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -63,7 +61,6 @@ public class AuthController {
 				.ok(ApiResponse.builder().login(true).success(true).message("You now are sign-in.").build());
 	}
 
-	@Secured("IS_AUTHENTICATED_ANONYMOUSLY")
 	@PostMapping("/signup")
 	public ResponseEntity<ApiResponse> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
 		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
