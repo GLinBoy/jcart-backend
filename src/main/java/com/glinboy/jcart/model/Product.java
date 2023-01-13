@@ -1,12 +1,8 @@
 package com.glinboy.jcart.model;
 
 import java.util.List;
-import java.util.Set;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
@@ -53,7 +49,7 @@ public abstract class Product extends BaseEntity {
     @OneToMany
     private List<Image> images;
 
-    @JsonBackReference
-    @OneToMany(fetch= FetchType.LAZY, mappedBy = "product")
-    private Set<Discount> discounts;
+//    @JsonBackReference
+//    @OneToMany(fetch= FetchType.LAZY, mappedBy = "product")
+//    private Set<Discount> discounts;
 }
