@@ -8,11 +8,13 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Transient;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+@MappedSuperclass
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 @Data
 @EqualsAndHashCode(callSuper=true)
@@ -48,8 +50,8 @@ public abstract class Product extends BaseEntity {
 
     @OneToMany
     private List<Image> images;
-
-//    @JsonBackReference
-//    @OneToMany(fetch= FetchType.LAZY, mappedBy = "product")
-//    private Set<Discount> discounts;
+    
+    private Integer point;
+    
+    private Long requirementPoints;
 }
