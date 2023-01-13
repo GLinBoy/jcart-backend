@@ -8,12 +8,14 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Entity
 @Data
 @EqualsAndHashCode(callSuper=true)
+@Table(name="PRODUCT_SHOP_ITEM")
 public class ProductShopItem extends Product {
 	
     @JsonManagedReference
