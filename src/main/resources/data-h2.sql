@@ -147,31 +147,32 @@ insert into PRODUCT_SHOP_ITEM (ID, CODE, NAME, DESCRIPTION, PRICE, POINT, REQUIR
 -- -- DISCOUNTS DATA SAMPLE
 --
 
-insert into DISCOUNT (ID, USR_ID, PERCENT, CEILING, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (10001, 10001, 14, 24231, true, 'bpikhno0', '2017-12-11', 'lcarlet0', '2018-06-17', 1);
-insert into DISCOUNT (ID, USR_ID, PERCENT, CEILING, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (10002, 10001, 8, 22755, false, 'abantick1', '2018-07-14', 'bcheverton1', '2018-08-20', 1);
-insert into DISCOUNT (ID, USR_ID, PERCENT, CEILING, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (10003, 10001, 22, 24065, false, 'dkleinlerer2', '2018-03-29', 'lcuddehay2', '2018-06-08', 3);
-insert into DISCOUNT (ID, USR_ID, PERCENT, CEILING, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (10004, 10001, 8, 13769, true, 'mjakubowicz3', '2017-12-09', 'afeedome3', '2017-11-18', 2);
-insert into DISCOUNT (ID, USR_ID, PERCENT, CEILING, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (10005, 10001, 24, 9674, true, 'fgrassi4', '2018-07-08', 'sledgister4', '2018-03-19', 3);
-insert into DISCOUNT (ID, USR_ID, PERCENT, CEILING, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (10006, 10001, 4, 13828, true, 'tmacginney5', '2017-09-26', 'nmaccrea5', '2017-10-13', 2);
-insert into DISCOUNT (ID, USR_ID, PERCENT, CEILING, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (10007, 10001, 9, 12893, false, 'ctreharne6', '2018-05-16', 'deynon6', '2017-10-23', 2);
-insert into DISCOUNT (ID, USR_ID, PERCENT, CEILING, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (10008, 10001, 20, 14007, false, 'clegges7', '2018-06-12', 'goda7', '2018-02-12', 2);
-insert into DISCOUNT (ID, USR_ID, PERCENT, CEILING, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (10009, 10001, 3, 12061, true, 'ddillestone8', '2018-06-21', 'ralekseicik8', '2018-07-31', 3);
-insert into DISCOUNT (ID, USR_ID, PERCENT, CEILING, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (10010, 10001, 18, 24632, false, 'kclowsley9', '2018-08-25', 'avardey9', '2018-07-10', 3);
-insert into DISCOUNT (ID, USR_ID, PERCENT, CEILING, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (10011, 10001, 22, 9531, true, 'achichgara', '2018-08-22', 'mkippina', '2017-10-05', 3);
-insert into DISCOUNT (ID, USR_ID, PERCENT, CEILING, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (10012, 10001, 8, 13140, false, 'britzmanb', '2018-08-08', 'nyakebowitchb', '2018-02-11', 1);
-insert into DISCOUNT (ID, USR_ID, PERCENT, CEILING, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (10013, 10001, 24, 8681, false, 'ainkpinc', '2018-02-09', 'ehaddletonc', '2017-09-18', 3);
-insert into DISCOUNT (ID, USR_ID, PERCENT, CEILING, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (10014, 10002, 9, 11295, false, 'fluned', '2017-11-17', 'acelizd', '2017-09-14', 1);
-insert into DISCOUNT (ID, USR_ID, PERCENT, CEILING, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (10015, 10002, 9, 14197, false, 'battleee', '2018-03-03', 'hchasmere', '2017-10-03', 1);
-insert into DISCOUNT (ID, USR_ID, PERCENT, CEILING, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (10016, 10002, 17, 6467, false, 'jchittendenf', '2018-07-31', 'ebrysonf', '2018-04-06', 1);
-insert into DISCOUNT (ID, USR_ID, PERCENT, CEILING, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (10017, 10002, 12, 15695, false, 'jstrelitzkig', '2018-08-13', 'mrundallg', '2017-12-18', 1);
-insert into DISCOUNT (ID, USR_ID, PERCENT, CEILING, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (10018, 10002, 3, 12383, false, 'gsawyerh', '2018-05-04', 'rfolanh', '2018-07-27', 1);
-insert into DISCOUNT (ID, USR_ID, PERCENT, CEILING, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (10019, 10002, 2, 10527, false, 'rhessei', '2018-08-06', 'gcawderyi', '2017-12-30', 1);
-insert into DISCOUNT (ID, USR_ID, PERCENT, CEILING, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (10020, 10002, 12, 17490, false, 'nbremmellj', '2018-01-18', 'mrackamj', '2018-08-07', 1);
-insert into DISCOUNT (ID, USR_ID, PERCENT, CEILING, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (10021, 10002, 21, 24905, true, 'mcorzonk', '2017-09-18', 'cgaythwaitek', '2018-02-04', 1);
-insert into DISCOUNT (ID, USR_ID, PERCENT, CEILING, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (10022, 10002, 24, 12336, false, 'mmonnoyerl', '2017-11-22', 'irebichonl', '2018-06-11', 2);
-insert into DISCOUNT (ID, USR_ID, PERCENT, CEILING, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (10023, 10002, 18, 7785, false, 'mbrognotm', '2018-03-22', 'jbennellm', '2018-08-01', 2);
-insert into DISCOUNT (ID, USR_ID, PERCENT, CEILING, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (10024, 10002, 5, 8762, false, 'aglendzan', '2018-04-12', 'jcrossleyn', '2018-06-06', 1);
-insert into DISCOUNT (ID, USR_ID, PERCENT, CEILING, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values (10025, 10002, 1, 23280, true, 'ecleynaerto', '2018-03-19', 'aalfusoo', '2018-07-30', 3);
+insert into DISCOUNT (ID, USR_ID, PERCENT, CEILING, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values
+	(10001, 10001, 14, 24231, true, 'bpikhno0', '2017-12-11', 'lcarlet0', '2018-06-17', 1),
+	(10002, 10001, 8, 22755, false, 'abantick1', '2018-07-14', 'bcheverton1', '2018-08-20', 1),
+	(10003, 10001, 22, 24065, false, 'dkleinlerer2', '2018-03-29', 'lcuddehay2', '2018-06-08', 3),
+	(10004, 10001, 8, 13769, true, 'mjakubowicz3', '2017-12-09', 'afeedome3', '2017-11-18', 2),
+	(10005, 10001, 24, 9674, true, 'fgrassi4', '2018-07-08', 'sledgister4', '2018-03-19', 3),
+	(10006, 10001, 4, 13828, true, 'tmacginney5', '2017-09-26', 'nmaccrea5', '2017-10-13', 2),
+	(10007, 10001, 9, 12893, false, 'ctreharne6', '2018-05-16', 'deynon6', '2017-10-23', 2),
+	(10008, 10001, 20, 14007, false, 'clegges7', '2018-06-12', 'goda7', '2018-02-12', 2),
+	(10009, 10001, 3, 12061, true, 'ddillestone8', '2018-06-21', 'ralekseicik8', '2018-07-31', 3),
+	(10010, 10001, 18, 24632, false, 'kclowsley9', '2018-08-25', 'avardey9', '2018-07-10', 3),
+	(10011, 10001, 22, 9531, true, 'achichgara', '2018-08-22', 'mkippina', '2017-10-05', 3),
+	(10012, 10001, 8, 13140, false, 'britzmanb', '2018-08-08', 'nyakebowitchb', '2018-02-11', 1),
+	(10013, 10001, 24, 8681, false, 'ainkpinc', '2018-02-09', 'ehaddletonc', '2017-09-18', 3),
+	(10014, 10002, 9, 11295, false, 'fluned', '2017-11-17', 'acelizd', '2017-09-14', 1),
+	(10015, 10002, 9, 14197, false, 'battleee', '2018-03-03', 'hchasmere', '2017-10-03', 1),
+	(10016, 10002, 17, 6467, false, 'jchittendenf', '2018-07-31', 'ebrysonf', '2018-04-06', 1),
+	(10017, 10002, 12, 15695, false, 'jstrelitzkig', '2018-08-13', 'mrundallg', '2017-12-18', 1),
+	(10018, 10002, 3, 12383, false, 'gsawyerh', '2018-05-04', 'rfolanh', '2018-07-27', 1),
+	(10019, 10002, 2, 10527, false, 'rhessei', '2018-08-06', 'gcawderyi', '2017-12-30', 1),
+	(10020, 10002, 12, 17490, false, 'nbremmellj', '2018-01-18', 'mrackamj', '2018-08-07', 1),
+	(10021, 10002, 21, 24905, true, 'mcorzonk', '2017-09-18', 'cgaythwaitek', '2018-02-04', 1),
+	(10022, 10002, 24, 12336, false, 'mmonnoyerl', '2017-11-22', 'irebichonl', '2018-06-11', 2),
+	(10023, 10002, 18, 7785, false, 'mbrognotm', '2018-03-22', 'jbennellm', '2018-08-01', 2),
+	(10024, 10002, 5, 8762, false, 'aglendzan', '2018-04-12', 'jcrossleyn', '2018-06-06', 1),
+	(10025, 10002, 1, 23280, true, 'ecleynaerto', '2018-03-19', 'aalfusoo', '2018-07-30', 3);
 
 --
 -- INSERT INTO DISCOUNT (ID, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION, IS_ACTIVE, CEILING, PERCENT, PRODUCT_ID, USR_ID)
