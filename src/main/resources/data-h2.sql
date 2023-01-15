@@ -6,8 +6,19 @@
 -- USER DATA SAMPLE
 -- Default password for john.doe@gmail.com is: asd@123456
 INSERT INTO USERS("ID","CREATED_BY","CREATED_ON","EDITED_BY","EDITED_ON","VERSION","IS_ACTIVE","EMAIL","FAMILY","GENDER","MOBILE","NAME","PASSWORD","VERIFIED_EMAIL","VERIFIED_MOBILE", "IS_DELETED", "CODE_INTRODUCING") VALUES
-				(10001, 'john.doe@gmail.com','2018-01-01', 'john.doe@gmail.com','2018-01-01', 0, 1,'john.doe@gmail.com','Doe','MALE','+9876543210','John','$2a$10$Zj38WYKI.gGbhQWuATpY2.nI8CowD/ujyC7c2MozoyMBGNi8z6bui',1,1, 0, 'AAAA'),
-				(10002, 'jane.doe@gmail.com','2018-01-01', 'jane.doe@gmail.com','2018-01-01', 0, 1,'jane.doe@gmail.com','Doe','FEMALE','+9876543211','Jane','$2a$10$Zj38WYKI.gGbhQWuATpY2.nI8CowD/ujyC7c2MozoyMBGNi8z6bui',1,1, 0, 'BBBB');
+	(10001, 'john.doe@gmail.com','2018-01-01', 'john.doe@gmail.com','2018-01-01', 0, 1,'john.doe@gmail.com','Doe','MALE','+9876543210','John','$2a$10$Zj38WYKI.gGbhQWuATpY2.nI8CowD/ujyC7c2MozoyMBGNi8z6bui',1,1, 0, 'AAAA'),
+	(10002, 'jane.doe@gmail.com','2018-01-01', 'jane.doe@gmail.com','2018-01-01', 0, 1,'jane.doe@gmail.com','Doe','FEMALE','+9876543211','Jane','$2a$10$Zj38WYKI.gGbhQWuATpY2.nI8CowD/ujyC7c2MozoyMBGNi8z6bui',1,1, 0, 'BBBB'),
+
+	(20001, 'cpenhaleurack0@hexun.com', '2022-06-04', 'cpenhaleurack0@amazon.com', '2022-01-28', 4, 1, 'cpenhaleurack0@purevolume.com', 'Penhaleurack', 'Male', '+62 851 713 8342', 'Claus', '$2a$10$Zj38WYKI.gGbhQWuATpY2.nI8CowD/ujyC7c2MozoyMBGNi8z6bui', 0, 0, 0, 'FZBA'),
+	(20002, 'oyukhnev1@reddit.com', '2023-01-06', 'oyukhnev1@1688.com', '2022-04-11', 1, 1, 'oyukhnev1@soup.io', 'Yukhnev', 'Female', '+86 177 466 9357', 'Odilia', '$2a$10$Zj38WYKI.gGbhQWuATpY2.nI8CowD/ujyC7c2MozoyMBGNi8z6bui', 1, 1, 1, 'GBYD'),
+	(20003, 'gbiggadyke2@europa.eu', '2022-06-03', 'gbiggadyke2@skyrock.com', '2022-06-13', 2, 1, 'gbiggadyke2@wsj.com', 'Biggadyke', 'Male', '+46 789 886 5131', 'Georgie', '$2a$10$Zj38WYKI.gGbhQWuATpY2.nI8CowD/ujyC7c2MozoyMBGNi8z6bui', 0, 0, 1, 'FOOS'),
+	(20004, 'gbalmer3@ucsd.edu', '2022-10-05', 'gbalmer3@sciencedaily.com', '2022-12-03', 1, 0, 'gbalmer3@cdbaby.com', 'Balmer', 'Male', '+504 634 640 7372', 'Gasparo', '$2a$10$Zj38WYKI.gGbhQWuATpY2.nI8CowD/ujyC7c2MozoyMBGNi8z6bui', 1, 0, 1, 'EGPW'),
+	(20005, 'ocrewe4@clickbank.net', '2022-06-17', 'ocrewe4@twitpic.com', '2022-03-31', 1, 0, 'ocrewe4@businesswire.com', 'Crewe', 'Male', '+48 317 775 5169', 'Olivier', '$2a$10$Zj38WYKI.gGbhQWuATpY2.nI8CowD/ujyC7c2MozoyMBGNi8z6bui', 1, 1, 1, '6CA3'),
+	(20006, 'hexley5@cocolog-nifty.com', '2022-04-18', 'hexley5@i2i.jp', '2022-02-11', 2, 0, 'hexley5@fda.gov', 'Exley', 'Male', '+7 534 477 7775', 'Haleigh', '$2a$10$Zj38WYKI.gGbhQWuATpY2.nI8CowD/ujyC7c2MozoyMBGNi8z6bui', 1, 1, 1, 'SWBC'),
+	(20007, 'djolliffe6@ucoz.ru', '2022-09-09', 'djolliffe6@amazon.de', '2022-07-12', 5, 1, 'djolliffe6@unicef.org', 'Jolliffe', 'Female', '+33 577 633 8739', 'Davina', '$2a$10$Zj38WYKI.gGbhQWuATpY2.nI8CowD/ujyC7c2MozoyMBGNi8z6bui', 0, 1, 0, 'KMKY'),
+	(20008, 'dmcilvaney7@w3.org', '2022-01-30', 'dmcilvaney7@europa.eu', '2022-10-04', 4, 0, 'dmcilvaney7@census.gov', 'McIlvaney', 'Female', '+86 490 758 9392', 'Devon', '$2a$10$Zj38WYKI.gGbhQWuATpY2.nI8CowD/ujyC7c2MozoyMBGNi8z6bui', 0, 0, 0, 'LNLZ'),
+	(20009, 'jvandecappelle8@google.ru', '2022-06-26', 'jvandecappelle8@instagram.com', '2022-01-17', 5, 1, 'jvandecappelle8@lulu.com', 'Van De Cappelle', 'Female', '+86 455 648 7622', 'Josephine', '$2a$10$Zj38WYKI.gGbhQWuATpY2.nI8CowD/ujyC7c2MozoyMBGNi8z6bui', 1, 1, 1, 'MRBC'),
+	(20010, 'rwade9@jiathis.com', '2022-12-28', 'rwade9@shinystat.com', '2023-01-01', 2, 0, 'rwade9@blinklist.com', 'Wade', 'Female', '+58 142 384 3770', 'Roseann', '$2a$10$Zj38WYKI.gGbhQWuATpY2.nI8CowD/ujyC7c2MozoyMBGNi8z6bui', 0, 0, 1, 'KDNS');
 
 -- USER GROUP SAMPLE
 INSERT INTO USER_GROUP("ID","CREATED_BY","CREATED_ON","EDITED_BY","EDITED_ON","VERSION","IS_ACTIVE", name) VALUES
