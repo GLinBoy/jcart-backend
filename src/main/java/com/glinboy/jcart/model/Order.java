@@ -29,7 +29,7 @@ import lombok.EqualsAndHashCode;
 public class Order extends BaseEntity {
     @JsonManagedReference
     @ManyToOne
-    @JoinColumn(name = "USER_EMAIL", updatable = false)
+    @JoinColumn(name = "USER_ID", updatable = false)
     private User user;
 
     @Column
