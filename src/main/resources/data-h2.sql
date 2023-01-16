@@ -488,3 +488,18 @@ insert into CONTACT (ID, EMAIL, ADDRESS_ID, IS_ACTIVE, CREATED_BY, CREATED_ON, E
 	(10004, 'pcrutcher3@youtube.com', 10004, 0, 'pmcevoy3@printfriendly.com', '2022-01-17', 'mpiatkow3@cornell.edu', '2022-03-17', 2),
 	(10005, 'wmulderrig4@technorati.com', 10004, 0, 'sdat4@dedecms.com', '2022-02-03', 'nsoppitt4@furl.net', '2022-07-17', 5);
 
+--
+-- -- MENU DATA SAMPLE
+--
+
+insert into MENU (ID, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION, NAME, DESCRIPTION, HREF, TARGET) values
+	(10001, 1, 'msaill0@cbsnews.com', '2022-06-10', 'msizland0@live.com', '2022-08-15', 0, 'MAJOR DOK Docusate Sodium', 'Displ spiral fx shaft of ulna, r arm, 7thC', 'https://house.gov/consequat/morbi/a/ipsum/integer.png', '_blank'),
+	(10002, 0, 'gdenver1@shinystat.com', '2022-10-06', 'agalliard1@alibaba.com', '2022-11-01', 0, 'GABAPENTIN', 'Driver of 3-whl mv injured in clsn w nonmtr vehicle nontraf', 'https://npr.org/morbi/non/quam/nec/dui.json', '_parent'),
+	(10003, 1, 'kshallo2@printfriendly.com', '2022-04-15', 'wleaning2@moonfruit.com', '2022-02-20', 4, 'McD Hand Sanitizer', 'Other infective bursitis, knee', 'https://ted.com/luctus/ultricies/eu/nibh.jpg', '_blank'),
+	(10004, 0, 'rroll3@blogtalkradio.com', '2022-11-23', 'prisbie3@reference.com', '2022-04-16', 3, 'Sleep Aid', 'Explosion and rupture of oth pressurized tire, pipe or hose', 'https://epa.gov/morbi/vestibulum.jsp', '_blank'),
+	(10005, 1, 'pbrumfitt4@opensource.org', '2022-12-16', 'laindrais4@ox.ac.uk', '2022-03-05', 2, 'BZK Cleansing', 'Calcifcn and ossifictn of muscles assoc w burns, r up arm', 'https://weibo.com/mauris/viverra/diam/vitae/quam/suspendisse.jsp', '_blank'),
+	(10006, 1, 'dweighell5@bluehost.com', '2022-07-15', 'abaigent5@edublogs.org', '2022-05-26', 0, 'Diovan HCT', 'Unsp injury of musc/fasc/tend long head of biceps', 'https://squidoo.com/aliquam/erat.aspx', '_parent'),
+	(10007, 0, 'rmorrall6@a8.net', '2022-10-26', 'eburgan6@cnet.com', '2022-06-22', 4, 'Pravastatin Sodium', 'Displaced other fracture of tuberosity of unsp calcaneus', 'http://nasa.gov/non/velit/nec/nisi.jpg', '_blank'),
+	(10008, 1, 'ksommerled7@netlog.com', '2022-10-23', 'tseviour7@nhs.uk', '2022-10-30', 5, 'Porcelain Expert Finish Makeup Makeup Broad Spectrum SPF 25', 'Merkel cell carcinoma of right ear and external auric canal', 'https://oracle.com/sapien/iaculis.js', '_parent'),
+	(10009, 1, 'rkorb8@dailymotion.com', '2022-04-30', 'gdolton8@uiuc.edu', '2022-07-02', 0, 'Oxy Maximum Action Face Wash', 'Athscl nonaut bio bypass of the extrm w gangrene, bi legs', 'https://clickbank.net/mattis/odio/donec/vitae.jpg', '_blank'),
+	(10010, 0, 'rbottrell9@pinterest.com', '2022-12-15', 'sgrollmann9@foxnews.com', '2022-03-01', 3, 'Hydrochlorothiazide', 'Partial traumatic amputation of right foot, level unsp', 'http://desdev.cn/consectetuer.jpg', '_parent');
