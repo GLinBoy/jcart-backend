@@ -503,3 +503,19 @@ insert into MENU (ID, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, V
 	(10008, 1, 'ksommerled7@netlog.com', '2022-10-23', 'tseviour7@nhs.uk', '2022-10-30', 5, 'Porcelain Expert Finish Makeup Makeup Broad Spectrum SPF 25', 'Merkel cell carcinoma of right ear and external auric canal', 'https://oracle.com/sapien/iaculis.js', '_parent'),
 	(10009, 1, 'rkorb8@dailymotion.com', '2022-04-30', 'gdolton8@uiuc.edu', '2022-07-02', 0, 'Oxy Maximum Action Face Wash', 'Athscl nonaut bio bypass of the extrm w gangrene, bi legs', 'https://clickbank.net/mattis/odio/donec/vitae.jpg', '_blank'),
 	(10010, 0, 'rbottrell9@pinterest.com', '2022-12-15', 'sgrollmann9@foxnews.com', '2022-03-01', 3, 'Hydrochlorothiazide', 'Partial traumatic amputation of right foot, level unsp', 'http://desdev.cn/consectetuer.jpg', '_parent');
+
+--
+-- -- IMAGE DATA SAMPLE
+--
+
+insert into IMAGE (ID, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION, NAME, PATH, ORDERING) values
+	(10001, 1, 'swoolen0@ucoz.ru', '2022-06-13', 'cartist0@berkeley.edu', '2023-01-01', 4, 'Argentum Nitricum Kit Refill', 'http://dummyimage.com/222x100.png/dddddd/000000', 89),
+	(10002, 0, 'ilegges1@myspace.com', '2022-02-15', 'rlaux1@dagondesign.com', '2023-01-06', 3, 'SOMA Pet-circle', 'http://dummyimage.com/219x100.png/ff4444/ffffff', 54),
+	(10003, 0, 'lpesak2@boston.com', '2022-09-02', 'sstrotone2@linkedin.com', '2023-01-08', 0, 'Erythromycin', 'http://dummyimage.com/120x100.png/5fa2dd/ffffff', 47),
+	(10004, 1, 'kvasyukhnov3@bloglines.com', '2022-08-31', 'gjirousek3@csmonitor.com', '2022-09-26', 1, 'Ear Care', 'http://dummyimage.com/186x100.png/5fa2dd/ffffff', 86),
+	(10005, 0, 'dbeames4@tripod.com', '2022-07-24', 'hmellish4@sogou.com', '2022-07-07', 0, 'ACACIA POLLEN', 'http://dummyimage.com/124x100.png/dddddd/000000', 3),
+	(10006, 1, 'hdarnborough5@google.de', '2022-02-17', 'mdibley5@patch.com', '2022-08-14', 1, 'Sodum Chloride', 'http://dummyimage.com/156x100.png/dddddd/000000', 75),
+	(10007, 0, 'wjaggar6@issuu.com', '2022-05-12', 'hfillis6@npr.org', '2022-06-10', 5, 'Nabumetone', 'http://dummyimage.com/184x100.png/5fa2dd/ffffff', 4),
+	(10008, 1, 'ebattams7@geocities.com', '2022-04-12', 'mtreece7@bing.com', '2022-03-05', 3, 'HistaFlex', 'http://dummyimage.com/232x100.png/5fa2dd/ffffff', 6),
+	(10009, 0, 'hjoderli8@cnn.com', '2022-03-26', 'bauthers8@liveinternet.ru', '2022-09-02', 0, 'Amoxicillin', 'http://dummyimage.com/120x100.png/ff4444/ffffff', 92),
+	(10010, 1, 'cdesbrow9@ucsd.edu', '2022-06-18', 'bbiasioni9@oaic.gov.au', '2022-04-20', 5, 'Kids-EEZE', 'http://dummyimage.com/186x100.png/cc0000/ffffff', 35);
