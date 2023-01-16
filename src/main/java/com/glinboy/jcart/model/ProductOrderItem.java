@@ -15,6 +15,10 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper=true)
 @Table(name="PRODUCT_ORDER_ITEM")
 public class ProductOrderItem extends Product {
+	
+	@Column
+	private Long ProductShopItemId;
+	
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name="ORDER_ID", updatable = false)
