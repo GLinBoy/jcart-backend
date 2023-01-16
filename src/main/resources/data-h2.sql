@@ -476,3 +476,15 @@ insert into USER_TRANSACTION (ID, ORDER_ID, USER_ID, DATE, PRICE, STATUS, IS_ACT
 INSERT INTO CONTENT(ID, TITLE, CONTENT, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) VALUES
 	(10001, 'title', 'content', 1, 'john.doe@gmail.com','2018-01-01', 'john.doe@gmail.com','2018-01-01', 0),
 	(10002, 'test', 'test content', 1, 'john.doe@gmail.com','2018-01-01', 'john.doe@gmail.com','2018-01-01', 0);
+
+--
+-- -- CONTACT DATA SAMPLE
+--
+
+insert into CONTACT (ID, EMAIL, ADDRESS_ID, IS_ACTIVE, CREATED_BY, CREATED_ON, EDITED_BY, EDITED_ON, VERSION) values
+	(10001, 'oemett0@weather.com', 10009, 0, 'bbasten0@histats.com', '2022-08-13', 'agoundrill0@state.gov', '2022-08-16', 2),
+	(10002, 'bdavall1@freewebs.com', 10008, 0, 'agunningham1@cargocollective.com', '2022-12-29', 'isaffill1@forbes.com', '2022-04-20', 1),
+	(10003, 'mquiney2@forbes.com', 10004, 1, 'akollach2@bbc.co.uk', '2022-02-21', 'mclaibourn2@prnewswire.com', '2022-05-12', 5),
+	(10004, 'pcrutcher3@youtube.com', 10004, 0, 'pmcevoy3@printfriendly.com', '2022-01-17', 'mpiatkow3@cornell.edu', '2022-03-17', 2),
+	(10005, 'wmulderrig4@technorati.com', 10004, 0, 'sdat4@dedecms.com', '2022-02-03', 'nsoppitt4@furl.net', '2022-07-17', 5);
+
