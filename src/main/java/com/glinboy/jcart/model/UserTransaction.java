@@ -28,7 +28,7 @@ public class UserTransaction extends BaseEntity {
     private TransactionStatus status;
 
     @ManyToOne
-    @JoinColumn(name = "ORDER_ID")
+    @JoinColumn(name = "ORDER_ID", unique = true)
     private Order order;
 
     @ManyToOne
