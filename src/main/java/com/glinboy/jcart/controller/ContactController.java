@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.glinboy.jcart.service.ContactServiceApi;
 import com.glinboy.jcart.service.dto.ContactDTO;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(path = "/contact")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
 @RequiredArgsConstructor
+@SecurityRequirement(name = "Bearer Authentication")
 public class ContactController {
 	
 	private final ContactServiceApi contactService;
