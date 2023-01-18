@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.glinboy.jcart.service.ContentServiceApi;
 import com.glinboy.jcart.service.dto.ContentDTO;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 @RestController
 @RequestMapping(path = "/contents")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+@SecurityRequirement(name = "Bearer Authentication")
 public class ContentController extends GenericController<ContentDTO, ContentServiceApi> {
 
 	public ContentController(ContentServiceApi service) {
