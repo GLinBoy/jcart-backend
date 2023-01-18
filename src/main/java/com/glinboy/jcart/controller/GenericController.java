@@ -28,10 +28,12 @@ import com.glinboy.jcart.service.dto.BaseDTO;
 import com.glinboy.jcart.util.PaginationUtil;
 
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
+@SecurityRequirement(name = "Bearer Authentication")
 public abstract class GenericController<T extends BaseDTO, S extends GenericService<T>> {
 
 	protected final ResourceBundle messages = PropertyResourceBundle.getBundle("i18n/messages");
