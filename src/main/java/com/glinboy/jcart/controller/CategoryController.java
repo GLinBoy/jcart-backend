@@ -14,9 +14,12 @@ import com.glinboy.jcart.service.ProductServiceApi;
 import com.glinboy.jcart.service.dto.ProductCategoryDTO;
 import com.glinboy.jcart.service.dto.ProductShopItemDTO;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 @RestController
 @RequestMapping(path = "/categories")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+@SecurityRequirement(name = "Bearer Authentication")
 public class CategoryController extends GenericController<ProductCategoryDTO, ProductCategoryServiceApi> {
 
 	private final ProductServiceApi productService;
