@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 
 @Configuration
 @RequiredArgsConstructor
-@SecurityScheme(name = "bearerAuth",
+@SecurityScheme(name = "Bearer Authentication",
 	type = SecuritySchemeType.HTTP,
 	bearerFormat = "JWT",
 	scheme = "bearer")
@@ -24,7 +24,7 @@ public class OpenApiConfig {
 	private final ApplicationProperties properties;
 
 	@Bean
-	public OpenAPI springShopOpenAPI() {
+	OpenAPI springShopOpenAPI() {
 		return new OpenAPI()
 				.info(new Info()
 						.title(properties.getInfo().getName())
