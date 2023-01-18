@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.glinboy.jcart.service.DiscountServiceApi;
 import com.glinboy.jcart.service.dto.DiscountDTO;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 @RestController
 @RequestMapping(path = "/discounts")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+@SecurityRequirement(name = "Bearer Authentication")
 public class DiscountController extends GenericController<DiscountDTO, DiscountServiceApi> {
 
 	public DiscountController(DiscountServiceApi service) {
