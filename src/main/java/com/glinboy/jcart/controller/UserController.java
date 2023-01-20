@@ -29,12 +29,14 @@ import com.glinboy.jcart.service.dto.UserDTO;
 import com.glinboy.jcart.service.dto.UserTransactionDTO;
 
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(path = "/users")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
 @RequiredArgsConstructor
+@SecurityRequirement(name = "Bearer Authentication")
 public class UserController {
 
 	private final UserServiceApi userService;
