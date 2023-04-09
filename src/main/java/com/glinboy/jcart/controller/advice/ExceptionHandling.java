@@ -1,6 +1,9 @@
 package com.glinboy.jcart.controller.advice;
 
-//@ControllerAdvice
-final class ExceptionHandling {
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+@ControllerAdvice
+final class ExceptionHandling extends ResponseEntityExceptionHandler {
 
 }
