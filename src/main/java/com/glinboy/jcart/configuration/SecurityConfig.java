@@ -1,5 +1,7 @@
 package com.glinboy.jcart.configuration;
 
+import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,16 +23,12 @@ import com.glinboy.jcart.service.UserServiceApi;
 
 import lombok.RequiredArgsConstructor;
 
-import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
-
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-//@Import(SecurityProblemSupport.class)
 @EnableMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
 public class SecurityConfig {
 	
-//	private final SecurityProblemSupport problemSupport;
 	private final UserServiceApi userService;
 	private final JwtTokenProvider jwtTokenProvider;
 	
@@ -53,11 +51,6 @@ public class SecurityConfig {
 			.csrf().disable()
 			.headers().frameOptions().sameOrigin()
 			.and()
-			// FIXME It seems ZalandoProblem library has issue with JakartaEE 
-//			.exceptionHandling()
-//				.authenticationEntryPoint(problemSupport)
-//				.accessDeniedHandler(problemSupport)
-//			.and()
 			.authorizeHttpRequests(
 					request -> request
 						.requestMatchers(AUTH_WHITELIST).permitAll()
