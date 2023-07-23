@@ -9,8 +9,11 @@ plugins {
 
 group = 'com.glinboy'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 20
-targetCompatibility = 20
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_20
+	targetCompatibility = JavaVersion.VERSION_20
+}
 
 repositories {
 	mavenCentral()
@@ -55,7 +58,8 @@ dependencies {
 }
 
 bootRun {
-	jvmArgs = ['-XX:+UseZGC',
+	jvmArgs = [
+				'-XX:+UseZGC',
 				'-Xlog:gc*:file=log/jcart.gc.log',
 				'-XX:+HeapDumpOnOutOfMemoryError',
 				'-XX:HeapDumpPath=log/crashes/jcart.hprof',
