@@ -36,7 +36,7 @@ public class UserAddressServiceImpl
 
 	@Override
 	public UserAddressDTO getAddressByUser(Long userId, Long addressId) {
-		return repository.findByUserAndId(userId, addressId).map(mapper::toDto)
+		return repository.findByUserIdAndId(userId, addressId).map(mapper::toDto)
 				.orElseThrow(() -> new ResourceNotFoundException("Resource not found id = " + addressId));
 	}
 
@@ -50,6 +50,6 @@ public class UserAddressServiceImpl
 
 	@Override
 	public void deleteAddress(Long userId, Long addressId) {
-		repository.deleteByUserAndId(userId, addressId);
+		repository.deleteByUserIdAndId(userId, addressId);
 	}
 }
