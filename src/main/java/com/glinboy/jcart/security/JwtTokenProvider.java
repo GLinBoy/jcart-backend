@@ -56,7 +56,7 @@ public class JwtTokenProvider {
 	}
 
 	public Authentication getAuthentication(String token) {
-		Claims claims = (Claims) jwtParser.parse(token).getBody();
+		Claims claims = jwtParser.parseSignedClaims(token).getPayload();
 		var authorities = Arrays.asList(claims.get(ROLES_CLAIM_NAME)
 		.toString()
 		.split(","))
