@@ -1,9 +1,10 @@
 package com.glinboy.jcart.security;
 
-import java.security.Key;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
+import javax.crypto.SecretKey;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -24,7 +25,6 @@ import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.UnsupportedJwtException;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -45,7 +45,7 @@ public class JwtTokenProvider {
 
 	private final JwtParser jwtParser;
 	
-	private final Key key;
+	private final SecretKey secretKey;
 	
 	public JwtTokenProvider(ApplicationProperties properties) {
 		this.properties = properties;
