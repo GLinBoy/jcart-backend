@@ -79,12 +79,12 @@ public class JwtTokenProvider {
 				.toList();
 		
 		return Jwts.builder()
-				.setSubject(((UserPrincipal) authentication.getPrincipal()).getEmail())
-				.claim(ROLES_CLAIM_NAME, authorities)
-				.setIssuedAt(new Date())
-				.setExpiration(expiryDate)
-				.signWith(key, SignatureAlgorithm.HS512)
-				.compact();
+			.subject(((UserPrincipal) authentication.getPrincipal()).getEmail())
+			.claim(ROLES_CLAIM_NAME, authorities)
+			.issuedAt(new Date())
+			.expiration(expiryDate)
+			.signWith(secretKey, Jwts.SIG.HS512)
+			.compact();
 	}
 
 	public void setTokenOnResponse(Authentication authentication, Boolean rememberMe, HttpServletResponse response) {
