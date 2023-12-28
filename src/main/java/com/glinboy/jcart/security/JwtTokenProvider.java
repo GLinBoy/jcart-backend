@@ -97,7 +97,7 @@ public class JwtTokenProvider {
 	}
 
 	public String getUserIdFromJWT(String token) {
-		return jwtParser.parseClaimsJws(token).getBody().getSubject();
+		return jwtParser.parseSignedClaims(token).getPayload().getSubject();
 	}
 
 	public String getTokenFromCookie(HttpServletRequest request) {
