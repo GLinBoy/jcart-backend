@@ -51,8 +51,8 @@ public class JwtTokenProvider {
 		this.properties = properties;
 		this.jwtParser = Jwts.parserBuilder()
 				.setSigningKey(Decoders.BASE64.decode(properties.getSecurity().getJwt().getBase64Secret()))
+		this.secretKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode(properties.getSecurity().getJwt().getBase64Secret()));
 				.build();
-		this.key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(properties.getSecurity().getJwt().getBase64Secret()));
 	}
 
 	public Authentication getAuthentication(String token) {
