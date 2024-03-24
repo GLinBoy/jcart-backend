@@ -23,7 +23,7 @@ ext {
 	jsr310Version = '2.17.0'
 	springdocVersion = '2.3.0'
 	mapstructVersion = '1.5.5.Final'
-	jjwtVersion = '0.12.3'
+	jjwtVersion = '0.12.5'
 }
 
 defaultTasks "bootRun"
