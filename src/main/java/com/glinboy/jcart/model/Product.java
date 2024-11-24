@@ -3,8 +3,6 @@ package com.glinboy.jcart.model;
 import java.util.List;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
@@ -14,9 +12,8 @@ import jakarta.persistence.Transient;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@MappedSuperclass
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 @Data
+@MappedSuperclass
 @EqualsAndHashCode(callSuper=true)
 public abstract class Product extends BaseEntity {
     @Column
