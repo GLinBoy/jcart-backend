@@ -2,9 +2,9 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '4.0.1'
 	id 'io.spring.dependency-management' version '1.1.7'
-	id 'com.github.ben-manes.versions' version '0.52.0'
+	id 'com.github.ben-manes.versions' version '0.53.0'
 	id 'org.ec4j.editorconfig' version '0.1.0'
-	id 'com.diffplug.eclipse.apt' version '4.3.0'
+	id 'com.diffplug.eclipse.apt' version '4.4.1'
 }
 
 group = 'com.glinboy'
@@ -27,10 +27,9 @@ repositories {
 }
 
 ext {
-	jsr310Version = '2.19.0'
-	springdocVersion = '2.8.6'
+	springdocVersion = '3.0.0'
 	mapstructVersion = '1.6.3'
-	jjwtVersion = '0.12.6'
+	jjwtVersion = '0.13.0'
 }
 
 defaultTasks "bootRun"
