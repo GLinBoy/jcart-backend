@@ -13,6 +13,10 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.glinboy.jcart.service.UserServiceApi;
 
+import io.jsonwebtoken.security.SignatureException;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.UnsupportedJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -44,8 +48,24 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 			}
+		} catch (SignatureException ex) {
+			// JWT signature validation failed - this is expected for invalid/tampered tokens
+			log.debug("JWT signature validation failed for request to {}: {}", request.getRequestURI(), ex.getMessage());
+		} catch (ExpiredJwtException ex) {
+			// JWT expired - this is expected behavior
+			log.debug("JWT token expired for request to {}: {}", request.getRequestURI(), ex.getMessage());
+		} catch (MalformedJwtException ex) {
+			// JWT malformed - log as warning since this could indicate an attack
+			log.warn("Malformed JWT token for request to {}: {}", request.getRequestURI(), ex.getMessage());
+		} catch (UnsupportedJwtException ex) {
+			// JWT not supported - log as warning
+			log.warn("Unsupported JWT token for request to {}: {}", request.getRequestURI(), ex.getMessage());
+		} catch (IllegalArgumentException ex) {
+			// JWT claims string is empty - this is expected when no token is provided
+			log.debug("Empty JWT claims for request to {}: {}", request.getRequestURI(), ex.getMessage());
 		} catch (Exception ex) {
-			log.error("Could not set user authentication in security context", ex);
+			// Any other unexpected exception should still be logged as error
+			log.error("Unexpected error during JWT authentication for request to {}: {}", request.getRequestURI(), ex.getMessage(), ex);
 		}
 
 		filterChain.doFilter(request, response);
