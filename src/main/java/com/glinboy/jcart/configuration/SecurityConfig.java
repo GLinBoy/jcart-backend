@@ -1,7 +1,5 @@
 package com.glinboy.jcart.configuration;
 
-import java.util.stream.Stream;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -10,14 +8,12 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.csrf.CsrfFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.glinboy.jcart.security.CsrfHeaderFilter;
 import com.glinboy.jcart.security.JwtAuthenticationFilter;
@@ -29,7 +25,7 @@ import lombok.RequiredArgsConstructor;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-@EnableMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
+@EnableMethodSecurity(securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfig {
 	
 	private final UserServiceApi userService;
@@ -48,23 +44,17 @@ public class SecurityConfig {
 	};
 
 	@Bean
-	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	SecurityFilterChain securityFilterChain(HttpSecurity http) {
 		return http
 				.cors(AbstractHttpConfigurer::disable)
 				.csrf(AbstractHttpConfigurer::disable)
-				.headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
-				.authorizeHttpRequests(
-						request -> request
-						.requestMatchers(
-							Stream.of(AUTH_WHITELIST)
-								.map(AntPathRequestMatcher::new)
-								.toList()
-								.toArray(new AntPathRequestMatcher[] {})
-							)
-							.permitAll()
+				.headers(headers -> headers.frameOptions(frameOptions -> frameOptions.sameOrigin()))
+				.authorizeHttpRequests(authorize -> authorize
+						.requestMatchers(AUTH_WHITELIST)
+						.permitAll()
 						.anyRequest().authenticated()
 					)
-				.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider, userService), UsernamePasswordAuthenticationFilter.class)
 				.addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class)
 				.userDetailsService(userService)
@@ -77,7 +67,11 @@ public class SecurityConfig {
 	}
 	
 	@Bean
-	AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-		return authenticationConfiguration.getAuthenticationManager();
+	AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) {
+		try {
+			return authenticationConfiguration.getAuthenticationManager();
+		} catch (Exception e) {
+			throw new RuntimeException("Failed to create AuthenticationManager", e);
+		}
 	}
 }
