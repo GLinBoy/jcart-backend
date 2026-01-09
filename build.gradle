@@ -1,6 +1,6 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.5.7'
+	id 'org.springframework.boot' version '4.0.1'
 	id 'io.spring.dependency-management' version '1.1.7'
 	id 'com.github.ben-manes.versions' version '0.52.0'
 	id 'org.ec4j.editorconfig' version '0.1.0'
@@ -29,46 +29,46 @@ ext {
 defaultTasks "bootRun"
 
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-h2console'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation('org.springframework.boot:spring-boot-starter-web') {
-		exclude module: 'spring-boot-starter-tomcat'
-	}
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.h2database:h2'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
+	runtimeOnly 'org.postgresql:postgresql'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-actuator-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-security-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-validation-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-	implementation "org.springframework.boot:spring-boot-starter-undertow"
-	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
 	implementation "io.jsonwebtoken:jjwt-api:${jjwtVersion}"
-	runtimeOnly "io.jsonwebtoken:jjwt-impl:${jjwtVersion}"
-	runtimeOnly "io.jsonwebtoken:jjwt-jackson:${jjwtVersion}"
-	implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jsr310Version}"
 	implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springdocVersion}"
 	implementation "org.springdoc:springdoc-openapi-starter-common:${springdocVersion}"
-	compileOnly "org.projectlombok:lombok"
-	annotationProcessor "org.projectlombok:lombok"
-	
 	implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+	runtimeOnly "io.jsonwebtoken:jjwt-impl:${jjwtVersion}"
+	runtimeOnly "io.jsonwebtoken:jjwt-jackson:${jjwtVersion}"
 	annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
-	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 }
 
 bootRun {
 	jvmArgs = [
-				'-XX:+UseZGC',
-				'-Xlog:gc*:file=log/jcart.gc.log',
-				'-XX:+HeapDumpOnOutOfMemoryError',
-				'-XX:HeapDumpPath=log/crashes/jcart.hprof',
-				'-Xss256k',
-				'-Dsun.net.client.defaultConnectTimeout=2000',
-				'-Dsun.net.client.defaultReadTimeout=2000'
-			]
+			'-XX:+UseZGC',
+			'-Xlog:gc*:file=log/jcart.gc.log',
+			'-XX:+HeapDumpOnOutOfMemoryError',
+			'-XX:HeapDumpPath=log/crashes/jcart.hprof',
+			'-Xss256k',
+			'-Dsun.net.client.defaultConnectTimeout=2000',
+			'-Dsun.net.client.defaultReadTimeout=2000'
+	]
 }
 
-test {
+tasks.named('test') {
 	useJUnitPlatform()
 }
